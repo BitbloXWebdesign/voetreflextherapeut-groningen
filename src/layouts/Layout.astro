@@ -17,19 +17,21 @@ const {
   title = "Voetreflextherapeut Groningen - Voor persoonlijke aandacht | Georgette Noordberger",
   description = "Praktijk voor professionele voetreflextherapie in Groningen. Behandeling van rugklachten, stress, burn-out, zwangerschapsklachten en Oncoreflex. Erkend & vergoed door zorgverzekeraars.",
   canonical = "https://www.voetreflextherapeutgroningen.nl",
-  image = "/images/practice.jpg"
+  image = "/images/logo-voeten.png"
 } = Astro.props;
+
+const shareImageUrl = image.startsWith('http') ? image : `https://www.${siteConfig.domain}${image}`;
 
 const schemaData = {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": ["LocalBusiness", "MedicalBusiness", "ProfessionalService"],
-      "@id": `${siteConfig.domain}/#organization`,
+      "@id": `https://www.${siteConfig.domain}/#organization`,
       "name": siteConfig.clientName,
       "url": `https://www.${siteConfig.domain}`,
       "logo": `https://www.${siteConfig.domain}/images/logo-voeten.png`,
-      "image": `https://www.${siteConfig.domain}/images/practice.jpg`,
+      "image": `https://www.${siteConfig.domain}/images/logo-voeten.png`,
       "telephone": siteConfig.phoneDisplay,
       "email": siteConfig.email,
       "address": {
@@ -62,6 +64,8 @@ const schemaData = {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" href="/images/logo-voeten.png" />
+  <link rel="shortcut icon" href="/images/logo-voeten.png" />
+  <link rel="apple-touch-icon" href="/images/logo-voeten.png" />
   
   <title>{title}</title>
   <meta name="description" content={description} />
@@ -69,19 +73,21 @@ const schemaData = {
 
   {siteConfig.modules.seo && (
     <>
-      <!-- Open Graph / Facebook -->
+      <!-- Open Graph / WhatsApp / Facebook -->
       <meta property="og:type" content="website" />
       <meta property="og:url" content={canonical} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content={image} />
+      <meta property="og:image" content={shareImageUrl} />
+      <meta property="og:image:secure_url" content={shareImageUrl} />
+      <meta property="og:image:type" content="image/png" />
       <meta property="og:locale" content="nl_NL" />
 
       <!-- Twitter -->
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={image} />
+      <meta name="twitter:image" content={shareImageUrl} />
 
       <!-- Schema.org Rich Structured Data -->
       <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
