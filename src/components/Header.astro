@@ -72,6 +72,7 @@ import siteConfig from '../../public/site-config.json';
   .top-info {
     display: flex;
     gap: 1.5rem;
+    align-items: center;
   }
 
   .top-link {
@@ -79,6 +80,7 @@ import siteConfig from '../../public/site-config.json';
     align-items: center;
     gap: 0.4rem;
     color: #e2e8f0;
+    white-space: nowrap;
     transition: var(--transition);
   }
 
@@ -123,9 +125,16 @@ import siteConfig from '../../public/site-config.json';
     color: var(--color-primary);
   }
 
+  .nav-cta {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
   .btn-sm {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    white-space: nowrap;
   }
 
   .mobile-toggle {
@@ -134,11 +143,12 @@ import siteConfig from '../../public/site-config.json';
     border: none;
     cursor: pointer;
     color: var(--color-secondary);
+    padding: 0.3rem;
   }
 
   @media (max-width: 900px) {
-    .top-badge { display: none; }
-    .mobile-toggle { display: block; }
+    .top-bar { display: none; }
+    .mobile-toggle { display: flex; align-items: center; justify-content: center; }
     .nav-menu {
       display: none;
       position: absolute;
@@ -154,6 +164,17 @@ import siteConfig from '../../public/site-config.json';
 
     .nav-menu.active {
       display: flex;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .brand-logo img {
+      height: 40px;
+    }
+
+    .btn-sm {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.8rem;
     }
   }
 </style>
