@@ -113,11 +113,56 @@ const modules = [
           })}
         </div>
       </div>
+    <!-- Beveiligingsscherm (Admin Password Lock Modal) -->
+  <div id="adminAuthModal" class="admin-auth-overlay">
+    <div class="card admin-auth-card">
+      <div class="auth-icon">🔒</div>
+      <h2>BitbloX Admin Beveiliging</h2>
+      <p class="small-text mb-3">Voer het beheerder-wachtwoord in om toegang te krijgen tot het schuifjes dashboard.</p>
+      
+      <div class="form-group">
+        <input type="password" id="adminPassInput" class="form-control" placeholder="Wachtwoord..." autocomplete="current-password" />
+        <p id="authErrorMsg" class="auth-error-msg"></p>
+      </div>
+      
+      <button id="adminLoginBtn" class="btn btn-primary w-100 mt-2">Inloggen op Dashboard</button>
     </div>
-  </section>
+  </div>
 </Layout>
 
 <style>
+  .admin-auth-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(8px);
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+  }
+
+  .admin-auth-card {
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    padding: 2.5rem 2rem;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .auth-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .auth-error-msg {
+    color: #ef4444;
+    font-size: 0.85rem;
+    margin-top: 0.4rem;
+    display: none;
+  }
+
   .admin-header {
     background-color: var(--color-dark-bg);
     color: #ffffff;
@@ -317,6 +362,41 @@ const modules = [
 </style>
 
 <script>
+  // Admin Password Protection Logic
+  const modal = document.getElementById('adminAuthModal');
+  const passInput = document.getElementById('adminPassInput') as HTMLInputElement;
+  const loginBtn = document.getElementById('adminLoginBtn');
+  const errorMsg = document.getElementById('authErrorMsg');
+
+  const CORRECT_PASS = 'bitblox2026';
+
+  function checkAuth() {
+    if (sessionStorage.getItem('bitblox_admin_authenticated') === 'true') {
+      if (modal) modal.style.display = 'none';
+    } else {
+      if (modal) modal.style.display = 'flex';
+    }
+  }
+
+  function handleLogin() {
+    if (passInput && passInput.value === CORRECT_PASS) {
+      sessionStorage.setItem('bitblox_admin_authenticated', 'true');
+      if (modal) modal.style.display = 'none';
+    } else {
+      if (errorMsg) {
+        errorMsg.textContent = 'Onjuist wachtwoord. Probeer opnieuw.';
+        errorMsg.style.display = 'block';
+      }
+    }
+  }
+
+  loginBtn?.addEventListener('click', handleLogin);
+  passInput?.addEventListener('keyup', (e) => {
+    if (e.key === 'Enter') handleLogin();
+  });
+
+  checkAuth();
+
   const saveBtn = document.getElementById('saveSwitchesBtn');
   saveBtn?.addEventListener('click', () => {
     alert('BitbloX Schuifjes Succesvol Opgeslagen! De site wordt binnen 15 seconden bijgewerkt via Cloudflare Pages.');
