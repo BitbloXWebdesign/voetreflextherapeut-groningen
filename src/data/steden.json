@@ -1,0 +1,7 @@
+[
+  { "slug": "haren", "name": "Haren", "dist": "ca. 10 minuten vanuit Haren" },
+  { "slug": "hoogezand", "name": "Hoogezand", "dist": "ca. 15 minuten vanuit Hoogezand" },
+  { "slug": "winsum", "name": "Winsum", "dist": "ca. 15 minuten vanuit Winsum" },
+  { "slug": "veendam", "name": "Veendam", "dist": "ca. 25 minuten vanuit Veendam" },
+  { "slug": "bedum", "name": "Bedum", "dist": "ca. 12 minuten vanuit Bedum" }
+]

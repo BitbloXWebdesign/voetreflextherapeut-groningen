@@ -3,16 +3,9 @@ import Layout from '../../layouts/Layout.astro';
 import FAQSection from '../../components/FAQSection.astro';
 import ContactForm from '../../components/ContactForm.astro';
 import siteConfig from '../../../public/site-config.json';
+import steden from '../../data/steden.json';
 
 export async function getStaticPaths() {
-  const steden = [
-    { slug: 'haren', name: 'Haren', dist: 'ca. 10 minuten vanuit Haren' },
-    { slug: 'hoogezand', name: 'Hoogezand', dist: 'ca. 15 minuten vanuit Hoogezand' },
-    { slug: 'winsum', name: 'Winsum', dist: 'ca. 15 minuten vanuit Winsum' },
-    { slug: 'veendam', name: 'Veendam', dist: 'ca. 25 minuten vanuit Veendam' },
-    { slug: 'bedum', name: 'Bedum', dist: 'ca. 12 minuten vanuit Bedum' }
-  ];
-
   return steden.map(city => ({
     params: { stad: city.slug },
     props: { city }
