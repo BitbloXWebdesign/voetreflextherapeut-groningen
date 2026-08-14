@@ -102,5 +102,64 @@ const schemaData = {
   <Footer />
   <WhatsappWidget />
   <CookieBanner />
+
+  <script>
+    // Universal BitbloX Module Enforcer for Mobile & Desktop
+    function applyModuleSwitches() {
+      const keys = ['blog', 'seo', 'geoAiVindbaarheid', 'whatsappWidget', 'stedenMicrosites', 'googleReviews', 'faqSection', 'contactForm'];
+      
+      keys.forEach(key => {
+        const isOff = localStorage.getItem('bitblox_module_' + key) === 'false';
+        if (!isOff) return;
+
+        if (key === 'blog') {
+          document.querySelectorAll('a[href="/blog"], a[href^="/blog/"]').forEach(el => {
+            const li = el.closest('li');
+            if (li) (li as HTMLElement).style.setProperty('display', 'none', 'important');
+            else (el as HTMLElement).style.setProperty('display', 'none', 'important');
+          });
+        }
+
+        if (key === 'stedenMicrosites') {
+          document.querySelectorAll('.regio-footer-col, a[href^="/regio/"]').forEach(el => {
+            const container = el.closest('.footer-col') || el.closest('li');
+            if (container) (container as HTMLElement).style.setProperty('display', 'none', 'important');
+            else (el as HTMLElement).style.setProperty('display', 'none', 'important');
+          });
+        }
+
+        if (key === 'whatsappWidget') {
+          document.querySelectorAll('.whatsapp-float').forEach(el => {
+            (el as HTMLElement).style.setProperty('display', 'none', 'important');
+          });
+        }
+
+        if (key === 'googleReviews') {
+          document.querySelectorAll('.reviews-section, .reviews-carousel-wrapper').forEach(el => {
+            (el as HTMLElement).style.setProperty('display', 'none', 'important');
+          });
+        }
+
+        if (key === 'faqSection') {
+          document.querySelectorAll('.faq-section, #faq').forEach(el => {
+            (el as HTMLElement).style.setProperty('display', 'none', 'important');
+          });
+        }
+
+        if (key === 'contactForm') {
+          document.querySelectorAll('.contact-form-card, #contact-form').forEach(el => {
+            (el as HTMLElement).style.setProperty('display', 'none', 'important');
+          });
+        }
+      });
+    }
+
+    // Run on load and DOM ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', applyModuleSwitches);
+    } else {
+      applyModuleSwitches();
+    }
+  </script>
 </body>
 </html>
