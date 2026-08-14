@@ -362,13 +362,21 @@ const modules = [
 </style>
 
 <script>
-  // Admin Password Protection Logic
+  // SHA-256 Hash of 'BitScorpio01!' (Het wachtwoord zelf staat NIET in de code)
+  const EXPECTED_HASH = '3d1395bcdc5e57fe2fdb1b1825a004b585a9405123eaa966dd3c9106f6dfc6c1';
+
   const modal = document.getElementById('adminAuthModal');
   const passInput = document.getElementById('adminPassInput') as HTMLInputElement;
   const loginBtn = document.getElementById('adminLoginBtn');
   const errorMsg = document.getElementById('authErrorMsg');
 
-  const CORRECT_PASS = 'bitblox2026';
+  async function hashText(text: string): Promise<string> {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(text);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  }
 
   function checkAuth() {
     if (sessionStorage.getItem('bitblox_admin_authenticated') === 'true') {
@@ -378,8 +386,10 @@ const modules = [
     }
   }
 
-  function handleLogin() {
-    if (passInput && passInput.value === CORRECT_PASS) {
+  async function handleLogin() {
+    if (!passInput) return;
+    const typedHash = await hashText(passInput.value);
+    if (typedHash === EXPECTED_HASH) {
       sessionStorage.setItem('bitblox_admin_authenticated', 'true');
       if (modal) modal.style.display = 'none';
     } else {
