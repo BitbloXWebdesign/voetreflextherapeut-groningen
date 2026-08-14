@@ -87,11 +87,15 @@ const modules = [
         </div>
       </div>
 
-      <!-- 8-Schuifjes System Section -->
       <div class="card switches-card mb-4">
-        <div class="switches-header">
-          <h2>Het BitbloX 8-Schuifjes Systeem</h2>
-          <p>Schakel modules aan of uit voor de website.</p>
+        <div class="switches-header flex-between align-center">
+          <div>
+            <h2>Het BitbloX 8-Schuifjes Systeem</h2>
+            <p>Schakel modules aan of uit voor de website.</p>
+          </div>
+          <div id="unsavedNotice" class="unsaved-badge" style="display: none;">
+            ⚠️ Wijzigingen nog niet live! Klik op 'Bewaar & Pushen'
+          </div>
         </div>
 
         <div class="switches-grid">
@@ -393,6 +397,22 @@ const modules = [
 
   .switches-header {
     margin-bottom: 2rem;
+  }
+
+  .unsaved-badge {
+    background: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fde68a;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    animation: pulseNotice 2s infinite;
+  }
+
+  @keyframes pulseNotice {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
   }
 
   .switches-header p {
@@ -725,6 +745,8 @@ const modules = [
         statusSpan.textContent = input.checked ? 'AAN' : 'UIT';
         (statusSpan as HTMLElement).style.color = input.checked ? '#059669' : '#ef4444';
       }
+      const notice = document.getElementById('unsavedNotice');
+      if (notice) notice.style.display = 'inline-block';
     });
   });
 
@@ -793,6 +815,8 @@ const modules = [
       });
 
       if (putRes.ok) {
+        const notice = document.getElementById('unsavedNotice');
+        if (notice) notice.style.display = 'none';
         alert('✅ Succes! site-config.json is gepusht naar GitHub. Cloudflare Pages heeft de build gestart en verwerkt de schuifjes binnen 15 seconden live!');
       } else {
         const errJson = await putRes.json();
