@@ -106,9 +106,25 @@ import siteConfig from '../../public/site-config.json';
   }
 
   .footer-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
     gap: 2.5rem;
+  }
+
+  .footer-col {
+    flex: 1 1 240px;
+  }
+
+  .footer-col:first-child {
+    flex: 1.2 1 280px;
+    max-width: 360px;
+  }
+
+  .footer-col:last-child {
+    flex: 1.4 1 320px;
+    max-width: 440px;
   }
 
   .footer-logo {
