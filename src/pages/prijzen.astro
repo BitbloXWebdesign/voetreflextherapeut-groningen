@@ -23,37 +23,39 @@ import siteConfig from '../../public/site-config.json';
         <h2>Overzicht Tarieven (2026)</h2>
         <p class="vat-note mb-3"><em>Alle genoemde tarieven zijn vrijgesteld van BTW.</em></p>
 
-        <table class="pricing-table">
-          <thead>
-            <tr>
-              <th>Behandeling / Consult</th>
-              <th>Tijdsduur</th>
-              <th>Tarief</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Intake / Anamnese & Eerste Massage</strong></td>
-              <td>90 minuten</td>
-              <td><span class="price-tag">€ 95,-</span></td>
-            </tr>
-            <tr>
-              <td><strong>Vervolgconsult Voetreflextherapie</strong></td>
-              <td>60 minuten</td>
-              <td><span class="price-tag">€ 70,-</span></td>
-            </tr>
-            <tr>
-              <td><strong>Integraal Kinderwens Consult</strong></td>
-              <td>90 minuten</td>
-              <td><span class="price-tag">€ 95,-</span></td>
-            </tr>
-            <tr>
-              <td><strong>Cursus Babymassage & Voetreflex (3 lessen aan huis)</strong></td>
-              <td>3x 60 min</td>
-              <td><span class="price-tag">€ 210,-</span></td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="pricing-table">
+            <thead>
+              <tr>
+                <th>Behandeling / Consult</th>
+                <th>Tijdsduur</th>
+                <th class="text-right">Tarief</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Intake / Anamnese & Eerste Massage</strong></td>
+                <td class="duration-cell">90 minuten</td>
+                <td class="price-cell"><span class="price-tag">€ 95,-</span></td>
+              </tr>
+              <tr>
+                <td><strong>Vervolgconsult Voetreflextherapie</strong></td>
+                <td class="duration-cell">60 minuten</td>
+                <td class="price-cell"><span class="price-tag">€ 70,-</span></td>
+              </tr>
+              <tr>
+                <td><strong>Integraal Kinderwens Consult</strong></td>
+                <td class="duration-cell">90 minuten</td>
+                <td class="price-cell"><span class="price-tag">€ 95,-</span></td>
+              </tr>
+              <tr>
+                <td><strong>Cursus Babymassage & Voetreflex (3 lessen aan huis)</strong></td>
+                <td class="duration-cell">3x 60 min</td>
+                <td class="price-cell"><span class="price-tag">€ 210,-</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <div class="payment-notes mt-3">
           <p><strong>Betaalwijze:</strong> Er kan in de praktijk contant of per PIN betaald worden. U ontvangt direct een digitale factuur die u kunt indienen bij uw zorgverzekeraar.</p>
@@ -136,14 +138,34 @@ import siteConfig from '../../public/site-config.json';
     margin-bottom: 0.5rem;
   }
 
+  .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .text-right {
+    text-align: right !important;
+  }
+
+  .price-cell {
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  .duration-cell {
+    white-space: nowrap;
+  }
+
   .pricing-table {
     width: 100%;
+    min-width: 320px;
     border-collapse: collapse;
     margin-top: 1rem;
   }
 
   .pricing-table th, .pricing-table td {
-    padding: 1rem;
+    padding: 1rem 0.75rem;
     text-align: left;
     border-bottom: 1px solid var(--color-border);
   }
@@ -158,6 +180,30 @@ import siteConfig from '../../public/site-config.json';
     font-size: 1.15rem;
     font-weight: 700;
     color: var(--color-primary);
+  }
+
+  @media (max-width: 640px) {
+    .pricing-table-wrapper {
+      padding: 1.2rem 0.8rem;
+    }
+
+    .pricing-table th, .pricing-table td {
+      padding: 0.75rem 0.35rem;
+      font-size: 0.85rem;
+    }
+
+    .pricing-table th {
+      font-size: 0.8rem;
+    }
+
+    .price-tag {
+      font-size: 0.95rem;
+    }
+
+    .insurance-badge-link {
+      width: 100%;
+      justify-content: flex-start;
+    }
   }
 
   .payment-notes {
