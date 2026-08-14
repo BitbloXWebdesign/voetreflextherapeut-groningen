@@ -25,11 +25,17 @@
   "modules": {
     "blog": false,
     "seo": true,
+    "geo": true,
     "geoAiVindbaarheid": true,
-    "whatsappWidget": true,
+    "whatsapp": false,
+    "whatsappWidget": false,
     "stedenMicrosites": false,
+    "microsites": false,
     "googleReviews": true,
+    "reviews": true,
     "faqSection": true,
-    "contactForm": false
+    "faq": true,
+    "contactForm": false,
+    "form": false
   }
 }

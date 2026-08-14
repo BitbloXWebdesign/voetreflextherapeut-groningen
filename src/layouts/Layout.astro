@@ -100,7 +100,7 @@ const schemaData = {
     <slot />
   </main>
   <Footer />
-  <WhatsappWidget />
+  {(siteConfig.modules?.whatsapp !== false && siteConfig.modules?.whatsappWidget !== false) && <WhatsappWidget />}
   <CookieBanner />
 
   <script>
