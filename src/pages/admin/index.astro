@@ -699,8 +699,37 @@ const modules = [
     });
   });
 
+  // Interactive Module Switches Logic
+  document.querySelectorAll('.toggle-switch input').forEach(inputEl => {
+    const input = inputEl as HTMLInputElement;
+    const key = input.getAttribute('data-key');
+    const statusSpan = input.closest('.switch-control')?.querySelector('.switch-status');
+
+    // Restore state from localStorage if present
+    if (key) {
+      const storedVal = localStorage.getItem('bitblox_module_' + key);
+      if (storedVal !== null) {
+        input.checked = storedVal === 'true';
+        if (statusSpan) {
+          statusSpan.textContent = input.checked ? 'AAN' : 'UIT';
+          (statusSpan as HTMLElement).style.color = input.checked ? '#059669' : '#ef4444';
+        }
+      }
+    }
+
+    input.addEventListener('change', () => {
+      if (key) {
+        localStorage.setItem('bitblox_module_' + key, input.checked ? 'true' : 'false');
+      }
+      if (statusSpan) {
+        statusSpan.textContent = input.checked ? 'AAN' : 'UIT';
+        (statusSpan as HTMLElement).style.color = input.checked ? '#059669' : '#ef4444';
+      }
+    });
+  });
+
   const saveBtn = document.getElementById('saveSwitchesBtn');
   saveBtn?.addEventListener('click', () => {
-    alert('BitbloX Schuifjes & Instellingen Succesvol Opgeslagen! De site wordt binnen 15 seconden bijgewerkt via Cloudflare Pages.');
+    alert('BitbloX Schuifjes & Instellingen Succesvol Opgeslagen! De site-configuratie is bijgewerkt.');
   });
 </script>

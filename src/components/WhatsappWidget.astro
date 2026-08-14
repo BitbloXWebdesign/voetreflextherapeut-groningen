@@ -54,3 +54,10 @@ const waLink = `https://wa.me/${waNumber}?text=${waMessage}`;
     border: 2px solid #ffffff;
   }
 </style>
+
+<script>
+  if (localStorage.getItem('bitblox_module_whatsappWidget') === 'false') {
+    const el = document.querySelector('.whatsapp-float') as HTMLElement;
+    if (el) el.style.display = 'none';
+  }
+</script>
