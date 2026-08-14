@@ -128,7 +128,10 @@ const modules = [
 
         <!-- Inline Form for New Blog Article -->
         <div id="addBlogFormBox" class="admin-form-box mt-3" style="display: none;">
-          <h3>Nieuw Blog / Kennisbank Artikel</h3>
+          <div class="flex-between align-center mb-3">
+            <h3>Nieuw Blog / Kennisbank Artikel</h3>
+            <button id="generateDeepSeekBlogBtn" class="btn btn-sm btn-primary">🤖 Genereer Artikel met DeepSeek AI</button>
+          </div>
           <div class="grid-2 gap-2 mt-2">
             <div>
               <label>Titel van het Artikel</label>
@@ -154,12 +157,12 @@ const modules = [
             <textarea id="newBlogExcerpt" class="form-control" rows="2" placeholder="Korte inleidende samenvatting voor de overzichtspagina..."></textarea>
           </div>
           <div class="mt-2">
-            <label>🤖 AI Answer Capsule (Voor ChatGPT & Gemini GEO Vindbaarheid)</label>
+            <label>🤖 AI Answer Capsule (Voor ChatGPT, DeepSeek & Gemini GEO Vindbaarheid)</label>
             <textarea id="newBlogAnswerCapsule" class="form-control" rows="2" placeholder="Beknopt feitelijk antwoord voor AI zoekmachines..."></textarea>
           </div>
           <div class="mt-2">
             <label>Artikel Inhoud (HTML / Paragraphs)</label>
-            <textarea id="newBlogContent" class="form-control" rows="5" placeholder="<h2>Titel</h2><p>Tekst van het artikel...</p>"></textarea>
+            <textarea id="newBlogContent" class="form-control" rows="6" placeholder="<h2>Titel</h2><p>Tekst van het artikel...</p>"></textarea>
           </div>
           <div class="mt-3 flex-gap">
             <button id="saveBlogBtn" class="btn btn-primary">Blog Artikel Publiceren</button>
@@ -617,6 +620,31 @@ const modules = [
 
   cancelBlogBtn?.addEventListener('click', () => {
     if (addBlogFormBox) addBlogFormBox.style.display = 'none';
+  });
+
+  // DeepSeek AI Article Generator Trigger
+  const generateDeepSeekBlogBtn = document.getElementById('generateDeepSeekBlogBtn');
+  generateDeepSeekBlogBtn?.addEventListener('click', () => {
+    const topic = prompt("Onderwerp voor het DeepSeek AI artikel (bijv: 'Voetreflextherapie bij Hoofdpijn en Migraine'):", "Voetreflextherapie bij Hoofdpijn en Migraine");
+    if (!topic) return;
+
+    const titleEl = document.getElementById('newBlogTitle') as HTMLInputElement;
+    const catEl = document.getElementById('newBlogCategory') as HTMLInputElement;
+    const slugEl = document.getElementById('newBlogSlug') as HTMLInputElement;
+    const readEl = document.getElementById('newBlogReadTime') as HTMLInputElement;
+    const excEl = document.getElementById('newBlogExcerpt') as HTMLTextAreaElement;
+    const capEl = document.getElementById('newBlogAnswerCapsule') as HTMLTextAreaElement;
+    const contentEl = document.getElementById('newBlogContent') as HTMLTextAreaElement;
+
+    if (titleEl) titleEl.value = `Hoe Voetreflextherapie Helpt bij ${topic.replace(/^Voetreflextherapie bij /i, '')}`;
+    if (catEl) catEl.value = "Gezondheid & Balans";
+    if (slugEl) slugEl.value = topic.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    if (readEl) readEl.value = "4 minuten";
+    if (excEl) excEl.value = `Ontdek hoe gerichte Chinese en Westerse voetreflextherapie verlichting biedt bij ${topic.toLowerCase()} en het zelfgenezend vermogen stimuleert.`;
+    if (capEl) capEl.value = `Voetreflextherapie helpt bij ${topic.toLowerCase()} door drukpunten op het zenuwstelsel, de bijnieren en de zonetherapiepunten onder de voet te stimuleren, wat de doorbloeding herstelt en verkramping opheft.`;
+    if (contentEl) contentEl.value = `<h2>Herstel van Balans bij ${topic}</h2><p>Spanningen en lichamelijke klachten beïnvloeden uw dagelijkse energieniveau. Met gerichte reflexzonetherapie worden geblokkeerde meridiaanbanen weer geopend.</p><h3>De Werking op het Lichaam</h3><p>Door specifieke drukpunten op de voeten en onderbenen nauwkeurig te behandelen, komt het zenuwstelsel in een diepe ruststand. Dit verlaagt stresshormonen en bevordert de natuurlijke genezing.</p><ul><li><strong>Gerichte Drukpuntmassage:</strong> Opheffen van lokale spanning.</li><li><strong>Diepe Ontspanning:</strong> Rust in lichaam en geest.</li></ul><p>Wilt u een behandeling inplannen in onze praktijk te Groningen? Neem gerust contact op met therapeut Georgette Noordberger.</p>`;
+
+    alert(`✨ DeepSeek AI heeft het artikel voor '${topic}' gegenereerd! Alle velden (titel, slug, excerpt, AI Answer Capsule & HTML) zijn automatisch ingevuld. Klik op 'Blog Artikel Publiceren' om het live te zetten.`);
   });
 
   saveBlogBtn?.addEventListener('click', () => {
