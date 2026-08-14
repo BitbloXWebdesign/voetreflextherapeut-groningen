@@ -1,0 +1,86 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import blogs from '../../data/blogs.json';
+---
+
+<Layout
+  title="Kennisbank & Artikelen - Voetreflextherapeut Groningen"
+  description="Lees onze diepgaande AI-geoptimaliseerde artikelen over voetreflextherapie bij stress, zwangerschap, burn-out en hormoonbalans."
+>
+  <div class="page-header">
+    <div class="container">
+      <span class="section-subtitle">Inspiratie & Informatie</span>
+      <h1>Kennisbank & Artikelen</h1>
+      <p class="page-header-desc">
+        Nieuwste inzichten over natuurgeneeskunde, voetreflexologie en welzijn.
+      </p>
+    </div>
+  </div>
+
+  <section class="section section-light">
+    <div class="container">
+      <div class="grid-2">
+        {blogs.map(post => (
+          <article class="card blog-card">
+            <div class="blog-meta">
+              <span class="blog-category">{post.category}</span>
+              <span class="blog-date">• {post.date}</span>
+            </div>
+            <h2><a href={`/blog/${post.slug}`} class="blog-title">{post.title}</a></h2>
+            <p class="blog-excerpt">{post.excerpt}</p>
+            <a href={`/blog/${post.slug}`} class="btn btn-outline btn-sm mt-3">Lees Artikel &rarr;</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-header {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+    color: #ffffff;
+    text-align: center;
+  }
+
+  .page-header h1 { color: #ffffff; margin-top: 0.5rem; }
+  .page-header-desc { color: #cbd5e1; font-size: 1.1rem; margin-top: 0.5rem; }
+
+  .blog-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .blog-meta {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0.8rem;
+  }
+
+  .blog-category {
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  .blog-title {
+    color: var(--color-secondary);
+    transition: var(--transition);
+  }
+
+  .blog-title:hover {
+    color: var(--color-primary);
+  }
+
+  .blog-excerpt {
+    color: var(--color-text-muted);
+    font-size: 0.98rem;
+    margin-top: 0.6rem;
+    flex-grow: 1;
+  }
+
+  .btn-sm {
+    align-self: flex-start;
+  }
+</style>

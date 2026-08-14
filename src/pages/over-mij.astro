@@ -1,0 +1,202 @@
+---
+import Layout from '../layouts/Layout.astro';
+import siteConfig from '../../public/site-config.json';
+---
+
+<Layout
+  title="Over Mij & Opleidingen - Voetreflextherapeut Groningen | Georgette Noordberger"
+  description="Maak kennis met Georgette Noordberger, gediplomeerd Voetreflex Plus Therapeut (HBO) en Oncoreflex Master in Groningen."
+>
+  <div class="page-header">
+    <div class="container">
+      <span class="section-subtitle">Gediplomeerd Therapeut</span>
+      <h1>Over Mij en Opleidingen</h1>
+      <p class="page-header-desc">
+        Persoonlijke aandacht, brede medische achtergrond en passie voor het vak.
+      </p>
+    </div>
+  </div>
+
+  <section class="section section-light">
+    <div class="container">
+      <div class="grid-2 align-center">
+        <div>
+          <h2>Mijn Naam is Georgette Noordberger</h2>
+          <p class="lead-text mt-2 mb-3">
+            Geboren en getogen in Groningen, moeder van 2 zoons (2002 en 2006). Samen met mijn partner hebben we een gezellig druk huishouden met 3 honden. We houden erg van wandelen en vogels kijken in de natuur om na een werkweek tot rust te komen.
+          </p>
+          <p class="mb-3">
+            Na veel wikken en wegen ben ik in 2016 gestart met de 3-jarige HBO-opleiding tot <strong>Voetreflex Plus Therapeut</strong> bij <i>Total Health</i>, aangevuld met een jaar Medische en Psychische Basiskennis. Hierdoor worden consulten in mijn praktijk deels vergoed vanuit de aanvullende zorgverzekering.
+          </p>
+          <p class="mb-3">
+            Wat mij enorm aansprak in deze studie is dat je op een niet-invasieve manier iemand uitstekende ondersteuning biedt in zijn of haar gezondheid. Je kunt fysieke en mentale klachten verminderen en complementair samenwerken met reguliere artsen en therapeuten.
+          </p>
+          <p>
+            Vanwege mijn jarenlange ervaring als Kraamverzorgende IG heb ik een grote affiniteit gehouden met zwangerschap, kinderwens en baby's. Daarom heb ik me verder gespecialiseerd als <strong>Integraal Kinderwens Professional</strong>, baby massage docent en het NIBY'S protocol.
+          </p>
+        </div>
+
+        <div class="profile-card card">
+          <img src="/images/georgette.jpg" alt="Georgette Noordberger - Voetreflextherapeut Groningen" class="profile-img" />
+          <div class="profile-details">
+            <h3>Georgette Noordberger</h3>
+            <p class="text-gold font-weight-bold">HBO Voetreflex Plus Therapeut & Oncoreflex Master</p>
+            <hr class="divider" />
+            <p><strong>Praktijk:</strong> {siteConfig.clientName}</p>
+            <p><strong>Locatie:</strong> {siteConfig.address.street}, Groningen</p>
+            <p><strong>Beroepsverenigingen:</strong> CAT Vergoedbaar, RBCZ, Kwaliteitstherapeuten, GAT & NmbK</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Real Photos Grid -->
+  <section class="section section-light pt-0">
+    <div class="container">
+      <div class="grid-2">
+        <div class="card p-2">
+          <img src="/images/consult-2.webp" alt="Consult in praktijk Georgette Noordberger" class="gallery-img-large" />
+          <h4 class="mt-2">Intake & Behandelgesprek</h4>
+          <p class="small-text">Tijd en echte aandacht om uw medische achtergrond en wensen te bespreken.</p>
+        </div>
+        <div class="card p-2">
+          <img src="/images/voetreflex-2.webp" alt="Voetreflextherapie massage" class="gallery-img-large" />
+          <h4 class="mt-2">Professionele Reflexzone Behandeling</h4>
+          <p class="small-text">Sfeer en rust op de behandeltafel in Groningen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Opleidingen & Kwalificaties Grid -->
+  <section class="section bg-light">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Kennis & Competenties</span>
+        <h2>Afgeronde Opleidingen & Certificeringen</h2>
+        <p class="section-description">
+          Om de hoogste kwaliteit van zorg te waarborgen volg ik jaarlijks verplichte bij- en nascholingen.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card edu-card">
+          <h3>HBO Voetreflextherapeut Plus</h3>
+          <p>3-jarige HBO vakopleiding bij Total Health (Jaar 1, 2 en 3 gediplomeerd als therapeut en masseur).</p>
+        </div>
+
+        <div class="card edu-card">
+          <h3>HBO Medische & Psychische Basiskennis</h3>
+          <p>Volledig afgeronde MBK/PBK conform PLATO-normen voor zorgverzekeraar-vergoeding.</p>
+        </div>
+
+        <div class="card edu-card">
+          <h3>Oncoreflex Therapeut Master</h3>
+          <p>Afgeronde masteropleiding voor veilige, ondersteunende reflextherapie bij kanker (NmbK gecertificeerd).</p>
+        </div>
+
+        <div class="card edu-card">
+          <h3>Integraal Kinderwens Professional</h3>
+          <p>Gespecialiseerde manuele en reflexologische begeleiding bij kinderwens en fertiliteitstrajecten.</p>
+        </div>
+
+        <div class="card edu-card">
+          <h3>Baby & Kind Reflex / Shantala</h3>
+          <p>Gediplomeerd Docent Babymassage, Shantala massage body en baby/kind voetreflextherapie.</p>
+        </div>
+
+        <div class="card edu-card">
+          <h3>Zwangerschap & NIBY'S</h3>
+          <p>Certificaten de Vrouw, Zwangerschap massage body, Centering Pregnancy en Natuurlijk Ingeleide Baby's (NIBY'S).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-header {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+    color: #ffffff;
+    text-align: center;
+  }
+
+  .page-header h1 { color: #ffffff; margin-top: 0.5rem; }
+  .page-header-desc { color: #cbd5e1; font-size: 1.1rem; margin-top: 0.5rem; }
+
+  .lead-text {
+    font-size: 1.1rem;
+    color: var(--color-secondary);
+    font-weight: 500;
+  }
+
+  .align-center {
+    align-items: center;
+  }
+
+  .profile-card {
+    padding: 1.5rem;
+  }
+
+  .profile-img {
+    width: 100%;
+    max-height: 440px;
+    height: auto;
+    object-fit: contain;
+    background-color: #ffffff;
+    padding: 0.5rem;
+    border-radius: var(--radius-sm);
+    margin-bottom: 1.2rem;
+  }
+
+  .profile-details h3 {
+    margin-bottom: 0.2rem;
+  }
+
+  .divider {
+    border: 0;
+    height: 1px;
+    background: var(--color-border);
+    margin: 0.8rem 0;
+  }
+
+  .p-2 { padding: 1.2rem; }
+
+  .gallery-img-large {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+  }
+
+  .small-text {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin-top: 0.3rem;
+  }
+
+  .pt-0 { padding-top: 0; }
+
+  .vision-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+  }
+
+  .edu-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+  }
+
+  .edu-icon {
+    font-size: 2.2rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .edu-card p {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+  }
+</style>

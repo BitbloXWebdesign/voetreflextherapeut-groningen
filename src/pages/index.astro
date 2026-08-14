@@ -1,0 +1,462 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ReviewsCarousel from '../components/ReviewsCarousel.astro';
+import FAQSection from '../components/FAQSection.astro';
+import ContactForm from '../components/ContactForm.astro';
+import siteConfig from '../../public/site-config.json';
+---
+
+<Layout
+  title="Voetreflextherapeut Groningen - Voor Persoonlijke Aandacht | Georgette Noordberger"
+  description="Praktijk voor professionele voetreflextherapie, zwangerschapsmassage en Oncoreflex in Groningen. Erkend door CAT Vergoedbaar & RBCZ."
+>
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <span class="hero-badge">Praktijk in Groningen • Erkend Therapeut</span>
+        <h1>Voetreflextherapeut Groningen</h1>
+        <p class="hero-subtitle">
+          Voor persoonlijke aandacht, diepe ontspanning en het natuurlijke herstel van uw lichaam en geest.
+        </p>
+        <p class="hero-text">
+          Voetreflextherapie is een effectieve, niet-invasieve behandelmethode die verlichting geeft bij fysieke en psychische klachten, of ze zelfs kan laten verdwijnen.
+        </p>
+        <div class="hero-actions">
+          <a href="/contact" class="btn btn-primary">Afspraak Inplannen</a>
+          <a href="/consulten" class="btn btn-outline">Bekijk Behandelingen</a>
+        </div>
+      </div>
+      <div class="hero-image-wrapper">
+        <img src="/images/georgette.jpg" alt="Georgette Noordberger - Voetreflextherapeut Groningen" class="hero-image" width="550" height="400" />
+        <div class="hero-floating-card">
+          <div class="rating-stars">★★★★★</div>
+          <strong>Zorgvergoeding Mogelijk</strong>
+          <span class="card-sub">Aangesloten bij CAT & RBCZ</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certification Badges Gallery (Clickable according to professional associations) -->
+  <section class="badge-section">
+    <div class="container">
+      <div class="badge-header text-center mb-3">
+        <span class="section-subtitle">Erkende Kwaliteit & Zorgvergoeding</span>
+        <p class="badge-subtext">Aangesloten bij erkende beroepsverenigingen. Klik op een schild voor directe licentieverificatie:</p>
+      </div>
+      <div class="badge-gallery">
+        <a href="https://catvergoedbaar.nl/" target="_blank" rel="noopener noreferrer" class="badge-item" title="CAT Vergoedbaar - Bekijk licentie">
+          <img src="/images/cat-badge.png" alt="CAT Vergoedbaar" />
+          <span class="badge-label">CAT Vergoedbaar</span>
+        </a>
+        <a href="https://kwaliteitstherapeuten.nl/" target="_blank" rel="noopener noreferrer" class="badge-item" title="Kwaliteitstherapeuten - Bekijk register">
+          <img src="/images/kwaliteitstherapeuten-badge.png" alt="Kwaliteitstherapeuten" />
+          <span class="badge-label">Kwaliteitstherapeuten</span>
+        </a>
+        <a href="https://www.rbcz.nu/" target="_blank" rel="noopener noreferrer" class="badge-item" title="RBCZ Register - Een vrije zorgkeuze">
+          <img src="/images/rbcz-badge.png" alt="RBCZ Erkend" />
+          <span class="badge-label">RBCZ Register</span>
+        </a>
+        <a href="https://www.batverzekeringen.nl/" target="_blank" rel="noopener noreferrer" class="badge-item" title="BAT Beroepsverzekering">
+          <img src="/images/bat-badge.png" alt="BAT Beroepsverzekering" />
+          <span class="badge-label">BAT Beroepsverzekerd</span>
+        </a>
+        <a href="https://www.gatgeschillen.nl/" target="_blank" rel="noopener noreferrer" class="badge-item" title="GAT Geschilleninstantie">
+          <img src="/images/gat-badge.png" alt="GAT Geschilleninstantie" />
+          <span class="badge-label">GAT Geschillen</span>
+        </a>
+        <a href="https://www.oncoreflex.nl/" target="_blank" rel="noopener noreferrer" class="badge-item" title="Oncoreflex Therapeut Master">
+          <img src="/images/oncoreflex-badge.png" alt="Oncoreflex Master" />
+          <span class="badge-label">Oncoreflex Master</span>
+        </a>
+        <a href="https://www.gikp.nl/" target="_blank" rel="noopener noreferrer" class="badge-item" title="Integraal Kinderwens Professional">
+          <img src="/images/gikp-badge.png" alt="GIKP Kinderwens Professional" />
+          <span class="badge-label">GIKP Professional</span>
+        </a>
+      </div>
+
+      <!-- Wkkgz Klachtenregeling Verklaring (Verplicht door CAT / GAT) -->
+      <div class="klachtenregeling-box mt-3 text-center">
+        <p class="small-text">
+          <strong>Wkkgz Klachtenregeling:</strong> Ik val als Complementaire Kwaliteitstherapeut en CAT-vergoedbaar therapeut onder Wkkgz-klachtrecht en tuchtrecht bij de Geschilleninstantie Alternatieve Therapeuten (GAT). Voor meer informatie zie <a href="https://gatgeschillen.nl/" target="_blank" rel="noopener noreferrer" class="underline-link">https://gatgeschillen.nl/</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Intro & Wat is Voetreflex -->
+  <section class="section section-light">
+    <div class="container">
+      <div class="grid-2 align-center">
+        <div>
+          <span class="section-subtitle">Natuurlijke Ondersteuning</span>
+          <h2>Wat is Voetreflextherapie?</h2>
+          <p class="mb-2">
+            De wortels van voetreflexologie liggen in China en India, en zijn duizenden jaren oud. De Amerikaanse arts Dr. William Fitzgerald en Eunice Ingham formuleerden de basis van de hedendaagse zonetherapie door de gehele anatomie van het lichaam te projecteren op de voeten.
+          </p>
+          <p class="mb-2">
+            In onze praktijk combineren we de <strong>Westerse voetreflexmassage</strong> (nauwkeurige duimtechniek op specifieke zones) met de <strong>Chinese voetreflexologie</strong> (glijdende massagetechnieken over meridiaanbanen en acupunctuurpunten op voeten, onderbenen en knieën).
+          </p>
+          <p>
+            Deze unieke synthese stimuleert het zelfgenezend vermogen van het lichaam, verhoogt de bloed- en energiedoorstroming en voert afvalstoffen effectief af.
+          </p>
+          <div class="mt-3">
+            <a href="/voetreflextherapie" class="btn btn-outline">Lees Meer over Onze Werkwijze &rarr;</a>
+          </div>
+        </div>
+        <div class="practice-photo-box">
+          <img src="/images/behandeling.webp" alt="Voetreflextherapie behandeling in praktijk Groningen" class="rounded-img card" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nieuws & Practice Based Evidence Certificering Section -->
+  <section class="section section-pbe bg-light">
+    <div class="container">
+      <div class="grid-2 align-center">
+        <div>
+          <span class="section-subtitle">Nieuws & Kwaliteitskeurmerk</span>
+          <h2>Nieuwe Certificering: Practice Based Evidence Praktijk</h2>
+          <p class="lead-text mt-2 mb-3">
+            De praktijk draagt vanaf nu met trots het keurmerk <strong>‘Practice Based Evidence Praktijk’</strong>.
+          </p>
+          <p class="mb-3">
+            Praktijken krijgen het keurmerk als ze voldoen aan criteria die zijn gebaseerd op het inzichtelijk maken van de behandelingen. Sinds ik met EviCare werk voldoe ik dus ook aan deze criteria.
+          </p>
+          <p>
+            Ik kan nu aan mijn cliënten laten zien of de behandeling effectief is en kan ik mijn cliënten specifieker en efficiënter behandelen. Daarmee verleen ik dus een <strong>aantoonbaar betere kwaliteit van zorg</strong>!
+          </p>
+        </div>
+        <div class="text-center pbe-img-wrapper">
+          <img src="/images/practice-based-evidence.jpg" alt="Keurmerk Practice Based Evidence Praktijk - Aantoonbaar Beter" class="pbe-badge-img" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo Gallery Section of Practice & Treatments -->
+  <section class="section bg-light">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Sfeer & Praktijk</span>
+        <h2>Een Kijkje in de Praktijk</h2>
+        <p class="section-description">
+          Persoonlijke aandacht in een rustige, warme behandelomgeving te Groningen.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card gallery-card">
+          <img src="/images/consult-2.webp" alt="Intakeconsult in praktijk" class="gallery-img" />
+          <h4 class="mt-2">Persoonlijk Intakeconsult</h4>
+          <p class="small-text">Rustig gesprek en anamnese om uw klachten nauwkeurig in kaart te brengen.</p>
+        </div>
+        <div class="card gallery-card">
+          <img src="/images/voetreflex-1.webp" alt="Voetreflextherapie behandeling" class="gallery-img" />
+          <h4 class="mt-2">Reflexzone Massagetechniek</h4>
+          <p class="small-text">Combinatie van Westerse drukpunten en Chinese meridiaanmassages.</p>
+        </div>
+        <div class="card gallery-card">
+          <img src="/images/oor-dichtbij.webp" alt="Ooracupunctuur en acupressuur" class="gallery-img img-oor" />
+          <h4 class="mt-2">Ooracupunctuur & Acupressuur</h4>
+          <p class="small-text">Ondersteunende acupunctuur naaldjes of oorzaadjes bij acute en chronische pijn.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Behandelingen Overview Grid -->
+  <section class="section section-light">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Onze Behandelingen</span>
+        <h2>Consulten & Specialisaties</h2>
+        <p class="section-description">
+          Praktijk Voetreflextherapeut Groningen biedt maatwerk behandelingen voor volwassenen, zwangeren en kinderen.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card service-card">
+          <h3>Fysieke Klachten</h3>
+          <p>
+            Behandeling van rug-, nek- en schouderklachten, hoofdpijn, darm- en buikklachten, spierpijn, hielspoor en vage lichamelijke ongemakken.
+          </p>
+          <a href="/consulten#fysiek" class="card-link">Bekijk Fysieke Consulten &rarr;</a>
+        </div>
+
+        <div class="card service-card">
+          <h3>Psychische Klachten</h3>
+          <p>
+            Ondersteuning bij stress, burn-out, slapeloosheid, emotionele onevenwichtigheid en onverwerkte ervaringen door diepe zenuwstelselontspanning.
+          </p>
+          <a href="/consulten#psychisch" class="card-link">Bekijk Psychische Consulten &rarr;</a>
+        </div>
+
+        <div class="card service-card">
+          <h3>Vrouw & Zwangerschap</h3>
+          <p>
+            Begeleiding bij cyclus- en hormoonklachten, fertiliteit, zwangerschapskwalen (oedeem, bekkenpijn) en het <strong>NIBY'S protocol</strong> voor natuurlijk inleiden.
+          </p>
+          <a href="/consulten#vrouw" class="card-link">Bekijk Vrouwenconsulten &rarr;</a>
+        </div>
+
+        <div class="card service-card">
+          <h3>Baby & Kind</h3>
+          <p>
+            Zachte voetreflex en Shantala babymassage voor darmkrampjes, slaapproblemen, doorkomende tandjes en ouder-kind hechting.
+          </p>
+          <a href="/consulten#baby" class="card-link">Bekijk Baby & Kind Consulten &rarr;</a>
+        </div>
+
+        <div class="card service-card">
+          <h3>Oncoreflex (Kanker)</h3>
+          <p>
+            Gespecialiseerde ondersteunende massage voor cliënten in medische behandeling tegen kanker. NmbK gecertificeerd.
+          </p>
+          <a href="/consulten#oncoreflex" class="card-link">Bekijk Oncoreflex Consult &rarr;</a>
+        </div>
+
+        <div class="card service-card">
+          <h3>Kinderwens & Overig</h3>
+          <p>
+            Integraal Kinderwens Professional consulten (90 min), ooracupunctuur, Breuss rugmassage en de zachte Dorn methode.
+          </p>
+          <a href="/consulten#overig" class="card-link">Bekijk Overige Consulten &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Google Reviews Module -->
+  {siteConfig.modules.googleReviews && <ReviewsCarousel />}
+
+  <!-- FAQ Section Module -->
+  {siteConfig.modules.faqSection && <FAQSection />}
+
+  <!-- Contact Form Section -->
+  {siteConfig.modules.contactForm && (
+    <section class="section section-light" id="contact">
+      <div class="container">
+        <div class="grid-2">
+          <div>
+            <span class="section-subtitle">Neem Contact Op</span>
+            <h2>Maak een Afspraak in Groningen</h2>
+            <p class="mb-4">
+              Heeft u vragen of wilt u direct een intake of vervolgbehandeling inplannen? Vul het formulier in of neem telefonisch/via WhatsApp contact met ons op.
+            </p>
+
+            <div class="contact-details-list">
+              <div class="contact-detail-item">
+                <strong>Praktijkadres:</strong>
+                <p>{siteConfig.address.street}, {siteConfig.address.postalCode} {siteConfig.address.city}</p>
+              </div>
+              <div class="contact-detail-item">
+                <strong>Telefoon / WhatsApp:</strong>
+                <p><a href={`tel:${siteConfig.phoneDisplay.replace(/\s+/g, '')}`}>{siteConfig.phoneDisplay}</a></p>
+              </div>
+              <div class="contact-detail-item">
+                <strong>E-mail:</strong>
+                <p><a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></p>
+              </div>
+            </div>
+          </div>
+
+          <ContactForm />
+        </div>
+      </div>
+    </section>
+  )}
+</Layout>
+
+<style>
+  .hero-section {
+    padding: 4.5rem 0;
+    background: linear-gradient(135deg, #f4f8f5 0%, #e8f2ec 100%);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+  }
+
+  @media (max-width: 900px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    font-size: 0.825rem;
+    font-weight: 700;
+    padding: 0.35rem 0.8rem;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-secondary);
+    margin-top: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero-text {
+    color: var(--color-text-muted);
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-image-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-image {
+    max-width: 100%;
+    max-height: 460px;
+    width: auto;
+    height: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    object-fit: contain;
+    background-color: #ffffff;
+    padding: 0.5rem;
+  }
+
+  .hero-floating-card {
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    background: var(--color-surface);
+    padding: 1rem 1.4rem;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--color-border);
+  }
+
+  .rating-stars {
+    color: #eab308;
+    font-size: 1.1rem;
+  }
+
+  .card-sub {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+  }
+
+  .badge-section {
+    padding: 2.5rem 0;
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .align-center {
+    align-items: center;
+  }
+
+  .pbe-badge-img {
+    max-width: 280px;
+    height: auto;
+    border-radius: 50%;
+    box-shadow: var(--shadow-md);
+    border: 4px solid var(--color-surface);
+    transition: var(--transition);
+    display: inline-block;
+  }
+
+  .pbe-badge-img:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .pbe-img-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .gallery-card {
+    padding: 1.2rem;
+  }
+
+  .gallery-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: var(--radius-sm);
+  }
+
+  .img-oor {
+    object-position: center center;
+  }
+
+  .small-text {
+    font-size: 0.88rem;
+    color: var(--color-text-muted);
+    margin-top: 0.3rem;
+  }
+
+  .service-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .card-icon {
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .service-card p {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+  }
+
+  .card-link {
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: var(--transition);
+  }
+
+  .card-link:hover {
+    color: var(--color-primary-hover);
+    padding-left: 4px;
+  }
+
+  .contact-details-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .contact-detail-item strong {
+    color: var(--color-secondary);
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+</style>

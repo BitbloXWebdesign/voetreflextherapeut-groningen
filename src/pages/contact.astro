@@ -1,0 +1,208 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import siteConfig from '../../public/site-config.json';
+---
+
+<Layout
+  title="Contact & Locatie - Voetreflextherapeut Groningen"
+  description="Neem contact op met praktijk Voetreflextherapeut Groningen op Bieslookstraat 31 unit A5/2. Maak direct een afspraak."
+>
+  <div class="page-header">
+    <div class="container">
+      <span class="section-subtitle">Bereikbaarheid</span>
+      <h1>Contact & Locatie</h1>
+      <p class="page-header-desc">
+        We verwelkomen u graag in onze praktijk in Groningen.
+      </p>
+    </div>
+  </div>
+
+  <section class="section section-light">
+    <div class="container">
+      <div class="grid-2">
+        <!-- Linkerkolom: Praktijkgegevens & Documenten -->
+        <div>
+          <h2>Praktijkgegevens</h2>
+          <p class="lead-text mt-2 mb-4">
+            Heeft u vragen over voetreflextherapie of wilt u een intake of vervolgbehandeling inplannen? Neem gerust contact op.
+          </p>
+
+          <div class="info-box card mb-4">
+            <div class="info-item">
+              <strong>Naam Praktijk:</strong>
+              <p>{siteConfig.clientName} (Georgette Noordberger)</p>
+            </div>
+            <div class="info-item">
+              <strong>Adres:</strong>
+              <p>{siteConfig.address.street}, {siteConfig.address.postalCode} {siteConfig.address.city}</p>
+            </div>
+            <div class="info-item">
+              <strong>Telefoon:</strong>
+              <p><a href={`tel:${siteConfig.phoneDisplay.replace(/\s+/g, '')}`}>{siteConfig.phoneDisplay}</a></p>
+            </div>
+            <div class="info-item">
+              <strong>E-mail:</strong>
+              <p><a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></p>
+            </div>
+            <div class="info-item">
+              <strong>WhatsApp:</strong>
+              <p><a href={`https://wa.me/${siteConfig.whatsapp}`} target="_blank" rel="noopener">Direct WhatsAppen via +31 6 38118341</a></p>
+            </div>
+          </div>
+
+          <div class="card docs-card">
+            <h3>Belangrijke Documenten & Formulieren</h3>
+            <p class="small-desc mb-3">Download hier de benodigde documenten en formulieren voorafgaand aan uw behandeling:</p>
+            <ul class="docs-download-list">
+              <li>
+                <a href="/documents/privacy-statement.pdf" target="_blank" rel="noopener noreferrer" class="doc-link">
+                  <span class="doc-icon">📄</span>
+                  <div>
+                    <strong>Privacy Statement (AVG)</strong>
+                    <span>Inzage in verwerking van persoonsgegevens</span>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="/documents/behandelovereenkomst.pdf" target="_blank" rel="noopener noreferrer" class="doc-link">
+                  <span class="doc-icon">📄</span>
+                  <div>
+                    <strong>Behandelovereenkomst</strong>
+                    <span>Digitaal of printbaar invulformulier</span>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="/documents/toestemmingsformulier-minderjarige.pdf" target="_blank" rel="noopener noreferrer" class="doc-link">
+                  <span class="doc-icon">📄</span>
+                  <div>
+                    <strong>Toestemmingsformulier Minderjarigen</strong>
+                    <span>Voor baby-, kinder- en jeugdbehandelingen</span>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Rechterkolom: Direct Contact & Google Maps -->
+        <div class="right-contact-col">
+          <ContactForm />
+
+          <div class="card map-card mt-4">
+            <h3>Locatie op de Kaart</h3>
+            <div class="map-placeholder">
+              <iframe
+                title="Kaart van Voetreflextherapeut Groningen"
+                src="https://maps.google.com/maps?q=Bieslookstraat%2031%20Groningen&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                width="100%"
+                height="280"
+                style="border:0; border-radius: var(--radius-sm);"
+                allowfullscreen=""
+                loading="lazy">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-header {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #1a3a2a 0%, #11231a 100%);
+    color: #ffffff;
+    text-align: center;
+  }
+
+  .page-header h1 { color: #ffffff; margin-top: 0.5rem; }
+  .page-header-desc { color: #cbd5e1; font-size: 1.1rem; margin-top: 0.5rem; }
+
+  .lead-text {
+    font-size: 1.05rem;
+    color: var(--color-secondary);
+  }
+
+  .right-contact-col {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .info-box {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border: 1px solid var(--color-border);
+  }
+
+  .info-item strong {
+    color: var(--color-secondary);
+    display: block;
+    font-size: 0.9rem;
+  }
+
+  .info-item a {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .map-card h3 {
+    margin-bottom: 1rem;
+    color: var(--color-secondary);
+  }
+
+  .docs-card h3 {
+    color: var(--color-secondary);
+    margin-bottom: 0.5rem;
+  }
+
+  .small-desc {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+  }
+
+  .docs-download-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .doc-link {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 1rem;
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    transition: var(--transition);
+  }
+
+  .doc-link:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-primary);
+    background-color: var(--color-primary-light);
+  }
+
+  .doc-icon {
+    font-size: 1.4rem;
+  }
+
+  .doc-link strong {
+    display: block;
+    font-size: 0.92rem;
+    color: var(--color-secondary);
+  }
+
+  .doc-link span {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+  }
+</style>

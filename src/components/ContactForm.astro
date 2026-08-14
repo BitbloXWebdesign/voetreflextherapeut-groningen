@@ -1,0 +1,102 @@
+---
+import siteConfig from '../../public/site-config.json';
+---
+
+<div class="direct-contact-card card">
+  <h3>Neem Direct Contact Op</h3>
+  <p class="form-intro">
+    Wilt u een afspraak inplannen of een vraag stellen? U kunt direct bellen, WhatsAppen of mailen. Wij reageren doorgaans binnen 24 uur.
+  </p>
+
+  <div class="direct-contact-buttons">
+    <a href={`tel:${siteConfig.phoneDisplay.replace(/\s+/g, '')}`} class="contact-action-btn phone-btn">
+      <div class="btn-icon">📞</div>
+      <div>
+        <strong>Telefonisch Bereikbaar</strong>
+        <span>{siteConfig.phoneDisplay}</span>
+      </div>
+    </a>
+
+    <a href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent('Hallo Georgette, ik wil graag meer informatie of een afspraak maken.')}`} target="_blank" rel="noopener noreferrer" class="contact-action-btn wa-btn">
+      <div class="btn-icon">💬</div>
+      <div>
+        <strong>Direct WhatsAppen</strong>
+        <span>+31 6 38118341</span>
+      </div>
+    </a>
+
+    <a href={`mailto:${siteConfig.email}`} class="contact-action-btn email-btn">
+      <div class="btn-icon">✉️</div>
+      <div>
+        <strong>E-mail Sturen</strong>
+        <span>{siteConfig.email}</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="address-note mt-3">
+    <p><strong>Praktijkadres:</strong> {siteConfig.address.street}, {siteConfig.address.postalCode} {siteConfig.address.city}</p>
+  </div>
+</div>
+
+<style>
+  .direct-contact-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+  }
+
+  .form-intro {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .direct-contact-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-action-btn {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.2rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+    transition: var(--transition);
+    text-decoration: none;
+    color: var(--color-secondary);
+    background-color: var(--color-bg);
+  }
+
+  .contact-action-btn:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-sm);
+    background-color: var(--color-primary-light);
+  }
+
+  .btn-icon {
+    font-size: 1.6rem;
+  }
+
+  .contact-action-btn strong {
+    display: block;
+    font-size: 0.95rem;
+    color: var(--color-secondary);
+  }
+
+  .contact-action-btn span {
+    font-size: 0.9rem;
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .address-note {
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+  }
+</style>

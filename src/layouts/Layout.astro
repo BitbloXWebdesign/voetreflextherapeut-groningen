@@ -1,0 +1,100 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WhatsappWidget from '../components/WhatsappWidget.astro';
+import CookieBanner from '../components/CookieBanner.astro';
+import siteConfig from '../../public/site-config.json';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  image?: string;
+}
+
+const {
+  title = "Voetreflextherapeut Groningen - Voor persoonlijke aandacht | Georgette Noordberger",
+  description = "Praktijk voor professionele voetreflextherapie in Groningen. Behandeling van rugklachten, stress, burn-out, zwangerschapsklachten en Oncoreflex. Erkend & vergoed door zorgverzekeraars.",
+  canonical = "https://www.voetreflextherapeutgroningen.nl",
+  image = "/images/practice.jpg"
+} = Astro.props;
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["LocalBusiness", "MedicalBusiness", "ProfessionalService"],
+      "@id": `${siteConfig.domain}/#organization`,
+      "name": siteConfig.clientName,
+      "url": `https://www.${siteConfig.domain}`,
+      "logo": `https://www.${siteConfig.domain}/images/logo-voeten.png`,
+      "image": `https://www.${siteConfig.domain}/images/practice.jpg`,
+      "telephone": siteConfig.phoneDisplay,
+      "email": siteConfig.email,
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": siteConfig.address.street,
+        "addressLocality": siteConfig.address.city,
+        "postalCode": siteConfig.address.postalCode,
+        "addressCountry": "NL"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "17:00"
+        }
+      ],
+      "sameAs": [
+        "https://www.facebook.com/voetreflextherapeutgroningen",
+        "https://nl.wikipedia.org/wiki/Groningen_(stad)"
+      ]
+    }
+  ]
+};
+---
+
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="/images/logo-voeten.png" />
+  
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+
+  {siteConfig.modules.seo && (
+    <>
+      <!-- Open Graph / Facebook -->
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={canonical} />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+      <meta property="og:image" content={image} />
+      <meta property="og:locale" content="nl_NL" />
+
+      <!-- Twitter -->
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={image} />
+
+      <!-- Schema.org Rich Structured Data -->
+      <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+    </>
+  )}
+</head>
+<body>
+  <Header />
+  <main id="main-content">
+    <slot />
+  </main>
+  <Footer />
+  <WhatsappWidget />
+  <CookieBanner />
+</body>
+</html>

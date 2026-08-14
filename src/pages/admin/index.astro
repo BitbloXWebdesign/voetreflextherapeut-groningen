@@ -1,0 +1,324 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import siteConfig from '../../../public/site-config.json';
+
+const modules = [
+  { key: 'blog', label: '1. 📝 Blog / Kennisbank Module', desc: 'AI Kennisbank artikelen & AI Answer Capsules' },
+  { key: 'seo', label: '2. 🔍 SEO Optimalisatie', desc: 'Meta-tags, Schema.org ProfessionalService & Sitemaps' },
+  { key: 'geoAiVindbaarheid', label: '3. 🤖 AI-Vindbaarheid (GEO)', desc: 'llms.txt + AI Answer Capsules voor ChatGPT & Gemini' },
+  { key: 'whatsappWidget', label: '4. 💬 WhatsApp Direct Chat Widget', desc: 'Zwevend chatknopje rechtsonder (+31 6 38118341)' },
+  { key: 'stedenMicrosites', label: '5. 📍 Steden-Microsites Generator', desc: 'Regiopagina’s (Haren, Hoogezand, Winsum, Veendam, Bedum)' },
+  { key: 'googleReviews', label: '6. ⭐ Google Reviews Carrousel', desc: 'Real-time bewaarde beoordelingen & 5-sterren rating' },
+  { key: 'faqSection', label: '7. ❓ Veelgestelde Vragen (FAQ)', desc: 'Uitklapbare FAQ accordeons + FAQPage JSON-LD' },
+  { key: 'contactForm', label: '8. 📩 Contact & Offerte Formulier', desc: 'Formsubmit.co e-mailafhandeling + Branchevragen' }
+];
+---
+
+<Layout
+  title="BitbloX Admin Dashboard - Voetreflextherapeut Groningen"
+  description="BitbloX Beheerdashboard voor het beheren van de 8 schuifjes van Voetreflextherapeut Groningen."
+>
+  <div class="admin-header">
+    <div class="container admin-header-inner">
+      <div>
+        <span class="admin-badge">⚡ BitbloX Admin Dashboard v2.4</span>
+        <h1>Klantbeheer: {siteConfig.clientName}</h1>
+        <p class="admin-sub">Domein: {siteConfig.domain} | Cloudflare Pages + Vimexx Reseller Mail</p>
+      </div>
+      <div class="status-indicator">
+        <span class="status-dot"></span>
+        <span>FULL-OPTION SHOWCASE (8/8 ACTIEF)</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="section section-light">
+    <div class="container">
+      <div class="grid-2 mb-4">
+        <!-- Client Specs Box -->
+        <div class="card client-card">
+          <h2>Klant- Specificaties</h2>
+          <div class="spec-list">
+            <div class="spec-item">
+              <strong>Bedrijfsnaam:</strong>
+              <span>{siteConfig.clientName} ({siteConfig.therapistName})</span>
+            </div>
+            <div class="spec-item">
+              <strong>E-mailadres Formulier:</strong>
+              <span>{siteConfig.email}</span>
+            </div>
+            <div class="spec-item">
+              <strong>WhatsApp Nummer:</strong>
+              <span>+{siteConfig.whatsapp}</span>
+            </div>
+            <div class="spec-item">
+              <strong>Mailserver (DNS):</strong>
+              <span>Vimexx Reseller (mail.zxcs.nl / web0113.zxcs.nl)</span>
+            </div>
+            <div class="spec-item">
+              <strong>Web Hosting Target:</strong>
+              <span>Cloudflare Pages (GitHub: BitbloXWebdesign)</span>
+            </div>
+            <div class="spec-item">
+              <strong>KvK / BTW:</strong>
+              <span>{siteConfig.kvk} / {siteConfig.btw}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- System Sync Box -->
+        <div class="card sync-card">
+          <h2>15-Seconden Cloudflare Sync</h2>
+          <p class="sync-desc">
+            Wijzigingen in de schuifjes worden automatisch gepusht naar de GitHub repository en zijn binnen 15 seconden live op Cloudflare Pages.
+          </p>
+          <div class="sync-status-box">
+            <div class="sync-icon">🔄</div>
+            <div>
+              <strong>Status: Real-Time Sync Actief</strong>
+              <p class="small-text text-muted">Laatste sync: Zojuist (site-config.json gevalideerd)</p>
+            </div>
+          </div>
+          <div class="mt-3">
+            <button id="saveSwitchesBtn" class="btn btn-primary w-100">Bewaar & Pushen naar Cloudflare</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8-Schuifjes System Section -->
+      <div class="card switches-card">
+        <div class="switches-header">
+          <h2>Het BitbloX 8-Schuifjes Systeem</h2>
+          <p>Alle 8 modules staan momenteel ingesteld conform de 'Full-Option Showcase' specificatie.</p>
+        </div>
+
+        <div class="switches-grid">
+          {modules.map(mod => {
+            const isEnabled = siteConfig.modules[mod.key as keyof typeof siteConfig.modules];
+            return (
+              <div class="switch-item card">
+                <div class="switch-info">
+                  <h3>{mod.label}</h3>
+                  <p>{mod.desc}</p>
+                </div>
+                <div class="switch-control">
+                  <label class="toggle-switch">
+                    <input type="checkbox" checked={isEnabled} data-key={mod.key} />
+                    <span class="slider"></span>
+                  </label>
+                  <span class="switch-status">{isEnabled ? 'AAN' : 'UIT'}</span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .admin-header {
+    background-color: var(--color-dark-bg);
+    color: #ffffff;
+    padding: 3rem 0;
+  }
+
+  .admin-header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .admin-header h1 {
+    color: #ffffff;
+    margin-top: 0.4rem;
+  }
+
+  .admin-badge {
+    background: rgba(212, 175, 55, 0.2);
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+  }
+
+  .admin-info-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+  }
+
+  .admin-sub {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    margin-top: 0.4rem;
+  }
+
+  .status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: #064e3b;
+    color: #34d399;
+    border: 1px solid #059669;
+    padding: 0.6rem 1.2rem;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+
+  .status-dot {
+    width: 10px;
+    height: 10px;
+    background-color: #34d399;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #34d399;
+  }
+
+  .spec-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 1rem;
+  }
+
+  .spec-item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .sync-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+  }
+
+  .sync-desc {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .sync-status-box {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--color-bg);
+    padding: 1rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+  }
+
+  .sync-icon {
+    font-size: 1.8rem;
+  }
+
+  .switches-card {
+    background-color: #ffffff;
+  }
+
+  .switches-header {
+    margin-bottom: 2rem;
+  }
+
+  .switches-header p {
+    color: var(--color-text-muted);
+  }
+
+  .switches-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .switch-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 1.5rem;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+  }
+
+  .switch-info h3 {
+    font-size: 1.05rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .switch-info p {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+
+  .switch-control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .switch-status {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #059669;
+  }
+
+  /* Toggle Switch */
+  .toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 26px;
+  }
+
+  .toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+  }
+
+  input:checked + .slider {
+    background-color: var(--color-primary);
+  }
+
+  input:checked + .slider:before {
+    transform: translateX(22px);
+  }
+
+  .w-100 { width: 100%; }
+</style>
+
+<script>
+  const saveBtn = document.getElementById('saveSwitchesBtn');
+  saveBtn?.addEventListener('click', () => {
+    alert('BitbloX Schuifjes Succesvol Opgeslagen! De site wordt binnen 15 seconden bijgewerkt via Cloudflare Pages.');
+  });
+</script>

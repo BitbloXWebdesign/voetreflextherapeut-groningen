@@ -1,0 +1,115 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import siteConfig from '../../../public/site-config.json';
+
+export async function getStaticPaths() {
+  const steden = [
+    { slug: 'haren', name: 'Haren', dist: 'ca. 10 minuten vanuit Haren' },
+    { slug: 'hoogezand', name: 'Hoogezand', dist: 'ca. 15 minuten vanuit Hoogezand' },
+    { slug: 'winsum', name: 'Winsum', dist: 'ca. 15 minuten vanuit Winsum' },
+    { slug: 'veendam', name: 'Veendam', dist: 'ca. 25 minuten vanuit Veendam' },
+    { slug: 'bedum', name: 'Bedum', dist: 'ca. 12 minuten vanuit Bedum' }
+  ];
+
+  return steden.map(city => ({
+    params: { stad: city.slug },
+    props: { city }
+  }));
+}
+
+const { city } = Astro.props;
+---
+
+<Layout
+  title={`Voetreflextherapeut ${city.name} - Praktijk Voetreflextherapie nabij ${city.name}`}
+  description={`Zoekt u een erkend voetreflextherapeut in de regio ${city.name}? Praktijk Voetreflextherapeut Groningen is gevestigd op Bieslookstraat 31 (${city.dist}).`}
+>
+  <div class="page-header">
+    <div class="container">
+      <span class="section-subtitle">Regio Groningen • {city.dist}</span>
+      <h1>Voetreflextherapeut voor {city.name}</h1>
+      <p class="page-header-desc">
+        Professionele voetreflextherapie, zwangerschapsreflexologie & Oncoreflex voor inwoners van {city.name}.
+      </p>
+    </div>
+  </div>
+
+  <section class="section section-light">
+    <div class="container">
+      <div class="grid-2 align-center">
+        <div>
+          <h2>Welkom Cliënten uit {city.name}</h2>
+          <p class="lead-text mt-2 mb-3">
+            Woont u in {city.name} en zoekt u een deskundige, gediplomeerde voetreflextherapeut voor behandeling van fysieke klachten, stress of ondersteuning tijdens uw zwangerschap?
+          </p>
+          <p class="mb-3">
+            Onze praktijk aan de Bieslookstraat 31 unit A5/2 te Groningen ligt uitstekend bereikbaar voor inwoners van <strong>{city.name}</strong> ({city.dist}). Wij bieden ruime gratis parkeergelegenheid voor de deur.
+          </p>
+          <p class="mb-3">
+            Therapeut Georgette Noordberger is aangesloten bij de erkende beroepsverenigingen <strong>CAT Vergoedbaar</strong> en <strong>RBCZ</strong>. Hierdoor worden behandelingen voor cliënten uit {city.name} deels vergoed via de aanvullende zorgverzekering.
+          </p>
+          <div class="mt-3">
+            <a href="/contact" class="btn btn-primary">Afspraak Inplannen vanuit {city.name}</a>
+          </div>
+        </div>
+
+        <div class="card regional-box">
+          <h3>Waarom Kiezen Cliënten uit {city.name} voor Ons?</h3>
+          <ul class="check-list mt-3">
+            <li><span>✓</span> Slechts {city.dist} rijden</li>
+            <li><span>✓</span> Gratis gereserveerde parkeerplaatsen voor de deur</li>
+            <li><span>✓</span> HBO Voetreflex Plus Therapeut (Chinese & Westerse massage)</li>
+            <li><span>✓</span> Gecertificeerd Oncoreflex Master & Kinderwens Specialist</li>
+            <li><span>✓</span> Vergoeding mogelijk via aanvullende zorgverzekering</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section Module -->
+  <FAQSection />
+
+  <!-- Contact Form Section -->
+  <section class="section bg-light" id="contact">
+    <div class="container">
+      <div class="grid-2">
+        <div>
+          <span class="section-subtitle">Bereikbaar vanuit {city.name}</span>
+          <h2>Plan uw Consult in</h2>
+          <p class="mb-4">
+            Vul het formulier in om direct een intake- of vervolgconsult af te spreken.
+          </p>
+          <div class="info-box card">
+            <p><strong>Praktijkadres:</strong> {siteConfig.address.street}, {siteConfig.address.postalCode} Groningen</p>
+            <p><strong>Telefoon:</strong> <a href={`tel:${siteConfig.phoneDisplay.replace(/\s+/g, '')}`}>{siteConfig.phoneDisplay}</a></p>
+            <p><strong>Reistijd vanuit {city.name}:</strong> {city.dist}</p>
+          </div>
+        </div>
+
+        <ContactForm />
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-header {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+    color: #ffffff;
+    text-align: center;
+  }
+
+  .page-header h1 { color: #ffffff; margin-top: 0.5rem; }
+  .page-header-desc { color: #cbd5e1; font-size: 1.1rem; margin-top: 0.5rem; }
+
+  .align-center { align-items: center; }
+
+  .regio-hero-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+  }
+</style>

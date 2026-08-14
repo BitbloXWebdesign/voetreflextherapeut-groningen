@@ -1,0 +1,35 @@
+{
+  "clientName": "Voetreflextherapeut Groningen",
+  "therapistName": "Georgette Noordberger",
+  "domain": "voetreflextherapeutgroningen.nl",
+  "email": "info@voetreflextherapeutgroningen.nl",
+  "whatsapp": "31638118341",
+  "phoneDisplay": "06 38118341",
+  "address": {
+    "street": "Bieslookstraat 31 unit A5/2",
+    "postalCode": "9731 HH",
+    "city": "Groningen",
+    "country": "Nederland"
+  },
+  "kvk": "80193374",
+  "btw": "NL003410453B94",
+  "iban": "NL64 KNAB 0602744822",
+  "theme": {
+    "primary": "#208254",
+    "primaryHover": "#196843",
+    "secondary": "#1a3a2a",
+    "background": "#fbfafd",
+    "darkText": "#1e293b",
+    "lightBg": "#f4f8f5"
+  },
+  "modules": {
+    "blog": true,
+    "seo": true,
+    "geoAiVindbaarheid": true,
+    "whatsappWidget": true,
+    "stedenMicrosites": true,
+    "googleReviews": true,
+    "faqSection": true,
+    "contactForm": false
+  }
+}

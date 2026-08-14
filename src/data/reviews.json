@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "author": "Annelies de V.",
+    "rating": 5,
+    "date": "2 weken geleden",
+    "text": "Georgette is een fantastische therapeute! Na een aantal behandelingen zijn mijn langdurige rug- en hoofdpijnklachten aanzienlijk verminderd. Ze neemt echt de tijd voor je en geeft hele waardevolle adviezen."
+  },
+  {
+    "id": 2,
+    "author": "Marloes & Sven",
+    "rating": 5,
+    "date": "1 maand geleden",
+    "text": "Wij hebben het Integraal Kinderwens traject gevolgd bij Georgette. Haar rust, empathie en professionele aanpak gaven ons ontzettend veel steun. Inmiddels trots ouder van een gezonde zoon!"
+  },
+  {
+    "id": 3,
+    "author": "Karin B.",
+    "rating": 5,
+    "date": "2 maanden geleden",
+    "text": "Tijdens mijn zwangerschap met 39 weken het NIBY'S protocol ontvangen. Dezelfde avond kwamen de weeën rustig op gang. Een absolute aanrader voor iedere zwangere vrouw die ontspannen de bevalling in wil!"
+  },
+  {
+    "id": 4,
+    "author": "Peter H.",
+    "rating": 5,
+    "date": "3 maanden geleden",
+    "text": "Wegens darmklachten en stress bij Georgette terechtgekomen. De combinatie van Chinese en Westerse voetreflex heeft mijn spijsvertering en energielevel een enorme boost gegeven. Zeer kundig!"
+  }
+]

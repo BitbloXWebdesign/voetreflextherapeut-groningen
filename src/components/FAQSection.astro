@@ -1,0 +1,120 @@
+---
+import faqData from '../data/faq.json';
+import siteConfig from '../../public/site-config.json';
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqData.map(item => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer
+    }
+  }))
+};
+---
+
+<section class="section faq-section" id="faq">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-subtitle">Veelgestelde Vragen</span>
+      <h2>FAQ & Informatie over Vergoedingen</h2>
+      <p class="section-description">
+        Heeft u vragen over voetreflextherapie, vergoedingen van de zorgverzekering of het maken van een afspraak?
+      </p>
+    </div>
+
+    <div class="faq-list">
+      {faqData.map((item, index) => (
+        <details class="faq-item" open={index === 0}>
+          <summary class="faq-question">
+            <h3>{item.question}</h3>
+            <span class="faq-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </summary>
+          <div class="faq-answer">
+            <p>{item.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+</section>
+
+<style>
+  .faq-section {
+    background-color: var(--color-surface);
+  }
+
+  .faq-list {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .faq-item {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem 1.5rem;
+    transition: var(--transition);
+  }
+
+  .faq-item[open] {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .faq-question {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-question h3 {
+    font-size: 1.1rem;
+    color: var(--color-secondary);
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .faq-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    color: var(--color-primary);
+    transition: transform 0.3s ease;
+  }
+
+  .faq-item[open] .faq-icon {
+    transform: rotate(180deg);
+    background-color: var(--color-primary);
+    color: #ffffff;
+  }
+
+  .faq-answer {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text);
+    line-height: 1.65;
+  }
+</style>

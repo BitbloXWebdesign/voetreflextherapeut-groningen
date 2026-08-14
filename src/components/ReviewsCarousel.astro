@@ -1,0 +1,92 @@
+---
+import reviews from '../data/reviews.json';
+---
+
+<section class="section reviews-section bg-light">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-subtitle">Ervaringen & Reviews</span>
+      <h2>Wat Cliënten Zeggen</h2>
+      <div class="google-rating-badge">
+        <span class="stars">★★★★★</span>
+        <strong>5.0 uit 5.0</strong> gebaseerd op Google Beoordelingen
+      </div>
+    </div>
+
+    <div class="reviews-grid grid-2">
+      {reviews.map(review => (
+        <div class="review-card card">
+          <div class="review-header">
+            <div class="author-info">
+              <h4>{review.author}</h4>
+              <span class="review-date">{review.date}</span>
+            </div>
+            <div class="review-stars">
+              {'★'.repeat(review.rating)}
+            </div>
+          </div>
+          <p class="review-text">"{review.text}"</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .reviews-section {
+    background-color: var(--color-surface);
+  }
+
+  .google-rating-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--color-primary-light);
+    border: 1px solid var(--color-primary);
+    padding: 0.5rem 1.2rem;
+    border-radius: var(--radius-sm);
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    color: var(--color-secondary);
+  }
+
+  .stars {
+    color: var(--color-primary);
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+  }
+
+  .review-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+
+  .author-info h4 {
+    font-size: 1.05rem;
+    margin: 0;
+  }
+
+  .review-date {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+  }
+
+  .review-stars {
+    color: var(--color-primary);
+    font-size: 1.1rem;
+  }
+
+  .review-text {
+    font-style: italic;
+    color: #334155;
+    line-height: 1.6;
+  }
+</style>

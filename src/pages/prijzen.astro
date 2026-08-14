@@ -1,0 +1,244 @@
+---
+import Layout from '../layouts/Layout.astro';
+import siteConfig from '../../public/site-config.json';
+---
+
+<Layout
+  title="Tarieven & Vergoedingen - Voetreflextherapeut Groningen"
+  description="Bekijk de tarieven voor voetreflextherapie consulten in Groningen en de mogelijkheden voor vergoeding via de zorgverzekering (CAT / RBCZ)."
+>
+  <div class="page-header">
+    <div class="container">
+      <span class="section-subtitle">Transparante Tarieven</span>
+      <h1>Prijzen & Vergoedingen</h1>
+      <p class="page-header-desc">
+        Tarieven per 1 januari 2026. Consulten worden (deels) vergoed vanuit uw aanvullende verzekering.
+      </p>
+    </div>
+  </div>
+
+  <section class="section section-light">
+    <div class="container text-container">
+      <div class="pricing-table-wrapper card mb-4">
+        <h2>Overzicht Tarieven (2026)</h2>
+        <p class="vat-note mb-3"><em>Alle genoemde tarieven zijn vrijgesteld van BTW.</em></p>
+
+        <table class="pricing-table">
+          <thead>
+            <tr>
+              <th>Behandeling / Consult</th>
+              <th>Tijdsduur</th>
+              <th>Tarief</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Intake / Anamnese & Eerste Massage</strong></td>
+              <td>90 minuten</td>
+              <td><span class="price-tag">€ 95,-</span></td>
+            </tr>
+            <tr>
+              <td><strong>Vervolgconsult Voetreflextherapie</strong></td>
+              <td>60 minuten</td>
+              <td><span class="price-tag">€ 70,-</span></td>
+            </tr>
+            <tr>
+              <td><strong>Integraal Kinderwens Consult</strong></td>
+              <td>90 minuten</td>
+              <td><span class="price-tag">€ 95,-</span></td>
+            </tr>
+            <tr>
+              <td><strong>Cursus Babymassage & Voetreflex (3 lessen aan huis)</strong></td>
+              <td>3x 60 min</td>
+              <td><span class="price-tag">€ 210,-</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="payment-notes mt-3">
+          <p><strong>Betaalwijze:</strong> Er kan in de praktijk contant of per PIN betaald worden. U ontvangt direct een digitale factuur die u kunt indienen bij uw zorgverzekeraar.</p>
+        </div>
+
+        <div class="curatieve-disclaimer-box mt-3">
+          <p>
+            <strong>Disclaimer vergoedingen:</strong> Alleen individuele en curatieve therapie worden gedeeltelijk vergoed vanuit de aanvullende zorgverzekering en erkend door de beroepsorganisatie.
+          </p>
+        </div>
+      </div>
+
+      <!-- Vergoedingen & Schildjes Box -->
+      <div class="card insurance-box mb-4">
+        <h3>Vergoeding via de Zorgverzekering</h3>
+        <p class="mb-3">
+          Voetreflex Therapeut Groningen is aangesloten bij de erkende beroepsverenigingen <strong>Kwaliteitstherapeuten</strong> en <strong>CAT Vergoedbaar</strong> (alsmede RBCZ, GAT & NmbK).
+        </p>
+
+        <div class="insurance-badges-row mb-3">
+          <a href="https://catvergoedbaar.nl/" target="_blank" rel="noopener noreferrer" class="insurance-badge-link" title="Bezoek CAT Vergoedbaar">
+            <img src="/images/cat-badge.png" alt="CAT Vergoedbaar" />
+            <span>catvergoedbaar.nl &rarr;</span>
+          </a>
+          <a href="https://kwaliteitstherapeuten.nl/" target="_blank" rel="noopener noreferrer" class="insurance-badge-link" title="Bezoek Kwaliteitstherapeuten">
+            <img src="/images/kwaliteitstherapeuten-badge.png" alt="Kwaliteitstherapeuten" />
+            <span>kwaliteitstherapeuten.nl &rarr;</span>
+          </a>
+        </div>
+
+        <p class="small-desc mb-3">
+          Wilt u weten of uw zorgverzekeraar behandelingen door mijn praktijk (deels) vergoedt? Bekijk het actuele overzicht van aangesloten zorgverzekeraars direct op de websites van <a href="https://catvergoedbaar.nl/" target="_blank" rel="noopener noreferrer" class="underline-link">CAT Vergoedbaar</a> en <a href="https://kwaliteitstherapeuten.nl/" target="_blank" rel="noopener noreferrer" class="underline-link">Kwaliteitstherapeuten</a>.
+        </p>
+
+        <div class="alert-info">
+          <strong>Goed om te weten:</strong> Vergoedingen uit de aanvullende zorgverzekering vallen <u>niet</u> onder het verplicht eigen risico!
+        </div>
+      </div>
+
+      <!-- Wkkgz Klachtenregeling -->
+      <div class="klachtenregeling-box mb-4">
+        <p>
+          <strong>Wkkgz Klachtenregeling:</strong> Ik val als Complementaire Kwaliteitstherapeut en CAT-vergoedbaar therapeut onder Wkkgz-klachtrecht en tuchtrecht bij de Geschilleninstantie Alternatieve Therapeuten (GAT). Voor meer informatie zie <a href="https://gatgeschillen.nl/" target="_blank" rel="noopener noreferrer" class="underline-link">https://gatgeschillen.nl/</a>
+        </p>
+      </div>
+
+      <!-- Annulering Box -->
+      <div class="card cancellation-box">
+        <h3>Annuleringsvoorwaarden</h3>
+        <p>
+          Afspraken kunnen tot <strong>24 uur van tevoren kosteloos</strong> worden geannuleerd of gewijzigd via telefoon of WhatsApp. Bij het niet nakomen van de afspraak of te late annulering wordt de gereserveerde tijd in rekening gebracht.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-header {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #1a3a2a 0%, #11231a 100%);
+    color: #ffffff;
+    text-align: center;
+  }
+
+  .page-header h1 { color: #ffffff; margin-top: 0.5rem; }
+  .page-header-desc { color: #cbd5e1; font-size: 1.1rem; margin-top: 0.5rem; }
+
+  .text-container {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .vat-note {
+    color: var(--color-primary);
+    font-size: 0.95rem;
+  }
+
+  .pricing-table-wrapper h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  .pricing-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+
+  .pricing-table th, .pricing-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .pricing-table th {
+    background-color: var(--color-bg);
+    color: var(--color-secondary);
+    font-family: var(--font-heading);
+  }
+
+  .price-tag {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  .payment-notes {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+  }
+
+  .curatieve-disclaimer-box {
+    background-color: var(--color-primary-light);
+    border: 1px solid rgba(32, 130, 84, 0.2);
+    padding: 0.9rem 1.1rem;
+    border-radius: var(--radius-sm);
+  }
+
+  .curatieve-disclaimer-box p {
+    font-size: 0.88rem;
+    color: var(--color-secondary);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .insurance-box {
+    background-color: var(--color-surface);
+  }
+
+  .insurance-badges-row {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 2rem 0;
+  }
+
+  .insurance-badge-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.4rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    transition: var(--transition);
+    background-color: var(--color-bg);
+  }
+
+  .insurance-badge-link:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .insurance-badge-link img {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .insurance-badge-link span {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  .alert-info {
+    background-color: var(--color-primary-light);
+    border: 1px solid var(--color-primary);
+    padding: 0.8rem 1rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    color: #14532d;
+    margin-top: 1rem;
+  }
+
+  .cancellation-box {
+    background-color: #fffdfd;
+    border: 1px solid #fee2e2;
+  }
+
+  .small-desc {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+</style>
