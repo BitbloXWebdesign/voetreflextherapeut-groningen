@@ -33,16 +33,18 @@ import siteConfig from '../../public/site-config.json';
       </div>
 
       <!-- Col 3: Regio Landingspagina's -->
-      <div class="footer-col">
-        <h4 class="footer-title">Werkgebied Regio Groningen</h4>
-        <ul class="footer-links">
-          <li><a href="/regio/haren">Voetreflextherapeut Haren</a></li>
-          <li><a href="/regio/hoogezand">Voetreflextherapeut Hoogezand</a></li>
-          <li><a href="/regio/winsum">Voetreflextherapeut Winsum</a></li>
-          <li><a href="/regio/veendam">Voetreflextherapeut Veendam</a></li>
-          <li><a href="/regio/bedum">Voetreflextherapeut Bedum</a></li>
-        </ul>
-      </div>
+      {siteConfig.modules.stedenMicrosites && (
+        <div class="footer-col regio-footer-col">
+          <h4 class="footer-title">Werkgebied Regio Groningen</h4>
+          <ul class="footer-links">
+            <li><a href="/regio/haren">Voetreflextherapeut Haren</a></li>
+            <li><a href="/regio/hoogezand">Voetreflextherapeut Hoogezand</a></li>
+            <li><a href="/regio/winsum">Voetreflextherapeut Winsum</a></li>
+            <li><a href="/regio/veendam">Voetreflextherapeut Veendam</a></li>
+            <li><a href="/regio/bedum">Voetreflextherapeut Bedum</a></li>
+          </ul>
+        </div>
+      )}
 
       <!-- Col 4: Certificeringen & Bedrijfsgegevens -->
       <div class="footer-col">
@@ -265,3 +267,17 @@ import siteConfig from '../../public/site-config.json';
     font-weight: 600;
   }
 </style>
+
+<script>
+  if (localStorage.getItem('bitblox_module_blog') === 'false') {
+    document.querySelectorAll('.footer-links a[href="/blog"]').forEach(link => {
+      const parentLi = link.closest('li');
+      if (parentLi) parentLi.style.display = 'none';
+    });
+  }
+
+  if (localStorage.getItem('bitblox_module_stedenMicrosites') === 'false') {
+    const regioCol = document.querySelector('.regio-footer-col') as HTMLElement;
+    if (regioCol) regioCol.style.display = 'none';
+  }
+</script>

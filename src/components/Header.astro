@@ -186,4 +186,11 @@ import siteConfig from '../../public/site-config.json';
   toggle?.addEventListener('click', () => {
     menu?.classList.toggle('active');
   });
+
+  if (localStorage.getItem('bitblox_module_blog') === 'false') {
+    document.querySelectorAll('a[href="/blog"]').forEach(link => {
+      const parentLi = link.closest('li');
+      if (parentLi) parentLi.style.display = 'none';
+    });
+  }
 </script>
