@@ -23,11 +23,11 @@
     "lightBg": "#f4f8f5"
   },
   "modules": {
-    "blog": true,
+    "blog": false,
     "seo": true,
     "geoAiVindbaarheid": true,
     "whatsappWidget": true,
-    "stedenMicrosites": true,
+    "stedenMicrosites": false,
     "googleReviews": true,
     "faqSection": true,
     "contactForm": false
