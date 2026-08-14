@@ -729,7 +729,80 @@ const modules = [
   });
 
   const saveBtn = document.getElementById('saveSwitchesBtn');
-  saveBtn?.addEventListener('click', () => {
-    alert('BitbloX Schuifjes & Instellingen Succesvol Opgeslagen! De site-configuratie is bijgewerkt.');
+  saveBtn?.addEventListener('click', async () => {
+    // Collect all 8 switch states from DOM
+    const updatedModules: Record<string, boolean> = {};
+    document.querySelectorAll('.toggle-switch input').forEach(inputEl => {
+      const input = inputEl as HTMLInputElement;
+      const key = input.getAttribute('data-key');
+      if (key) {
+        updatedModules[key] = input.checked;
+      }
+    });
+
+    let token = localStorage.getItem('bitblox_github_token');
+    if (!token) {
+      token = prompt('⚡ BitbloX Cloudflare Real-Time Sync:\n\nVoer eenmalig een GitHub Access Token in om schuifjes direct naar Cloudflare te pushen (wordt veilig in je eigen browser opgeslagen):');
+      if (token) {
+        localStorage.setItem('bitblox_github_token', token.trim());
+      }
+    }
+
+    if (!token) {
+      alert('Geen GitHub Token ingevoerd. De schuifjes-wijzigingen zijn alleen in jouw browser bewaard.');
+      return;
+    }
+
+    try {
+      saveBtn.textContent = '🔄 Pushen naar GitHub & Cloudflare...';
+      saveBtn.setAttribute('disabled', 'true');
+
+      // 1. Fetch current file SHA from GitHub API
+      const repoUrl = 'https://api.github.com/repos/BitbloXWebdesign/voetreflextherapeut-groningen/contents/public/site-config.json';
+      const getRes = await fetch(repoUrl, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+
+      if (!getRes.ok) {
+        throw new Error('Kan repository niet bereiken. Controleer je GitHub Token.');
+      }
+
+      const fileData = await getRes.json();
+      const rawContent = decodeURIComponent(escape(atob(fileData.content)));
+      const configObj = JSON.parse(rawContent);
+
+      // 2. Merge new module switches
+      configObj.modules = { ...configObj.modules, ...updatedModules };
+
+      const newContentStr = JSON.stringify(configObj, null, 2);
+      const base64Content = btoa(unescape(encodeURIComponent(newContentStr)));
+
+      // 3. Commit updated site-config.json back to GitHub
+      const putRes = await fetch(repoUrl, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          message: 'Update BitbloX 8-schuifjes via Admin Dashboard',
+          content: base64Content,
+          sha: fileData.sha,
+          branch: 'main'
+        })
+      });
+
+      if (putRes.ok) {
+        alert('✅ Succes! site-config.json is gepusht naar GitHub. Cloudflare Pages heeft de build gestart en verwerkt de schuifjes binnen 15 seconden live!');
+      } else {
+        const errJson = await putRes.json();
+        alert(`❌ Fout bij pushen naar GitHub: ${errJson.message || 'Controleer je token rechten'}`);
+      }
+    } catch (err: any) {
+      alert('❌ Fout bij Cloudflare sync: ' + err.message);
+    } finally {
+      saveBtn.textContent = 'Bewaar & Pushen naar Cloudflare';
+      saveBtn.removeAttribute('disabled');
+    }
   });
 </script>
