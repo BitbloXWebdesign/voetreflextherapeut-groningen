@@ -87,7 +87,7 @@ import siteConfig from '../../public/site-config.json';
 
   <div class="footer-bottom">
     <div class="container footer-bottom-inner">
-      <p>Copyright &copy; {new Date().getFullYear()} | BitbloX</p>
+      <p>Copyright &copy; {new Date().getFullYear()} {siteConfig.clientName} | Webdesign & Hosting door <a href="https://bitblox.nl" target="_blank" rel="noopener noreferrer" class="bitblox-link">BitbloX</a></p>
     </div>
   </div>
 </footer>
@@ -278,9 +278,16 @@ import siteConfig from '../../public/site-config.json';
     text-align: center;
   }
 
-  .bitblox-credit a {
+  .bitblox-link {
     color: var(--color-primary);
     font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition);
+  }
+
+  .bitblox-link:hover {
+    color: #ffffff;
+    text-decoration: underline;
   }
 </style>
 
