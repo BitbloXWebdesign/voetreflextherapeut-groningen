@@ -37,9 +37,9 @@ const phoneDisplay = siteConfig.phoneDisplay || '06 38118341';
 <style>
   .callback-widget {
     position: fixed;
-    bottom: 25px;
-    right: 100px;
-    z-index: 997;
+    bottom: 28px;
+    right: 195px;
+    z-index: 998;
   }
 
   .callback-trigger-btn {
@@ -49,20 +49,32 @@ const phoneDisplay = siteConfig.phoneDisplay || '06 38118341';
     background: #143322;
     border: 1px solid rgba(32, 130, 84, 0.5);
     color: #4ade80;
-    padding: 10px 16px;
+    padding: 12px 18px;
     border-radius: 999px;
-    font-size: 0.82rem;
+    font-size: 0.88rem;
     font-weight: 700;
     cursor: pointer;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.4), 0 0 14px rgba(32, 130, 84, 0.2);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5), 0 0 16px rgba(32, 130, 84, 0.2);
     transition: all 0.25s ease;
+    white-space: nowrap;
   }
 
   .callback-trigger-btn:hover {
     background: #208254;
     color: #ffffff;
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(32, 130, 84, 0.4);
+    box-shadow: 0 12px 30px rgba(32, 130, 84, 0.4);
+  }
+
+  @media (max-width: 768px) {
+    .callback-widget {
+      bottom: 84px;
+      right: 20px;
+    }
+    .callback-trigger-btn {
+      padding: 10px 14px;
+      font-size: 0.8rem;
+    }
   }
 
   .callback-modal {
