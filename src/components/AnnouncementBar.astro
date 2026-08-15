@@ -1,4 +1,6 @@
 ---
+import siteConfig from '../../public/site-config.json';
+
 interface Props {
   text?: string;
   badge?: string;
@@ -7,9 +9,9 @@ interface Props {
 }
 
 const {
-  text = "🌿 Praktijknieuws: Vergoeding vanuit de aanvullende zorgverzekering direct mogelijk in 2026!",
-  badge = "ZORGVERGOEDING",
-  link = "/prijzen",
+  text = siteConfig.announcement?.text || "🌿 Praktijknieuws: Vergoeding vanuit de aanvullende zorgverzekering direct mogelijk in 2026!",
+  badge = siteConfig.announcement?.badge || "ZORGVERGOEDING",
+  link = siteConfig.announcement?.link || "/prijzen",
   linkText = "Bekijk Tarieven & Vergoedingen &rarr;"
 } = Astro.props;
 ---
