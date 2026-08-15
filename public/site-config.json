@@ -31,13 +31,13 @@
     "whatsappWidget": true,
     "stedenMicrosites": false,
     "microsites": false,
-    "googleReviews": false,
-    "reviews": false,
-    "faqSection": false,
-    "faq": false,
+    "googleReviews": true,
+    "reviews": true,
+    "faqSection": true,
+    "faq": true,
     "contactForm": false,
     "form": false
   },
   "site": "Voetreflextherapeut Groningen",
-  "updatedAt": "2026-08-15T08:59:05.264Z"
+  "updatedAt": "2026-08-15T09:08:48.093Z"
 }
