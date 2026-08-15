@@ -231,13 +231,13 @@ import siteConfig from '../../public/site-config.json';
   </section>
 
   <!-- Google Reviews Module -->
-  {siteConfig.modules.googleReviews && <ReviewsCarousel />}
+  {(siteConfig.modules?.googleReviews !== false && siteConfig.modules?.reviews !== false && (siteConfig.modules?.googleReviews === true || siteConfig.modules?.reviews === true)) && <ReviewsCarousel />}
 
   <!-- FAQ Section Module -->
-  {siteConfig.modules.faqSection && <FAQSection />}
+  {(siteConfig.modules?.faqSection !== false && siteConfig.modules?.faq !== false && (siteConfig.modules?.faqSection === true || siteConfig.modules?.faq === true)) && <FAQSection />}
 
   <!-- Contact Form Section -->
-  {siteConfig.modules.contactForm && (
+  {(siteConfig.modules?.contactForm !== false && siteConfig.modules?.form !== false && (siteConfig.modules?.contactForm === true || siteConfig.modules?.form === true)) && (
     <section class="section section-light" id="contact">
       <div class="container">
         <div class="grid-2">

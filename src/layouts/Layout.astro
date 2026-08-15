@@ -14,13 +14,16 @@ interface Props {
 }
 
 const {
-  title = "Voetreflextherapeut Groningen - Voor persoonlijke aandacht | Georgette Noordberger",
+  title = `${siteConfig.clientName} - Praktijk voor Persoonlijke Aandacht | Georgette Noordberger`,
   description = "Praktijk voor professionele voetreflextherapie in Groningen. Behandeling van rugklachten, stress, burn-out, zwangerschapsklachten en Oncoreflex. Erkend & vergoed door zorgverzekeraars.",
   canonical = "https://www.voetreflextherapeutgroningen.nl",
   image = "/images/logo-voeten.png"
 } = Astro.props;
 
 const shareImageUrl = image.startsWith('http') ? image : `https://www.${siteConfig.domain}${image}`;
+
+const isSeoActive = siteConfig.modules?.seo !== false;
+const isWhatsappActive = siteConfig.modules?.whatsapp === true || siteConfig.modules?.whatsappWidget === true;
 
 const schemaData = {
   "@context": "https://schema.org",
@@ -36,9 +39,9 @@ const schemaData = {
       "email": siteConfig.email,
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": siteConfig.address.street,
-        "addressLocality": siteConfig.address.city,
-        "postalCode": siteConfig.address.postalCode,
+        "streetAddress": siteConfig.address?.street || "Bieslookstraat 31 unit A5/2",
+        "addressLocality": siteConfig.address?.city || "Groningen",
+        "postalCode": siteConfig.address?.postalCode || "9731 HH",
         "addressCountry": "NL"
       },
       "openingHoursSpecification": [
@@ -71,7 +74,7 @@ const schemaData = {
   <meta name="description" content={description} />
   <link rel="canonical" href={canonical} />
 
-  {siteConfig.modules.seo && (
+  {isSeoActive && (
     <>
       <!-- Open Graph / WhatsApp / Facebook -->
       <meta property="og:type" content="website" />
@@ -100,66 +103,7 @@ const schemaData = {
     <slot />
   </main>
   <Footer />
-  {(siteConfig.modules?.whatsapp !== false && siteConfig.modules?.whatsappWidget !== false) && <WhatsappWidget />}
+  {isWhatsappActive && <WhatsappWidget />}
   <CookieBanner />
-
-  <script>
-    // Universal BitbloX Module Enforcer for Mobile & Desktop
-    function applyModuleSwitches() {
-      const keys = ['blog', 'seo', 'geoAiVindbaarheid', 'whatsappWidget', 'stedenMicrosites', 'googleReviews', 'faqSection', 'contactForm'];
-      
-      keys.forEach(key => {
-        const isOff = localStorage.getItem('bitblox_module_' + key) === 'false';
-        if (!isOff) return;
-
-        if (key === 'blog') {
-          document.querySelectorAll('a[href="/blog"], a[href^="/blog/"]').forEach(el => {
-            const li = el.closest('li');
-            if (li) (li as HTMLElement).style.setProperty('display', 'none', 'important');
-            else (el as HTMLElement).style.setProperty('display', 'none', 'important');
-          });
-        }
-
-        if (key === 'stedenMicrosites') {
-          document.querySelectorAll('.regio-footer-col, a[href^="/regio/"]').forEach(el => {
-            const container = el.closest('.footer-col') || el.closest('li');
-            if (container) (container as HTMLElement).style.setProperty('display', 'none', 'important');
-            else (el as HTMLElement).style.setProperty('display', 'none', 'important');
-          });
-        }
-
-        if (key === 'whatsappWidget') {
-          document.querySelectorAll('.whatsapp-float').forEach(el => {
-            (el as HTMLElement).style.setProperty('display', 'none', 'important');
-          });
-        }
-
-        if (key === 'googleReviews') {
-          document.querySelectorAll('.reviews-section, .reviews-carousel-wrapper').forEach(el => {
-            (el as HTMLElement).style.setProperty('display', 'none', 'important');
-          });
-        }
-
-        if (key === 'faqSection') {
-          document.querySelectorAll('.faq-section, #faq').forEach(el => {
-            (el as HTMLElement).style.setProperty('display', 'none', 'important');
-          });
-        }
-
-        if (key === 'contactForm') {
-          document.querySelectorAll('.contact-form-card, #contact-form').forEach(el => {
-            (el as HTMLElement).style.setProperty('display', 'none', 'important');
-          });
-        }
-      });
-    }
-
-    // Run on load and DOM ready
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', applyModuleSwitches);
-    } else {
-      applyModuleSwitches();
-    }
-  </script>
 </body>
 </html>
