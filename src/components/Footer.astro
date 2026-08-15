@@ -279,8 +279,8 @@ import siteConfig from '../../public/site-config.json';
   }
 
   .bitblox-link {
-    color: var(--color-primary);
-    font-weight: 600;
+    color: #dec148;
+    font-weight: 700;
     text-decoration: none;
     transition: var(--transition);
   }
@@ -290,17 +290,3 @@ import siteConfig from '../../public/site-config.json';
     text-decoration: underline;
   }
 </style>
-
-<script>
-  if (localStorage.getItem('bitblox_module_blog') === 'false') {
-    document.querySelectorAll('.footer-links a[href="/blog"]').forEach(link => {
-      const parentLi = link.closest('li');
-      if (parentLi) parentLi.style.display = 'none';
-    });
-  }
-
-  if (localStorage.getItem('bitblox_module_stedenMicrosites') === 'false') {
-    const regioCol = document.querySelector('.regio-footer-col') as HTMLElement;
-    if (regioCol) regioCol.style.display = 'none';
-  }
-</script>
