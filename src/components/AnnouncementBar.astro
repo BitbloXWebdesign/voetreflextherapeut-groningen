@@ -1,0 +1,123 @@
+---
+interface Props {
+  text?: string;
+  badge?: string;
+  link?: string;
+  linkText?: string;
+}
+
+const {
+  text = "🌿 Praktijknieuws: Vergoeding vanuit de aanvullende zorgverzekering direct mogelijk in 2026!",
+  badge = "ZORGVERGOEDING",
+  link = "/prijzen",
+  linkText = "Bekijk Tarieven & Vergoedingen &rarr;"
+} = Astro.props;
+---
+
+<div id="bitblox-announcement-bar" class="bitblox-announcement-bar">
+  <div class="announcement-inner">
+    <span class="announcement-badge">{badge}</span>
+    <span class="announcement-text">{text}</span>
+    {link && (
+      <a href={link} class="announcement-link" set:html={linkText} />
+    )}
+  </div>
+  <button id="closeAnnouncementBtn" class="announcement-close" aria-label="Sluit melding">&times;</button>
+</div>
+
+<style>
+  .bitblox-announcement-bar {
+    background: linear-gradient(90deg, #153625 0%, #1f4d36 50%, #153625 100%);
+    border-bottom: 1px solid rgba(32, 130, 84, 0.4);
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1001;
+    font-size: 0.83rem;
+  }
+
+  .announcement-inner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    color: #e2e8f0;
+  }
+
+  .announcement-badge {
+    background: rgba(32, 130, 84, 0.25);
+    color: #4ade80;
+    border: 1px solid rgba(32, 130, 84, 0.5);
+    font-size: 0.68rem;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 999px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .announcement-text {
+    font-weight: 500;
+  }
+
+  .announcement-link {
+    color: #4ade80;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .announcement-link:hover {
+    color: #ffffff;
+    text-decoration: underline;
+  }
+
+  .announcement-close {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #94a3b8;
+    font-size: 1.25rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 4px 8px;
+    transition: color 0.2s ease;
+  }
+
+  .announcement-close:hover {
+    color: #ffffff;
+  }
+
+  @media (max-width: 768px) {
+    .bitblox-announcement-bar {
+      padding-right: 36px;
+      font-size: 0.78rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const bar = document.getElementById('bitblox-announcement-bar');
+    const closeBtn = document.getElementById('closeAnnouncementBtn');
+
+    if (sessionStorage.getItem('vrg_announcement_closed')) {
+      if (bar) bar.style.display = 'none';
+      return;
+    }
+
+    if (closeBtn && bar) {
+      closeBtn.addEventListener('click', () => {
+        bar.style.display = 'none';
+        sessionStorage.setItem('vrg_announcement_closed', 'true');
+      });
+    }
+  });
+</script>

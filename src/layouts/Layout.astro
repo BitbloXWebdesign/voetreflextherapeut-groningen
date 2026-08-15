@@ -3,6 +3,9 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import WhatsappWidget from '../components/WhatsappWidget.astro';
 import CookieBanner from '../components/CookieBanner.astro';
+import AnnouncementBar from '../components/AnnouncementBar.astro';
+import SocialProofToast from '../components/SocialProofToast.astro';
+import CallBackWidget from '../components/CallBackWidget.astro';
 import siteConfig from '../../public/site-config.json';
 import '../styles/global.css';
 
@@ -24,6 +27,10 @@ const shareImageUrl = image.startsWith('http') ? image : `https://www.${siteConf
 
 const isSeoActive = siteConfig.modules?.seo !== false;
 const isWhatsappActive = siteConfig.modules?.whatsapp === true || siteConfig.modules?.whatsappWidget === true;
+const isCookiesActive = siteConfig.modules?.cookies === true || siteConfig.modules?.cookieBanner === true;
+const isAnnouncementActive = siteConfig.modules?.announcement === true || siteConfig.modules?.announcementBar === true;
+const isSocialProofActive = siteConfig.modules?.socialProof !== false;
+const isCallbackActive = siteConfig.modules?.callback === true || siteConfig.modules?.callBack === true;
 
 const schemaData = {
   "@context": "https://schema.org",
@@ -98,12 +105,16 @@ const schemaData = {
   )}
 </head>
 <body>
+  {isAnnouncementActive && <AnnouncementBar />}
   <Header />
   <main id="main-content">
     <slot />
   </main>
   <Footer />
+
   {isWhatsappActive && <WhatsappWidget />}
-  <CookieBanner />
+  {isCallbackActive && <CallBackWidget />}
+  {isSocialProofActive && <SocialProofToast />}
+  {isCookiesActive && <CookieBanner />}
 </body>
 </html>

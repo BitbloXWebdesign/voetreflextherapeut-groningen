@@ -1,4 +1,151 @@
 ---
+interface Props {
+  privacyUrl?: string;
+}
+
+const { privacyUrl = "/privacy" } = Astro.props;
 ---
 
-<!-- No tracking cookies or contact forms present -->
+<div id="bitblox-cookie-banner" class="bitblox-cookie-banner" role="dialog" aria-label="Cookie en privacy instellingen">
+  <div class="cookie-content">
+    <div class="cookie-text">
+      <span class="cookie-icon">🍪</span>
+      <p>
+        Praktijk Voetreflextherapeut Groningen respecteert uw privacy. Deze website gebruikt uitsluitend functionele cookies voor optimale werking en snelheid.
+      </p>
+    </div>
+    <div class="cookie-actions">
+      <button id="acceptCookieBtn" class="cookie-btn cookie-btn-accept">Akkoord</button>
+      <button id="declineCookieBtn" class="cookie-btn cookie-btn-decline">Sluiten</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .bitblox-cookie-banner {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    max-width: 420px;
+    width: calc(100% - 48px);
+    background: rgba(15, 17, 26, 0.96);
+    border: 1px solid rgba(32, 130, 84, 0.4);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 14px;
+    padding: 16px 18px;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.6), 0 0 24px rgba(32, 130, 84, 0.15);
+    z-index: 99999;
+    animation: slideUpCookie 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes slideUpCookie {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .cookie-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cookie-text {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .cookie-icon {
+    font-size: 1.3rem;
+    line-height: 1;
+  }
+
+  .cookie-text p {
+    margin: 0;
+    font-size: 0.82rem;
+    line-height: 1.45;
+    color: #cbd5e1;
+  }
+
+  .cookie-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+  }
+
+  .cookie-btn {
+    border: none;
+    padding: 7px 16px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .cookie-btn-accept {
+    background: #208254;
+    color: #ffffff;
+  }
+
+  .cookie-btn-accept:hover {
+    background: #196843;
+    transform: translateY(-1px);
+  }
+
+  .cookie-btn-decline {
+    background: rgba(255, 255, 255, 0.08);
+    color: #94a3b8;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .cookie-btn-decline:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+  }
+
+  @media (max-width: 640px) {
+    .bitblox-cookie-banner {
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      width: calc(100% - 24px);
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const banner = document.getElementById('bitblox-cookie-banner');
+    if (!banner) return;
+
+    if (localStorage.getItem('bitblox_cookie_consent')) {
+      banner.style.display = 'none';
+      return;
+    }
+
+    const acceptBtn = document.getElementById('acceptCookieBtn');
+    const declineBtn = document.getElementById('declineCookieBtn');
+
+    if (acceptBtn) {
+      acceptBtn.addEventListener('click', () => {
+        localStorage.setItem('bitblox_cookie_consent', 'accepted');
+        banner.style.display = 'none';
+      });
+    }
+
+    if (declineBtn) {
+      declineBtn.addEventListener('click', () => {
+        localStorage.setItem('bitblox_cookie_consent', 'declined');
+        banner.style.display = 'none';
+      });
+    }
+  });
+</script>
