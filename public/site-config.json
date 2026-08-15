@@ -29,8 +29,8 @@
     "geoAiVindbaarheid": true,
     "whatsapp": true,
     "whatsappWidget": true,
-    "stedenMicrosites": true,
-    "microsites": true,
+    "stedenMicrosites": false,
+    "microsites": false,
     "googleReviews": true,
     "reviews": true,
     "faqSection": true,
@@ -44,5 +44,7 @@
     "socialProof": true,
     "callback": true,
     "callBack": true
-  }
+  },
+  "site": "Voetreflextherapeut Groningen",
+  "updatedAt": "2026-08-15T09:33:59.591Z"
 }
