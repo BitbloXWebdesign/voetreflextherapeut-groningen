@@ -1,7 +1,7 @@
 {
   "site": "Voetreflextherapeut Groningen",
   "domain": "voetreflextherapeutgroningen.nl",
-  "updatedAt": "2026-08-14T19:04:37.925Z",
+  "updatedAt": "2026-08-15T08:31:48.118Z",
   "modules": {
     "blog": false,
     "seo": true,
@@ -10,6 +10,12 @@
     "microsites": false,
     "reviews": true,
     "faq": true,
-    "form": false
+    "form": false,
+    "whatsappWidget": true,
+    "geoAiVindbaarheid": true,
+    "stedenMicrosites": false,
+    "googleReviews": true,
+    "faqSection": true,
+    "contactForm": false
   }
 }
