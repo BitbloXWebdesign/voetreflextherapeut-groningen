@@ -110,15 +110,16 @@ const {
     const bar = document.getElementById('bitblox-announcement-bar');
     const closeBtn = document.getElementById('closeAnnouncementBtn');
 
-    if (sessionStorage.getItem('vrg_announcement_closed')) {
-      if (bar) bar.style.display = 'none';
-      return;
-    }
-
     if (closeBtn && bar) {
       closeBtn.addEventListener('click', () => {
-        bar.style.display = 'none';
-        sessionStorage.setItem('vrg_announcement_closed', 'true');
+        bar.style.transition = 'all 0.3s ease';
+        bar.style.opacity = '0';
+        bar.style.maxHeight = '0';
+        bar.style.padding = '0';
+        bar.style.overflow = 'hidden';
+        setTimeout(() => {
+          bar.style.display = 'none';
+        }, 300);
       });
     }
   });
