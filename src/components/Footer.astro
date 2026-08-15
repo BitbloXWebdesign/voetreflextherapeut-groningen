@@ -1,10 +1,12 @@
 ---
 import siteConfig from '../../public/site-config.json';
+
+const showMicrosites = siteConfig.modules?.stedenMicrosites !== false && siteConfig.modules?.microsites !== false && (siteConfig.modules?.stedenMicrosites === true || siteConfig.modules?.microsites === true);
 ---
 
 <footer class="site-footer">
   <div class="container footer-top">
-    <div class="footer-grid">
+    <div class={`footer-grid ${showMicrosites ? 'grid-4-cols' : 'grid-3-cols'}`}>
       <!-- Col 1: About & NAP -->
       <div class="footer-col">
         <img src="/images/logo-voeten.png" alt={siteConfig.clientName} class="footer-logo" width="160" height="45" />
@@ -33,7 +35,7 @@ import siteConfig from '../../public/site-config.json';
       </div>
 
       <!-- Col 3: Regio Landingspagina's -->
-      {(siteConfig.modules?.stedenMicrosites !== false && siteConfig.modules?.microsites !== false && (siteConfig.modules?.stedenMicrosites === true || siteConfig.modules?.microsites === true)) && (
+      {showMicrosites && (
         <div class="footer-col regio-footer-col">
           <h4 class="footer-title">Werkgebied Regio Groningen</h4>
           <ul class="footer-links">
@@ -106,25 +108,37 @@ import siteConfig from '../../public/site-config.json';
   }
 
   .footer-grid {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
+    display: grid;
     gap: 2.5rem;
+    align-items: start;
+  }
+
+  .footer-grid.grid-4-cols {
+    grid-template-columns: 1.25fr 0.95fr 1.05fr 1.55fr;
+  }
+
+  .footer-grid.grid-3-cols {
+    grid-template-columns: 1.3fr 1fr 1.6fr;
+  }
+
+  @media (max-width: 1080px) {
+    .footer-grid.grid-4-cols,
+    .footer-grid.grid-3-cols {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.2rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .footer-grid.grid-4-cols,
+    .footer-grid.grid-3-cols {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
   }
 
   .footer-col {
-    flex: 1 1 240px;
-  }
-
-  .footer-col:first-child {
-    flex: 1.2 1 280px;
-    max-width: 360px;
-  }
-
-  .footer-col:last-child {
-    flex: 1.4 1 320px;
-    max-width: 440px;
+    width: 100%;
   }
 
   .footer-logo {
