@@ -3,33 +3,63 @@ import siteConfig from '../../public/site-config.json';
 
 const waNumber = siteConfig.whatsapp || '31638118341';
 const phoneDisplay = siteConfig.phoneDisplay || '06 38118341';
+const clientName = siteConfig.name || 'Voetreflextherapeut Groningen';
 ---
 
 <div id="callbackWidget" class="callback-widget">
   <button id="openCallbackModalBtn" class="callback-trigger-btn" aria-label="Bel-me-terug verzoek">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
       <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
     </svg>
     <span>Bel Mij Terug</span>
   </button>
 
-  <!-- Modal -->
-  <div id="callbackModal" class="callback-modal" style="display: none;">
+  <!-- Modal Overlay -->
+  <div id="callbackModal" class="callback-modal" style="display: none;" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="callback-modal-content">
+      <button id="closeCallbackModalBtn" class="callback-modal-close" aria-label="Sluiten">&times;</button>
+      
       <div class="callback-modal-header">
-        <h4>📞 Bel-Me-Terug Verzoek</h4>
-        <button id="closeCallbackModalBtn" class="callback-modal-close">&times;</button>
+        <div class="callback-icon-circle">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+        </div>
+        <h3 class="callback-modal-title">Bel Mij Terug</h3>
+        <p class="callback-modal-sub">Laat uw naam en telefoonnummer achter, dan neem ik z.s.m. persoonlijk contact met u op.</p>
       </div>
-      <p class="callback-modal-desc">
-        Laat uw telefoonnummer achter en Georgette belt u spoedig terug voor vrijblijvend advies of het inplannen van een consult.
-      </p>
-      <form id="callbackForm" class="callback-form">
-        <input type="tel" id="callbackPhone" placeholder="Uw telefoonnummer (bijv. 06 12345678)..." required pattern="[0-9+ -]{8,15}" />
-        <button type="submit" class="btn btn-primary btn--full">🌿 Verstuur Belverzoek</button>
+
+      <form id="callbackForm" class="callback-modal-form">
+        <div class="callback-form-group">
+          <label for="cbName">Uw Naam *</label>
+          <input type="text" id="cbName" name="name" required placeholder="Bijv. Marieke Jansen" class="callback-input" />
+        </div>
+
+        <div class="callback-form-group">
+          <label for="cbPhone">Telefoonnummer *</label>
+          <input type="tel" id="cbPhone" name="phone" required placeholder="Bijv. 06 12345678" class="callback-input" />
+        </div>
+
+        <div class="callback-form-group">
+          <label for="cbSubject">Onderwerp / Behandeling (optioneel)</label>
+          <select id="cbSubject" name="subject" class="callback-input callback-select">
+            <option value="Voetreflextherapie Behandeling">Voetreflextherapie Behandeling</option>
+            <option value="Dorn Methode & Rug/Bekkenklachten">Dorn Methode &amp; Rug/Bekkenklachten</option>
+            <option value="Oncoreflex / Ondersteuning bij ziekte">Oncoreflex / Ondersteuning bij ziekte</option>
+            <option value="Ontspanningsmassage">Ontspanningsmassage</option>
+            <option value="Algemene vraag / Vrijblijvend advies">Algemene vraag / Vrijblijvend advies</option>
+          </select>
+        </div>
+
+        <button type="submit" id="cbSubmitBtn" class="btn btn-primary btn--full" style="justify-content: center; gap: 8px; font-weight: 700; margin-top: 6px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+          </svg>
+          <span>Verstuur via WhatsApp</span>
+        </button>
+
+        <div id="callbackFeedback" class="callback-feedback" style="display: none;"></div>
       </form>
-      <div id="callbackSuccess" class="callback-success" style="display: none;">
-        ✅ Bedankt! Uw verzoek is ontvangen. Georgette neemt zo spoedig mogelijk contact met u op.
-      </div>
     </div>
   </div>
 </div>
@@ -53,7 +83,7 @@ const phoneDisplay = siteConfig.phoneDisplay || '06 38118341';
     font-weight: 700;
     cursor: pointer;
     box-shadow: 0 8px 24px rgba(0,0,0,0.5), 0 0 16px rgba(32, 130, 84, 0.2);
-    transition: all 0.25s ease;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     white-space: nowrap;
   }
 
@@ -81,152 +111,203 @@ const phoneDisplay = siteConfig.phoneDisplay || '06 38118341';
     align-items: center;
     justify-content: center;
     z-index: 999999;
-    padding: 20px;
+    padding: 16px;
+    animation: cbModalFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes cbModalFadeIn {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: scale(1); }
   }
 
   .callback-modal-content {
-    background: #101c15;
-    border: 1px solid rgba(32, 130, 84, 0.4);
+    background: #0f1c14;
+    border: 1px solid rgba(32, 130, 84, 0.45);
     border-radius: 16px;
-    padding: 28px 24px;
-    max-width: 380px;
+    padding: 30px 24px;
+    max-width: 420px;
     width: 100%;
-    box-shadow: 0 24px 60px rgba(0,0,0,0.8), 0 0 30px rgba(32, 130, 84, 0.2);
-    animation: scaleModal 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-
-  @keyframes scaleModal {
-    from {
-      opacity: 0;
-      transform: scale(0.92);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  .callback-modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
-  }
-
-  .callback-modal-header h4 {
-    margin: 0;
-    font-size: 1.05rem;
-    color: #ffffff;
-    font-weight: 700;
+    position: relative;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(32, 130, 84, 0.15);
   }
 
   .callback-modal-close {
-    background: none;
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    background: transparent;
     border: none;
+    font-size: 1.6rem;
     color: #94a3b8;
-    font-size: 1.4rem;
     cursor: pointer;
     line-height: 1;
+    transition: color 0.2s;
   }
 
-  .callback-modal-desc {
-    font-size: 0.83rem;
+  .callback-modal-close:hover {
+    color: #4ade80;
+  }
+
+  .callback-modal-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .callback-icon-circle {
+    width: 52px;
+    height: 52px;
+    background: rgba(32, 130, 84, 0.18);
+    border: 1px solid rgba(32, 130, 84, 0.4);
+    color: #4ade80;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+  }
+
+  .callback-modal-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 6px 0;
+  }
+
+  .callback-modal-sub {
+    font-size: 0.84rem;
     color: #94a3b8;
     line-height: 1.45;
-    margin: 0 0 16px 0;
+    margin: 0;
   }
 
-  .callback-form {
+  .callback-modal-form {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
   }
 
-  .callback-form input {
+  .callback-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    text-align: left;
+  }
+
+  .callback-form-group label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #cbd5e1;
+  }
+
+  .callback-input {
     width: 100%;
-    padding: 12px 16px;
-    background: #172c20;
-    border: 1px solid rgba(255,255,255,0.12);
+    padding: 11px 14px;
+    background: #16261c;
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 8px;
-    color: #ffffff;
+    color: #fff;
     font-size: 0.9rem;
+    font-family: inherit;
+    transition: all 0.2s ease;
   }
 
-  .callback-form input:focus {
-    border-color: #208254;
+  .callback-input:focus {
     outline: none;
+    border-color: #4ade80;
+    box-shadow: 0 0 0 3px rgba(32, 130, 84, 0.2);
+  }
+
+  .callback-select {
+    cursor: pointer;
   }
 
   .btn--full {
     width: 100%;
-    padding: 12px;
-    border-radius: 8px;
-    font-weight: 700;
   }
 
-  .callback-success {
-    margin-top: 14px;
-    padding: 12px;
-    background: rgba(34, 197, 94, 0.15);
-    border: 1px solid rgba(34, 197, 94, 0.35);
+  .callback-feedback {
+    margin-top: 10px;
+    padding: 10px 14px;
+    font-size: 0.84rem;
     border-radius: 8px;
-    color: #4ade80;
-    font-size: 0.85rem;
-    font-weight: 600;
     text-align: center;
-  }
-
-  @media (max-width: 640px) {
-    .callback-widget {
-      bottom: 20px;
-      right: 20px;
-    }
+    background: rgba(34, 197, 94, 0.15);
+    color: #4ade80;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    font-weight: 600;
   }
 </style>
 
-<script is:inline define:vars={{ waNumber }}>
+<script is:inline define:vars={{ waNumber, clientName }}>
   document.addEventListener('DOMContentLoaded', () => {
     const openBtn = document.getElementById('openCallbackModalBtn');
     const closeBtn = document.getElementById('closeCallbackModalBtn');
     const modal = document.getElementById('callbackModal');
     const form = document.getElementById('callbackForm');
-    const phoneInput = document.getElementById('callbackPhone');
-    const successBox = document.getElementById('callbackSuccess');
+    const feedback = document.getElementById('callbackFeedback');
+    const nameInput = document.getElementById('cbName');
+    const phoneInput = document.getElementById('cbPhone');
+    const subjectInput = document.getElementById('cbSubject');
 
     if (!modal) return;
 
-    if (openBtn) {
-      openBtn.addEventListener('click', () => {
-        modal.style.display = 'flex';
-      });
-    }
+    const openModal = () => {
+      modal.style.display = 'flex';
+      modal.setAttribute('aria-hidden', 'false');
+      if (nameInput) setTimeout(() => nameInput.focus(), 100);
+    };
 
-    if (closeBtn) {
-      closeBtn.addEventListener('click', () => {
-        modal.style.display = 'none';
-      });
-    }
+    const closeModal = () => {
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden', 'true');
+    };
+
+    if (openBtn) openBtn.addEventListener('click', openModal);
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
 
     modal.addEventListener('click', (e) => {
-      if (e.target === modal) modal.style.display = 'none';
+      if (e.target === modal) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.style.display === 'flex') {
+        closeModal();
+      }
     });
 
     if (form) {
       form.addEventListener('submit', (e) => {
         e.preventDefault();
+        const name = nameInput ? nameInput.value.trim() : '';
         const phone = phoneInput ? phoneInput.value.trim() : '';
+        const subject = subjectInput ? subjectInput.value.trim() : 'Algemene vraag / Vrijblijvend advies';
+
         if (!phone) return;
 
-        form.style.display = 'none';
-        if (successBox) successBox.style.display = 'block';
+        const lines = [
+          `*📞 [NIEUW TERUGBELVERZOEK] 📞*`,
+          '',
+          `👤 *Naam:* ${name}`,
+          `📱 *Telefoon:* ${phone}`,
+          `📋 *Onderwerp:* ${subject}`,
+          `🏢 *Website:* ${clientName || 'Voetreflextherapeut Groningen'}`,
+          `🕒 *Tijdstip:* ${new Date().toLocaleTimeString('nl-NL', { hour: '2-digit', minute: '2-digit' })}`
+        ];
 
-        const textMsg = encodeURIComponent(`📞 Nieuw Bel-Me-Terug verzoek ontvangen via Voetreflextherapeut Groningen website!\nTelefoonnummer: ${phone}\nTijdstip: ${new Date().toLocaleTimeString('nl-NL')}`);
-        const waUrl = `https://wa.me/${waNumber}?text=${textMsg}`;
-        window.open(waUrl, '_blank');
+        const textMsg = encodeURIComponent(lines.join('\n'));
+        const waUrl = `https://api.whatsapp.com/send?phone=${waNumber || '31638118341'}&text=${textMsg}`;
+
+        if (feedback) {
+          feedback.style.display = 'block';
+          feedback.textContent = 'Even geduld, we openen WhatsApp met uw terugbelverzoek...';
+        }
 
         setTimeout(() => {
-          modal.style.display = 'none';
-        }, 2500);
+          window.open(waUrl, '_blank');
+          if (form) form.reset();
+          if (feedback) feedback.style.display = 'none';
+          closeModal();
+        }, 600);
       });
     }
   });
