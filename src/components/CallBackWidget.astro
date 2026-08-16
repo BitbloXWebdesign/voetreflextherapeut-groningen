@@ -284,18 +284,15 @@ const clientName = siteConfig.name || 'Voetreflextherapeut Groningen';
 
         if (!phone) return;
 
-        const lines = [
-          `*📞 [NIEUW TERUGBELVERZOEK] 📞*`,
-          '',
-          `👤 *Naam:* ${name}`,
-          `📱 *Telefoon:* ${phone}`,
-          `📋 *Onderwerp:* ${subject}`,
-          `🏢 *Website:* ${clientName || 'Voetreflextherapeut Groningen'}`,
-          `🕒 *Tijdstip:* ${new Date().toLocaleTimeString('nl-NL', { hour: '2-digit', minute: '2-digit' })}`
-        ];
+        const waText = encodeURIComponent(
+          `Hallo Georgette, ik wil graag een terugbelverzoek aanvragen via ${clientName || 'Voetreflextherapeut Groningen'}:\n\n` +
+          `• Naam: ${name}\n` +
+          `• Telefoonnummer: ${phone}\n` +
+          `• Onderwerp: ${subject}\n\n` +
+          `Graag z.s.m. even contact opnemen.`
+        );
 
-        const textMsg = encodeURIComponent(lines.join('\n'));
-        const waUrl = `https://api.whatsapp.com/send?phone=${waNumber || '31638118341'}&text=${textMsg}`;
+        const waUrl = `https://wa.me/${waNumber || '31638118341'}?text=${waText}`;
 
         if (feedback) {
           feedback.style.display = 'block';
@@ -307,7 +304,7 @@ const clientName = siteConfig.name || 'Voetreflextherapeut Groningen';
           if (form) form.reset();
           if (feedback) feedback.style.display = 'none';
           closeModal();
-        }, 600);
+        }, 500);
       });
     }
   });
