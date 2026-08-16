@@ -28,6 +28,20 @@ import siteConfig from '../../public/site-config.json';
             Heeft u vragen over voetreflextherapie of wilt u een intake of vervolgbehandeling inplannen? Neem gerust contact op.
           </p>
 
+          <!-- EviCare Online Agenda Card -->
+          <div class="card booking-highlight-card mb-4">
+            <div class="booking-card-inner">
+              <span class="booking-badge">⚡ Live Online Agenda</span>
+              <h3 class="mt-1">Direct een Afspraak Inplannen</h3>
+              <p class="small-desc mb-3 mt-1">
+                Kies eenvoudig een gewenste datum en tijdstip in de online agenda van therapeut Georgette Noordberger (EviCare):
+              </p>
+              <a href={siteConfig.bookingUrl || "https://login.evicare.nl/specialist/939e1351-d03e-4e77-9360-886eceddbd5d/appointment"} target="_blank" rel="noopener noreferrer" class="btn btn-primary w-100">
+                📅 Open EviCare Agenda & Boek Consult &rarr;
+              </a>
+            </div>
+          </div>
+
           <div class="info-box card mb-4">
             <div class="info-item">
               <strong>Naam Praktijk:</strong>
@@ -130,6 +144,26 @@ import siteConfig from '../../public/site-config.json';
     display: flex;
     flex-direction: column;
   }
+
+  .booking-highlight-card {
+    background-color: var(--color-primary-light);
+    border: 2px solid var(--color-primary);
+    box-shadow: var(--shadow-md);
+  }
+
+  .booking-badge {
+    display: inline-block;
+    background: var(--color-primary);
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.7rem;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .w-100 { width: 100%; text-align: center; justify-content: center; }
 
   .info-box {
     display: flex;

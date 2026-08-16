@@ -23,7 +23,7 @@ import siteConfig from '../../public/site-config.json';
           Voetreflextherapie is een zachte en effectieve behandelmethode die ondersteuning en verlichting biedt bij fysieke en psychische klachten door het stimuleren van het natuurlijke zelfherstellend vermogen van het lichaam.
         </p>
         <div class="hero-actions">
-          <a href="/contact" class="btn btn-primary">Afspraak Inplannen</a>
+          <a href={siteConfig.bookingUrl || "https://login.evicare.nl/specialist/939e1351-d03e-4e77-9360-886eceddbd5d/appointment"} target="_blank" rel="noopener noreferrer" class="btn btn-primary">Afspraak Inplannen 📅</a>
           <a href="/consulten" class="btn btn-outline">Bekijk Behandelingen</a>
         </div>
       </div>
