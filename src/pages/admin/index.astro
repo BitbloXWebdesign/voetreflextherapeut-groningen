@@ -53,9 +53,9 @@ import reviews from '../../data/reviews.json';
         <!-- Dashboard Navigation Tabs -->
         <div class="admin-nav-tabs">
           <button class="adm-tab active" data-target="tab-modules">🎛️ Website Functies</button>
-          <button class="adm-tab" data-target="tab-treatments">💆 Behandelingen</button>
-          <button class="adm-tab" data-target="tab-shop">🛒 Webshop Producten</button>
-          <button class="adm-tab" data-target="tab-reviews">⭐ Google Reviews</button>
+          <button class="adm-tab" data-target="tab-treatments">💆 Consulten &amp; Tarieven</button>
+          {siteConfig.modules.shop && <button class="adm-tab" data-target="tab-shop">🛒 Webshop Producten</button>}
+          {siteConfig.modules.reviews && <button class="adm-tab" data-target="tab-reviews">⭐ Google Reviews</button>}
         </div>
 
         <!-- Tab 1: Website Modules & Functies -->
@@ -66,18 +66,20 @@ import reviews from '../../data/reviews.json';
           </div>
 
           <div class="modules-grid">
-            <div class="module-card">
-              <div class="mod-top">
-                <div class="mod-info">
-                  <strong>🛒 Webshop &amp; Skincare</strong>
-                  <span>Online assortiment, winkelmandje &amp; checkout</span>
+            {siteConfig.modules.shop && (
+              <div class="module-card">
+                <div class="mod-top">
+                  <div class="mod-info">
+                    <strong>🛒 Webshop &amp; Skincare</strong>
+                    <span>Online assortiment, winkelmandje &amp; checkout</span>
+                  </div>
+                  <label class="switch">
+                    <input type="checkbox" id="mod-shop" checked={siteConfig.modules.shop} />
+                    <span class="slider"></span>
+                  </label>
                 </div>
-                <label class="switch">
-                  <input type="checkbox" id="mod-shop" checked={siteConfig.modules.shop} />
-                  <span class="slider"></span>
-                </label>
               </div>
-            </div>
+            )}
 
             <div class="module-card">
               <div class="mod-top">
