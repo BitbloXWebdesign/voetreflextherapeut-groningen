@@ -42,11 +42,19 @@
     "cookieBanner": false,
     "announcement": false,
     "announcementBar": false,
-    "accessibility": false,
+    "accessibility": true,
     "toegankelijkheid": true,
     "callback": false,
-    "callBack": false
+    "callBack": false,
+    "shop": false
+  },
+  "announcement": {
+    "enabled": false,
+    "badge": "ZORGVERGOEDING",
+    "text": "🌿 Vergoeding vanuit de aanvullende zorgverzekering direct mogelijk in 2026!",
+    "buttonText": "Tarieven Bekijken",
+    "link": "/prijzen"
   },
   "site": "Voetreflextherapeut Groningen",
-  "updatedAt": "2026-08-15T09:47:25.931Z"
+  "updatedAt": "2026-08-17T17:39:00.000Z"
 }
