@@ -1006,6 +1006,60 @@ import reviews from '../../data/reviews.json';
     if (e.target === modalOverlay) closeModal();
   });
 
+  async function initDashboard() {
+    renderTreatmentsTable();
+    renderProductsTable();
+    renderReviewsList();
+
+    // Direct Zero-Cache Live Fetch of the actual site-config.json file
+    try {
+      const res = await fetch('/site-config.json?t=' + Date.now(), { cache: 'no-store' });
+      if (res.ok) {
+        const liveCfg = await res.json();
+        const mods = liveCfg.modules || {};
+
+        // 1. Enforce Provisioning: Hide tabs if module is disabled by BitbloX
+        const shopTab = document.querySelector('[data-target="tab-shop"]') as HTMLElement;
+        if (shopTab) shopTab.style.display = (mods.shop === true) ? 'inline-block' : 'none';
+
+        const revTab = document.querySelector('[data-target="tab-reviews"]') as HTMLElement;
+        if (revTab) revTab.style.display = (mods.reviews !== false) ? 'inline-block' : 'none';
+
+        // 2. Enforce Provisioning: Hide module cards in Tab 1 if disabled by BitbloX
+        const shopCard = document.getElementById('mod-shop')?.closest('.module-card') as HTMLElement;
+        if (shopCard) shopCard.style.display = (mods.shop === true) ? 'block' : 'none';
+
+        const waCard = document.getElementById('mod-whatsapp')?.closest('.module-card') as HTMLElement;
+        if (waCard) waCard.style.display = (mods.whatsapp === true) ? 'block' : 'none';
+
+        const cbCard = document.getElementById('mod-callback')?.closest('.module-card') as HTMLElement;
+        if (cbCard) cbCard.style.display = (mods.callback === true) ? 'block' : 'none';
+
+        const a11yCard = document.getElementById('mod-accessibility')?.closest('.module-card') as HTMLElement;
+        if (a11yCard) a11yCard.style.display = (mods.accessibility === true) ? 'block' : 'none';
+
+        const geoCard = document.getElementById('mod-geo')?.closest('.module-card') as HTMLElement;
+        if (geoCard) geoCard.style.display = (mods.geo === true) ? 'block' : 'none';
+
+        const blogCard = document.getElementById('mod-blog')?.closest('.module-card') as HTMLElement;
+        if (blogCard) blogCard.style.display = (mods.blog === true) ? 'block' : 'none';
+
+        const annBox = document.querySelector('.announcement-edit-box') as HTMLElement;
+        if (annBox) annBox.style.display = (mods.announcement === true) ? 'block' : 'none';
+
+        // Update active switch checked states
+        const modShopInput = document.getElementById('mod-shop') as HTMLInputElement;
+        if (modShopInput) modShopInput.checked = mods.shop === true;
+
+        const modWaInput = document.getElementById('mod-whatsapp') as HTMLInputElement;
+        if (modWaInput) modWaInput.checked = mods.whatsapp === true;
+
+        const modCbInput = document.getElementById('mod-callback') as HTMLInputElement;
+        if (modCbInput) modCbInput.checked = mods.callback === true;
+      }
+    } catch(e) {}
+  }
+
   // Save Modules button
   document.getElementById('btn-save-modules')?.addEventListener('click', () => {
     const status = document.getElementById('save-status');
