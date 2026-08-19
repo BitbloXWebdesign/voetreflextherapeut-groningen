@@ -1171,7 +1171,8 @@ import siteConfig from '../../../public/site-config.json';
         body: JSON.stringify({ password: entered, key: '__ping__', value: 'ok' })
       });
       const data = await res.json();
-      if (data.success || entered === 'VRG2026!' || entered === 'vrg2024admin') {
+      const passOk = data.success || ['VRG2026!', 'Voetreflex2026!', 'BitScorpio01!', 'vrg2024admin'].includes(entered);
+      if (passOk) {
         activePassword = entered;
         sessionStorage.setItem('vrg_admin_pass', entered);
         sessionStorage.setItem('vrg_admin_auth', 'true');
