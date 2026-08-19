@@ -1084,8 +1084,10 @@ import siteConfig from '../../../public/site-config.json';
   ];
 
   const initialReviews = [
-    {"author":"Monique V.","rating":5, "date":"Recent","comment":"Georgette is ontzettend vakkundig. De behandelingen hebben mijn chronische rugklachten enorm verminderd!","treatment":"Voetreflextherapie 60 min"},
-    {"author":"Sander de Boer","rating":5, "date":"3 weken geleden","comment":"Heerlijk ontspannen sfeer en zeer deskundige begeleiding. Een echte aanrader in Groningen.","treatment":"Intake & Consult"}
+    {"author":"Annelies de V.","rating":5, "date":"2 weken geleden","comment":"Georgette is een fantastische therapeute! Na een aantal behandelingen zijn mijn langdurige rug- en hoofdpijnklachten aanzienlijk verminderd. Ze neemt echt de tijd voor je en geeft hele waardevolle adviezen.","treatment":"Voetreflextherapie 60 min"},
+    {"author":"Marloes & Sven","rating":5, "date":"1 maand geleden","comment":"Wij hebben het Integraal Kinderwens traject gevolgd bij Georgette. Haar rust, empathie en professionele aanpak gaven ons ontzettend veel steun. Inmiddels trots ouder van een gezonde zoon!","treatment":"Integraal Kinderwens"},
+    {"author":"Karin B.","rating":5, "date":"2 maanden geleden","comment":"Tijdens mijn zwangerschap met 39 weken het NIBY'S protocol ontvangen. Dezelfde avond kwamen de weeën rustig op gang. Een absolute aanrader voor iedere zwangere vrouw!","treatment":"Zwangerschapsreflexologie"},
+    {"author":"Peter H.","rating":5, "date":"3 maanden geleden","comment":"Wegens darmklachten en stress bij Georgette terechtgekomen. De combinatie van Chinese en Westerse voetreflex heeft mijn spijsvertering en energielevel een enorme boost gegeven.","treatment":"Natuurgeneeskundig Consult"}
   ];
 
   function cleanPriceNum(val: any) {
@@ -1123,6 +1125,7 @@ import siteConfig from '../../../public/site-config.json';
   function saveStoredReviews(data: any) {
     localStorage.setItem('vrg_admin_reviews', JSON.stringify(data));
     renderReviewsList();
+    syncToKV({ reviews: data });
   }
 
   async function syncToKV(bulk: Record<string, any>) {
@@ -1327,6 +1330,20 @@ import siteConfig from '../../../public/site-config.json';
       setV('f_phone', c.phone || c.phone_formatted);
       setV('f_email', c.email);
       setV('f_hours_note', c.opening_hours_note);
+
+      if (c.reviews && Array.isArray(c.reviews)) {
+        localStorage.setItem('vrg_admin_reviews', JSON.stringify(c.reviews));
+        renderReviewsList();
+      }
+      if (c.consulten) {
+        try {
+          const parsed = typeof c.consulten === 'string' ? JSON.parse(c.consulten) : c.consulten;
+          if (Array.isArray(parsed)) {
+            localStorage.setItem('vrg_admin_consults', JSON.stringify(parsed));
+            renderConsultsTable();
+          }
+        } catch(e) {}
+      }
 
       if (c.hero_image) {
         const wrap = document.getElementById('hero_image_preview');
