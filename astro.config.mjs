@@ -2,5 +2,8 @@ import { defineConfig } from 'astro/config';
 
 export default defineConfig({
   output: 'static',
-  site: 'https://www.voetreflextherapeutgroningen.nl'
+  site: 'https://www.voetreflextherapeutgroningen.nl',
+  build: {
+    inlineStylesheets: 'always'
+  }
 });
