@@ -16,7 +16,9 @@ const showMicrosites = siteConfig.modules?.stedenMicrosites !== false && siteCon
         <div class="nap-details">
           <p><strong>Adres:</strong> {siteConfig.address.street}, {siteConfig.address.postalCode} {siteConfig.address.city}</p>
           <p><strong>Telefoon:</strong> <a href={`tel:${siteConfig.phoneDisplay.replace(/\s+/g, '')}`}>{siteConfig.phoneDisplay}</a></p>
+          <!--email_off-->
           <p><strong>E-mail:</strong> <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></p>
+          <!--/email_off-->
         </div>
       </div>
 
