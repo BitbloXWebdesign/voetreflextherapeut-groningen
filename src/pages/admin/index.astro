@@ -1,22 +1,19 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import siteConfig from '../../../public/site-config.json';
-import treatments from '../../data/treatments.json';
-import products from '../../data/products.json';
-import reviews from '../../data/reviews.json';
 ---
 
 <Layout 
   title="Klantenportaal & Beheer — Voetreflextherapeut Groningen"
-  description="Centraal beheerportaal voor Voetreflextherapeut Groningen. Beheer uw website modules, behandelingen, webshop producten en reviews."
+  description="Centraal beheerportaal voor Voetreflextherapeut Groningen. Beheer uw website instellingen, teksten, consulten en reviews."
 >
   <div class="admin-wrapper" id="admin-app">
     
-    <!-- Login Screen (Proportioneel & Stijlvol) -->
+    <!-- Login Screen -->
     <div class="admin-login-screen" id="admin-login-screen">
       <div class="login-box-card">
         <div class="login-header">
-          <img src="/images/Logos horizontaal.png" alt="Voetreflextherapeut Groningen" class="admin-login-logo" />
+          <img src="/images/logo-voeten.png" alt="Voetreflextherapeut Groningen" class="admin-login-logo" />
           <h2>Klantenportaal</h2>
           <p>Voer uw beveiligde beheerderswachtwoord in om in te loggen in uw beheeromgeving.</p>
         </div>
@@ -41,7 +38,7 @@ import reviews from '../../data/reviews.json';
         <!-- Top Bar -->
         <div class="dash-top-bar">
           <div class="dash-welcome">
-            <h2>🌸 Welkom Georgette, in uw Klantenportaal</h2>
+            <h2>🌿 Welkom Georgette, in uw Klantenportaal</h2>
             <span class="dash-status">🟢 Beheersysteem Actief • Wijzigingen worden direct live bijgewerkt</span>
           </div>
           <div class="dash-actions">
@@ -53,12 +50,12 @@ import reviews from '../../data/reviews.json';
         <!-- Dashboard Navigation Tabs -->
         <div class="admin-nav-tabs">
           <button class="adm-tab active" data-target="tab-modules">🎛️ Website Functies</button>
-          <button class="adm-tab" data-target="tab-treatments">💆 Consulten &amp; Tarieven</button>
-          {siteConfig.modules.shop && <button class="adm-tab" data-target="tab-shop">🛒 Webshop Producten</button>}
+          <button class="adm-tab" data-target="tab-content">📝 Teksten &amp; Foto's</button>
+          <button class="adm-tab" data-target="tab-consults">👣 Consulten &amp; Tarieven</button>
           {siteConfig.modules.reviews && <button class="adm-tab" data-target="tab-reviews">⭐ Google Reviews</button>}
         </div>
 
-        <!-- Tab 1: Website Modules & Functies -->
+        <!-- Tab 1: Website Modules & Functies (Alleen 5 klantschuifjes) -->
         <div class="tab-pane active" id="tab-modules">
           <div class="pane-header">
             <h3>Website Modules &amp; Functies</h3>
@@ -66,110 +63,92 @@ import reviews from '../../data/reviews.json';
           </div>
 
           <div class="modules-grid">
-            {siteConfig.modules.shop && (
+            {siteConfig.modules.cookies && (
               <div class="module-card">
                 <div class="mod-top">
                   <div class="mod-info">
-                    <strong>🛒 Webshop &amp; Skincare</strong>
-                    <span>Online assortiment, winkelmandje &amp; checkout</span>
+                    <strong>🍪 Cookiebanner (Privacy)</strong>
+                    <span>AVG / GDPR privacymelding onderin het scherm</span>
                   </div>
                   <label class="switch">
-                    <input type="checkbox" id="mod-shop" checked={siteConfig.modules.shop} />
+                    <input type="checkbox" id="mod-cookies" checked={siteConfig.modules.cookies} />
                     <span class="slider"></span>
                   </label>
                 </div>
               </div>
             )}
 
-            <div class="module-card">
-              <div class="mod-top">
-                <div class="mod-info">
-                  <strong>💬 WhatsApp Direct Chat</strong>
-                  <span>Zwevende afspraak- en chatknop rechtsonder</span>
+            {siteConfig.modules.whatsapp && (
+              <div class="module-card">
+                <div class="mod-top">
+                  <div class="mod-info">
+                    <strong>💬 WhatsApp Direct Chat</strong>
+                    <span>Zwevende afspraak- en chatknop rechtsonder</span>
+                  </div>
+                  <label class="switch">
+                    <input type="checkbox" id="mod-whatsapp" checked={siteConfig.modules.whatsapp} />
+                    <span class="slider"></span>
+                  </label>
                 </div>
-                <label class="switch">
-                  <input type="checkbox" id="mod-whatsapp" checked={siteConfig.modules.whatsapp} />
-                  <span class="slider"></span>
-                </label>
               </div>
-            </div>
+            )}
 
-            <div class="module-card">
-              <div class="mod-top">
-                <div class="mod-info">
-                  <strong>📞 Bel-Me-Terug Widget</strong>
-                  <span>Interactieve terugbel-aanvraag knop</span>
+            {siteConfig.modules.callback && (
+              <div class="module-card">
+                <div class="mod-top">
+                  <div class="mod-info">
+                    <strong>📞 Bel-Me-Terug Widget</strong>
+                    <span>Interactieve terugbel-aanvraag knop</span>
+                  </div>
+                  <label class="switch">
+                    <input type="checkbox" id="mod-callback" checked={siteConfig.modules.callback} />
+                    <span class="slider"></span>
+                  </label>
                 </div>
-                <label class="switch">
-                  <input type="checkbox" id="mod-callback" checked={siteConfig.modules.callback} />
-                  <span class="slider"></span>
-                </label>
               </div>
-            </div>
+            )}
 
-            <div class="module-card">
-              <div class="mod-top">
-                <div class="mod-info">
-                  <strong>♿ Toegankelijkheid (A11y)</strong>
-                  <span>Dyslexie-font en hoog contrast modus knop</span>
+            {siteConfig.modules.accessibility && (
+              <div class="module-card">
+                <div class="mod-top">
+                  <div class="mod-info">
+                    <strong>♿ Toegankelijkheid (A11y)</strong>
+                    <span>Dyslexie-font en hoog contrast modus knop</span>
+                  </div>
+                  <label class="switch">
+                    <input type="checkbox" id="mod-accessibility" checked={siteConfig.modules.accessibility} />
+                    <span class="slider"></span>
+                  </label>
                 </div>
-                <label class="switch">
-                  <input type="checkbox" id="mod-accessibility" checked={siteConfig.modules.accessibility} />
-                  <span class="slider"></span>
-                </label>
               </div>
-            </div>
-
-            <div class="module-card">
-              <div class="mod-top">
-                <div class="mod-info">
-                  <strong>🤖 AI GEO-Vindbaarheid</strong>
-                  <span>Korte samenvattingen voor zoekmachines &amp; AI</span>
-                </div>
-                <label class="switch">
-                  <input type="checkbox" id="mod-geo" checked={siteConfig.modules.geo} />
-                  <span class="slider"></span>
-                </label>
-              </div>
-            </div>
-
-            <div class="module-card">
-              <div class="mod-top">
-                <div class="mod-info">
-                  <strong>📝 Kennisbank &amp; Blog</strong>
-                  <span>Educatieve artikelen &amp; huidadvies pagina</span>
-                </div>
-                <label class="switch">
-                  <input type="checkbox" id="mod-blog" checked={siteConfig.modules.blog} />
-                  <span class="slider"></span>
-                </label>
-              </div>
-            </div>
+            )}
           </div>
 
           <!-- Slimme Meldingenbalk Bewerken Box -->
-          <div class="announcement-edit-box">
-            <div class="ann-top-row">
-              <div class="mod-info">
-                <strong>📣 Slimme Meldingenbalk (Bovenaan de website)</strong>
-                <span>Toon een speciale actie, vakantiemelding of mededeling.</span>
+          {siteConfig.modules.announcement && (
+            <div class="announcement-edit-box">
+              <div class="ann-top-row">
+                <div class="mod-info">
+                  <strong>📢 Slimme Meldingenbalk (Bovenaan de website)</strong>
+                  <span>Toon een speciale actie, vakantiemelding of mededeling.</span>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="mod-announcement" checked={siteConfig.modules.announcement} />
+                  <span class="slider"></span>
+                </label>
               </div>
-              <label class="switch">
-                <input type="checkbox" id="mod-announcement" checked={siteConfig.modules.announcement} />
-                <span class="slider"></span>
-              </label>
+              <div class="ann-inputs-grid">
+                <div class="form-group" style="margin-bottom: 0;">
+                  <label>Meldingstekst:</label>
+                  <input type="text" id="ann-text" value={siteConfig.announcement?.text || ''} placeholder="Bijv. 🌿 Welkom bij Voetreflextherapeut Groningen! Boek eenvoudig uw afspraak online." />
+                </div>
+                <div class="form-group" style="margin-bottom: 0;">
+                  <label>Knoptekst (optioneel):</label>
+                  <input type="text" id="ann-btn-text" value={siteConfig.announcement?.buttonText || ''} placeholder="Bijv. Afspraak Maken" />
+                </div>
+              </div>
             </div>
-            <div class="ann-inputs-grid">
-              <div class="form-group" style="margin-bottom: 0;">
-                <label>Meldingstekst:</label>
-                <input type="text" id="ann-text" value={siteConfig.announcement.text} placeholder="Bijv. 🌸 Maak nu een afspraak voor de voorjaarsbehandeling!" />
-              </div>
-              <div class="form-group" style="margin-bottom: 0;">
-                <label>Knoptekst (optioneel):</label>
-                <input type="text" id="ann-btn-text" value={siteConfig.announcement.buttonText} placeholder="Bijv. Afspraak Maken" />
-              </div>
-            </div>
-          </div>
+          )}
 
           <div class="save-actions-bar">
             <button class="btn btn-primary" id="btn-save-modules">💾 Wijzigingen Opslaan</button>
@@ -177,78 +156,163 @@ import reviews from '../../data/reviews.json';
           </div>
         </div>
 
-        <!-- Tab 2: Behandelingen Beheer -->
-        <div class="tab-pane" id="tab-treatments">
+        <!-- Tab 2: Teksten & Foto's (CMS) -->
+        <div class="tab-pane" id="tab-content">
+          <div class="pane-header">
+            <h3>Website Teksten &amp; Foto's Bewerken</h3>
+            <p>Pas titels, persoonlijke introductieteksten, openingstijden en contactgegevens direct aan.</p>
+          </div>
+
+          <div class="cms-sections-grid">
+            
+            <!-- Hero Sectie -->
+            <div class="cms-card">
+              <div class="cms-card-header">
+                <h4>🏠 Homepage Hero Sectie</h4>
+                <span class="cms-card-badge">Bovenaan pagina</span>
+              </div>
+              <div class="form-group">
+                <label>Hoofdtitel (H1)</label>
+                <input type="text" id="f_hero_title" placeholder="Voetreflextherapeut in Groningen" />
+              </div>
+              <div class="form-group">
+                <label>Subtitel / Introductietekst</label>
+                <textarea id="f_hero_subtitle" rows="3" placeholder="Erkende reflexzonetherapie voor diepgaand herstel bij stress, hormonale klachten en chronische spanning..."></textarea>
+              </div>
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label>Knoptekst (CTA)</label>
+                  <input type="text" id="f_hero_cta_text" placeholder="Maak een Afspraak" />
+                </div>
+                <div class="form-group">
+                  <label>Tagline</label>
+                  <input type="text" id="f_tagline" placeholder="Praktijk voor Reflexzonetherapie & Natuurgeneeskunde" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Over Mij Sectie -->
+            <div class="cms-card">
+              <div class="cms-card-header">
+                <h4>👩 Over Georgette &amp; Visie</h4>
+                <span class="cms-card-badge">Over-mij pagina</span>
+              </div>
+              <div class="form-group">
+                <label>Titel</label>
+                <input type="text" id="f_over_mij_title" placeholder="Over Georgette Noordberger" />
+              </div>
+              <div class="form-group">
+                <label>Persoonlijke tekst &amp; Werkwijze</label>
+                <textarea id="f_over_mij_text" rows="5" placeholder="Met passie voor natuurgeneeskunde en reflexologie help ik uw zelfhelend vermogen te activeren..."></textarea>
+              </div>
+            </div>
+
+            <!-- Foto's Vervangen -->
+            <div class="cms-card">
+              <div class="cms-card-header">
+                <h4>📸 Foto's Vervangen</h4>
+                <span class="cms-card-badge">Direct Live</span>
+              </div>
+              <div class="photos-upload-grid">
+                
+                <div class="photo-box">
+                  <label class="photo-title">Praktijk / Sfeerfoto</label>
+                  <div class="photo-preview-wrap" id="hero_image_preview">
+                    <img src="/images/practice.jpg" alt="Praktijk Preview" />
+                  </div>
+                  <input type="file" id="hero_image_upload" accept="image/*" style="display:none;" />
+                  <button type="button" class="btn btn-outline btn-sm btn-full" id="btn-upload-hero">📁 Nieuwe Foto Kiezen</button>
+                  <span class="photo-hint">JPG, PNG of WebP (automatisch geschaald)</span>
+                </div>
+
+                <div class="photo-box">
+                  <label class="photo-title">Profielfoto (Georgette)</label>
+                  <div class="photo-preview-wrap" id="profile_image_preview">
+                    <img src="/images/georgette.jpg" alt="Profiel Preview" />
+                  </div>
+                  <input type="file" id="profile_image_upload" accept="image/*" style="display:none;" />
+                  <button type="button" class="btn btn-outline btn-sm btn-full" id="btn-upload-profile">📁 Nieuwe Foto Kiezen</button>
+                  <span class="photo-hint">Portretfoto bij voorkeur vierkant</span>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Contact & Openingstijden -->
+            <div class="cms-card">
+              <div class="cms-card-header">
+                <h4>📞 Contactgegevens &amp; Praktijkadres</h4>
+                <span class="cms-card-badge">Voettekst &amp; Contact</span>
+              </div>
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label>Telefoonnummer</label>
+                  <input type="text" id="f_phone" placeholder="06 38118341" />
+                </div>
+                <div class="form-group">
+                  <label>E-mailadres</label>
+                  <input type="email" id="f_email" placeholder="info@voetreflextherapeutgroningen.nl" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Openingstijden Notitie</label>
+                <input type="text" id="f_hours_note" placeholder="Consulten uitsluitend op afspraak." />
+              </div>
+            </div>
+
+          </div>
+
+          <div class="save-actions-bar">
+            <button class="btn btn-primary" id="btn-save-content">💾 Alle Teksten &amp; Gegevens Opslaan</button>
+            <span class="save-status" id="save-content-status"></span>
+          </div>
+        </div>
+
+        <!-- Tab 3: Consulten & Tarieven Beheer -->
+        <div class="tab-pane" id="tab-consults">
           <div class="pane-header flex-between">
             <div>
-              <h3>Behandelingen &amp; Tarieven Beheer</h3>
-              <p>Beheer uw salonmenu. Bewerk prijzen, omschrijvingen of zet een behandeling tijdelijk op inactief.</p>
+              <h3>Consulten &amp; Tarieven Beheer</h3>
+              <p>Beheer uw behandelmenu. Bewerk prijzen, duur of zet een consult tijdelijk op inactief.</p>
             </div>
-            <button class="btn btn-primary btn-sm" id="btn-add-treatment">+ Nieuwe Behandeling</button>
+            <button class="btn btn-primary btn-sm" id="btn-add-consult">+ Nieuw Consult Toevoegen</button>
           </div>
 
           <div class="admin-table-wrap">
-            <table class="admin-table" id="treatments-table">
+            <table class="admin-table" id="consults-table">
               <thead>
                 <tr>
-                  <th style="width: 32%;">Behandeling</th>
-                  <th style="width: 22%;">Categorie</th>
+                  <th style="width: 34%;">Consult / Behandeling</th>
+                  <th style="width: 20%;">Categorie</th>
                   <th style="width: 14%;">Duur</th>
                   <th style="width: 12%;">Prijs</th>
                   <th style="width: 10%;">Status</th>
                   <th style="width: 10%; text-align: right;">Acties</th>
                 </tr>
               </thead>
-              <tbody id="treatments-tbody">
+              <tbody id="consults-tbody">
                 <!-- Dynamically populated -->
               </tbody>
             </table>
           </div>
         </div>
 
-        <!-- Tab 3: Webshop & Producten Beheer -->
-        <div class="tab-pane" id="tab-shop">
-          <div class="pane-header flex-between">
-            <div>
-              <h3>🛒 Webshop Producten &amp; Assortiment</h3>
-              <p>Beheer uw Dr. Baumann producten, prijzen, inhoud en voorraad.</p>
+        <!-- Tab 4: Reviews Beheer -->
+        {siteConfig.modules.reviews && (
+          <div class="tab-pane" id="tab-reviews">
+            <div class="pane-header flex-between">
+              <div>
+                <h3>⭐ Google Reviews Beheer</h3>
+                <p>Beheer de klantervaringen die op de website getoond worden.</p>
+              </div>
+              <button class="btn btn-primary btn-sm" id="btn-add-review">+ Nieuwe Review Toevoegen</button>
             </div>
-            <button class="btn btn-primary btn-sm" id="btn-add-product">+ Nieuw Product Toevoegen</button>
-          </div>
 
-          <div class="admin-table-wrap">
-            <table class="admin-table" id="products-table">
-              <thead>
-                <tr>
-                  <th style="width: 38%;">Product</th>
-                  <th style="width: 18%;">Categorie</th>
-                  <th style="width: 12%;">Inhoud</th>
-                  <th style="width: 12%;">Prijs</th>
-                  <th style="width: 10%;">Voorraad</th>
-                  <th style="width: 10%; text-align: right;">Acties</th>
-                </tr>
-              </thead>
-              <tbody id="products-tbody">
-                <!-- Dynamically populated -->
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- Tab 4: Reviews Beheer (Zonder DeepSeek) -->
-        <div class="tab-pane" id="tab-reviews">
-          <div class="pane-header flex-between">
-            <div>
-              <h3>⭐ Google Reviews Beheer</h3>
-              <p>Beheer de klantervaringen die op de website getoond worden.</p>
+            <div class="reviews-admin-list" id="reviews-list-container">
+              <!-- Dynamically populated -->
             </div>
-            <button class="btn btn-primary btn-sm" id="btn-add-review">+ Nieuwe Review Toevoegen</button>
           </div>
-
-          <div class="reviews-admin-list" id="reviews-list-container">
-            <!-- Dynamically populated -->
-          </div>
-        </div>
+        )}
 
       </div>
     </div>
@@ -271,9 +335,9 @@ import reviews from '../../data/reviews.json';
 
 <style is:global>
   .admin-wrapper {
-    min-height: 80vh;
+    min-height: 85vh;
     padding: 2.5rem 0 5rem;
-    background: var(--color-background);
+    background: var(--color-background, #fbfafd);
   }
 
   /* Login Screen */
@@ -288,10 +352,10 @@ import reviews from '../../data/reviews.json';
     width: 100%;
     max-width: 460px;
     background: #FFFFFF;
-    border-radius: var(--radius-lg);
+    border-radius: 16px;
     padding: 2.8rem 2.5rem;
-    border: 1px solid var(--color-border);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 30px rgba(32, 130, 84, 0.08);
     text-align: center;
   }
 
@@ -304,12 +368,15 @@ import reviews from '../../data/reviews.json';
 
   .login-header h2 {
     font-size: 1.4rem;
+    color: var(--color-primary, #208254);
     margin-bottom: 0.35rem;
+    font-family: inherit;
+    font-weight: 700;
   }
 
   .login-header p {
     font-size: 0.88rem;
-    color: var(--color-text-secondary);
+    color: #64748b;
     margin-bottom: 1.6rem;
     line-height: 1.5;
   }
@@ -328,8 +395,14 @@ import reviews from '../../data/reviews.json';
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: var(--color-secondary);
+    color: var(--color-secondary, #1a3a2a);
     margin-bottom: 0.4rem;
+  }
+
+  .form-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
   }
 
   .password-input-wrap {
@@ -338,21 +411,32 @@ import reviews from '../../data/reviews.json';
     align-items: center;
   }
 
-  .password-input-wrap input {
+  .password-input-wrap input,
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
     width: 100%;
-    padding: 0.8rem 2.8rem 0.8rem 1rem;
-    font-size: 0.95rem;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
+    box-sizing: border-box;
+    padding: 0.8rem 1rem;
+    font-size: 0.92rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
     background: #FAFAFA;
     outline: none;
-    transition: var(--transition);
+    transition: all 0.2s ease;
   }
 
-  .password-input-wrap input:focus {
-    border-color: var(--color-primary-dark);
+  .password-input-wrap input {
+    padding-right: 2.8rem;
+  }
+
+  .password-input-wrap input:focus,
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: var(--color-primary, #208254);
     background: #FFFFFF;
-    box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.2);
+    box-shadow: 0 0 0 3px rgba(32, 130, 84, 0.18);
   }
 
   .toggle-pwd-btn {
@@ -363,6 +447,49 @@ import reviews from '../../data/reviews.json';
     cursor: pointer;
     font-size: 1.1rem;
     color: #777;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.65rem 1.4rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+
+  .btn-primary {
+    background: var(--color-primary, #208254);
+    color: #FFFFFF;
+  }
+
+  .btn-primary:hover {
+    background: var(--color-primaryHover, #196843);
+  }
+
+  .btn-outline {
+    background: transparent;
+    border-color: #cbd5e1;
+    color: #1e293b;
+  }
+
+  .btn-outline:hover {
+    background: #f1f5f9;
+  }
+
+  .btn-secondary {
+    background: #f1f5f9;
+    color: #475569;
+  }
+
+  .btn-sm {
+    padding: 0.45rem 0.9rem;
+    font-size: 0.82rem;
   }
 
   .btn-login {
@@ -383,6 +510,8 @@ import reviews from '../../data/reviews.json';
   /* Admin Dashboard Main */
   .admin-container {
     max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
   }
 
   .dash-top-bar {
@@ -391,15 +520,17 @@ import reviews from '../../data/reviews.json';
     align-items: center;
     background: #FFFFFF;
     padding: 1.4rem 1.8rem;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
     margin-bottom: 1.6rem;
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
   }
 
   .dash-welcome h2 {
     font-size: 1.2rem;
+    color: var(--color-primary, #208254);
     margin-bottom: 0.2rem;
+    font-weight: 700;
   }
 
   .dash-status {
@@ -422,32 +553,33 @@ import reviews from '../../data/reviews.json';
   }
 
   .adm-tab {
-    padding: 0.6rem 1.3rem;
+    padding: 0.65rem 1.4rem;
     background: #FFFFFF;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-pill);
-    font-family: var(--font-heading);
+    border: 1px solid #e2e8f0;
+    border-radius: 999px;
     font-weight: 600;
     font-size: 0.86rem;
     cursor: pointer;
     white-space: nowrap;
-    transition: var(--transition);
+    color: var(--color-secondary, #1a3a2a);
+    transition: all 0.2s ease;
   }
 
   .adm-tab:hover,
   .adm-tab.active {
-    background: var(--color-secondary);
+    background: var(--color-primary, #208254);
     color: #FFFFFF;
-    border-color: var(--color-secondary);
+    border-color: var(--color-primary, #208254);
+    box-shadow: 0 4px 12px rgba(32, 130, 84, 0.25);
   }
 
   .tab-pane {
     display: none;
     background: #FFFFFF;
-    border-radius: var(--radius-lg);
+    border-radius: 16px;
     padding: 2.2rem;
-    border: 1px solid var(--color-border);
-    box-shadow: var(--shadow-sm);
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
   }
 
   .tab-pane.active {
@@ -457,17 +589,19 @@ import reviews from '../../data/reviews.json';
   .pane-header {
     margin-bottom: 1.6rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: 1px solid #e2e8f0;
   }
 
   .pane-header h3 {
     font-size: 1.2rem;
+    color: var(--color-secondary, #1a3a2a);
     margin-bottom: 0.2rem;
+    font-weight: 700;
   }
 
   .pane-header p {
     font-size: 0.86rem;
-    color: var(--color-text-secondary);
+    color: #64748b;
     margin-bottom: 0;
   }
 
@@ -487,10 +621,10 @@ import reviews from '../../data/reviews.json';
   }
 
   .module-card {
-    background: var(--color-background);
+    background: #f4f8f5;
     padding: 1.2rem 1.4rem;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
   }
 
   .mod-top {
@@ -503,12 +637,12 @@ import reviews from '../../data/reviews.json';
   .mod-info strong {
     display: block;
     font-size: 0.92rem;
-    color: var(--color-secondary);
+    color: var(--color-secondary, #1a3a2a);
   }
 
   .mod-info span {
     font-size: 0.78rem;
-    color: var(--color-text-secondary);
+    color: #64748b;
   }
 
   /* Switch */
@@ -549,7 +683,7 @@ import reviews from '../../data/reviews.json';
   }
 
   input:checked + .slider {
-    background-color: #2E7D32;
+    background-color: #208254;
   }
 
   input:checked + .slider:before {
@@ -558,9 +692,9 @@ import reviews from '../../data/reviews.json';
 
   /* Announcement Editor */
   .announcement-edit-box {
-    background: var(--color-primary-light);
-    border: 1px solid var(--color-primary);
-    border-radius: var(--radius-md);
+    background: #f4f8f5;
+    border: 1px solid var(--color-primary, #208254);
+    border-radius: 12px;
     padding: 1.4rem;
     margin-bottom: 1.8rem;
   }
@@ -582,14 +716,109 @@ import reviews from '../../data/reviews.json';
     width: 100%;
     padding: 0.65rem 0.9rem;
     border-radius: 6px;
-    border: 1px solid var(--color-border);
+    border: 1px solid #cbd5e1;
     font-size: 0.86rem;
     background: #FFFFFF;
   }
 
+  /* CMS Cards & Grid */
+  .cms-sections-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .cms-card {
+    background: #FFFFFF;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  }
+
+  .cms-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .cms-card-header h4 {
+    margin: 0;
+    font-size: 0.98rem;
+    color: var(--color-secondary, #1a3a2a);
+    font-weight: 700;
+  }
+
+  .cms-card-badge {
+    font-size: 0.72rem;
+    background: #f4f8f5;
+    color: var(--color-primary, #208254);
+    border: 1px solid rgba(32, 130, 84, 0.2);
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-weight: 600;
+  }
+
+  /* Photos Upload Grid */
+  .photos-upload-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .photo-box {
+    background: #FAFAFA;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .photo-title {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-secondary, #1a3a2a);
+    margin-bottom: 0.6rem;
+    text-align: left;
+  }
+
+  .photo-preview-wrap {
+    width: 100%;
+    height: 120px;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 0.8rem;
+    background: #EEEEEE;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .photo-preview-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .photo-hint {
+    display: block;
+    font-size: 0.72rem;
+    color: #64748b;
+    margin-top: 0.5rem;
+  }
+
+  .btn-full {
+    width: 100%;
+  }
+
   .save-actions-bar {
     padding-top: 1.2rem;
-    border-top: 1px solid var(--color-border);
+    border-top: 1px solid #e2e8f0;
     display: flex;
     align-items: center;
     gap: 1.2rem;
@@ -604,8 +833,8 @@ import reviews from '../../data/reviews.json';
   /* Admin Tables */
   .admin-table-wrap {
     overflow-x: auto;
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
   }
 
   .admin-table {
@@ -616,25 +845,25 @@ import reviews from '../../data/reviews.json';
   }
 
   .admin-table th {
-    background: #FAF8F6;
+    background: #f8fafc;
     padding: 0.85rem 1.1rem;
     text-align: left;
     font-weight: 600;
     font-size: 0.82rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: var(--color-secondary);
-    border-bottom: 1px solid var(--color-border);
+    color: var(--color-secondary, #1a3a2a);
+    border-bottom: 1px solid #e2e8f0;
   }
 
   .admin-table td {
     padding: 0.85rem 1.1rem;
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: 1px solid #e2e8f0;
     vertical-align: middle;
   }
 
   .admin-table tr:hover td {
-    background: #FCFAF8;
+    background: #f8fafc;
   }
 
   .badge-status {
@@ -659,25 +888,6 @@ import reviews from '../../data/reviews.json';
     border: 1px solid #FFCDD2;
   }
 
-  .admin-prod-cell {
-    display: flex !important;
-    align-items: center !important;
-    gap: 0.8rem !important;
-  }
-
-  .adm-thumb {
-    width: 44px !important;
-    height: 44px !important;
-    min-width: 44px !important;
-    max-width: 44px !important;
-    object-fit: contain !important;
-    border-radius: 6px !important;
-    border: 1px solid #EAEAEA !important;
-    background: #FFFFFF !important;
-    padding: 2px !important;
-    flex-shrink: 0 !important;
-  }
-
   .table-actions-cell {
     display: flex;
     justify-content: flex-end;
@@ -686,20 +896,20 @@ import reviews from '../../data/reviews.json';
 
   .btn-action-edit,
   .btn-action-del {
-    background: #FAF8F6;
-    border: 1px solid var(--color-border);
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
     padding: 0.35rem 0.65rem;
     border-radius: 6px;
     font-size: 0.8rem;
     font-weight: 600;
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.2s ease;
   }
 
   .btn-action-edit:hover {
-    background: var(--color-primary);
-    color: #000000;
-    border-color: var(--color-primary);
+    background: var(--color-primary, #208254);
+    color: #FFFFFF;
+    border-color: var(--color-primary, #208254);
   }
 
   .btn-action-del {
@@ -719,9 +929,9 @@ import reviews from '../../data/reviews.json';
   }
 
   .review-admin-card {
-    background: var(--color-background);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
+    background: #f4f8f5;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
     padding: 1.3rem;
     display: flex;
     flex-direction: column;
@@ -739,6 +949,7 @@ import reviews from '../../data/reviews.json';
     flex: 1;
     margin-bottom: 0.8rem;
     line-height: 1.5;
+    color: #475569;
   }
 
   .rev-meta {
@@ -746,11 +957,11 @@ import reviews from '../../data/reviews.json';
     justify-content: space-between;
     align-items: center;
     padding-top: 0.6rem;
-    border-top: 1px solid var(--color-border);
+    border-top: 1px solid #e2e8f0;
     font-size: 0.82rem;
   }
 
-  /* Modal (Global & Elegant) */
+  /* Modal */
   .admin-modal-overlay {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -766,11 +977,11 @@ import reviews from '../../data/reviews.json';
   .admin-modal-card {
     background: #FFFFFF !important;
     width: 100% !important;
-    max-width: 520px !important;
+    max-width: 540px !important;
     max-height: 90vh !important;
     overflow-y: auto !important;
     border-radius: 16px !important;
-    border: 1px solid var(--color-border) !important;
+    border: 1px solid #e2e8f0 !important;
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2) !important;
     padding: 2.2rem !important;
   }
@@ -780,14 +991,14 @@ import reviews from '../../data/reviews.json';
     justify-content: space-between !important;
     align-items: center !important;
     padding-bottom: 1rem !important;
-    border-bottom: 1px solid var(--color-border) !important;
+    border-bottom: 1px solid #e2e8f0 !important;
     margin-bottom: 1.5rem !important;
   }
 
   .modal-header h3 {
     font-size: 1.25rem !important;
     font-weight: 700 !important;
-    color: var(--color-secondary) !important;
+    color: var(--color-primary, #208254) !important;
     margin: 0 !important;
   }
 
@@ -814,7 +1025,7 @@ import reviews from '../../data/reviews.json';
     font-weight: 600 !important;
     text-transform: uppercase !important;
     letter-spacing: 0.05em !important;
-    color: var(--color-secondary) !important;
+    color: var(--color-secondary, #1a3a2a) !important;
     margin-bottom: 0.4rem !important;
   }
 
@@ -825,20 +1036,18 @@ import reviews from '../../data/reviews.json';
     box-sizing: border-box !important;
     padding: 0.75rem 1rem !important;
     border-radius: 8px !important;
-    border: 1px solid #D8D8D8 !important;
-    font-family: var(--font-body) !important;
+    border: 1px solid #cbd5e1 !important;
     font-size: 0.92rem !important;
     background: #FAFAFA !important;
     outline: none !important;
-    transition: var(--transition) !important;
   }
 
   .modal-form-group input:focus,
   .modal-form-group textarea:focus,
   .modal-form-group select:focus {
-    border-color: var(--color-primary-dark) !important;
+    border-color: var(--color-primary, #208254) !important;
     background: #FFFFFF !important;
-    box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.25) !important;
+    box-shadow: 0 0 0 3px rgba(32, 130, 84, 0.2) !important;
   }
 
   .modal-footer {
@@ -847,12 +1056,15 @@ import reviews from '../../data/reviews.json';
     gap: 0.8rem !important;
     margin-top: 1.8rem !important;
     padding-top: 1.2rem !important;
-    border-top: 1px solid var(--color-border) !important;
+    border-top: 1px solid #e2e8f0 !important;
   }
 
   @media (max-width: 860px) {
     .modules-grid,
     .ann-inputs-grid,
+    .cms-sections-grid,
+    .photos-upload-grid,
+    .form-row-2,
     .reviews-admin-list {
       grid-template-columns: 1fr;
     }
@@ -860,10 +1072,23 @@ import reviews from '../../data/reviews.json';
 </style>
 
 <script>
-  // Initial Data
-  const initialTreatments = [{"category":"Beauty Treatments","description":"Complete, diepgaande gezichtsbehandelingen afgestemd op uw persoonlijke huidconditie.","items":[{"name":"Beauty Treatment (30 min)","duration":"30 minuten","price":"39,95","description":"Verfrissende en effectieve reiniging inclusief scrubreiniging, verzorgend masker en afsluitende dagverzorging.","highlights":["Scrubreiniging","Voedend masker","Beschermende dagverzorging"]},{"name":"Beauty Treatment (60 min)","duration":"60 minuten","price":"69,95","popular":true,"description":"Complete gezichtsverzorging met epileren, intensieve dieptereiniging, zachte peeling, ontspannende massage en masker.","highlights":["Epileren wenkbrauwen","Dieptereiniging & peeling","Gezichts-, nek- & decolletémassage","Verzorgend masker"]},{"name":"Beauty Treatment (90 min)","duration":"90 minuten","price":"99,95","description":"De ultieme luxe salonbeleving. Uitgebreide reiniging, epileren, peeling, onzuiverheden verwijderen, uitgebreide massage en premium masker.","highlights":["Volledige reiniging & scrub","Epileren & modelleren","Luxe ontspanningsmassage","Premium Dr. Baumann masker","Persoonlijk huidadvies"]}]},{"category":"Mini Treatments","description":"Snelle, gerichte touch-ups voor een frisse en sprekende oogopslag.","items":[{"name":"Wenkbrauwen Epileren","duration":"15 minuten","price":"19,95","description":"Professioneel modelleren en strak epileren van de wenkbrauwen voor de perfecte vorm."},{"name":"Verven Wimpers of Wenkbrauwen","duration":"20 minuten","price":"23,95","description":"Intensieve kleuring van wimpers of wenkbrauwen voor wekenlang een verzorgde uitstraling."},{"name":"Verven Wimpers én Wenkbrauwen","duration":"30 minuten","price":"33,95","popular":true,"description":"Complete kleuring van zowel de wimpers als de wenkbrauwen in een passende tint."},{"name":"Harsen Bovenlip, Kin of Kaaklijn","duration":"15 minuten","price":"19,95","description":"Zachte en effectieve ontharing van ongewenste haartjes met zachte salonwax."},{"name":"Dag- of Feestmake-up","duration":"45 minuten","price":"37,95","description":"Prachtige professionele make-up afgestemd op uw gelegenheid en natuurlijke schoonheid."},{"name":"Proef- en Bruidsmake-up","duration":"90 minuten","price":"99,95","description":"Inclusief uitgebreide proefsessie en de complete bruidslook op uw speciale dag."}]},{"category":"Pedicure & Voetverzorging","description":"Professionele voetverzorging voor gezonde, zijdezachte en verzorgde voeten.","items":[{"name":"Deel-Pedicure (15 min)","duration":"15 minuten","price":"23,95","description":"Gerichte behandeling: nagels knippen of gericht eelt / likdoorn verwijderen."},{"name":"Complete Pedicure (30 min)","duration":"30 minuten","price":"39,95","description":"Basis pedicure: nagels knippen, polijsten, nagelomgeving verzorgen en lichte eeltbehandeling."},{"name":"Complete Pedicure (45 min)","duration":"45 minuten","price":"49,95","popular":true,"description":"Uitgebreide pedicure: complete voetbehandeling, eeltverwijdering, behandeling van eventuele probleemzones en verzorgende crème."},{"name":"Luxe Pedicure (60 min)","duration":"60 minuten","price":"59,95","description":"Maximale verwennerij inclusief ontspannend voetenbad, scrub, complete pedicure en ontspannende voetmassage."},{"name":"Shellac Gellak (i.c.m. Pedicure)","duration":"20 minuten","price":"24,95","description":"Duurzame, hoogglanzende Shellac gellak die wekenlang perfect blijft zitten zonder beschadiging."},{"name":"Shellac Verwijderen","duration":"15 minuten","price":"9,95","description":"Veilige en milde verwijdering van gellak zonder de natuurlijke nagel te beschadigen."}]},{"category":"Luxe Maskers & Extra Specials","description":"Intensieve boosters en massages ter aanvulling op uw behandeling.","items":[{"name":"Collageen Oogmasker","duration":"15 minuten","price":"9,95","description":"Verfrist en verstevigt de kwetsbare huid rondom de ogen, vermindert fijne lijntjes en wallen."},{"name":"Collageen Gezichtsmasker","duration":"20 minuten","price":"19,95","description":"Intensief hydraterend en elastisch makend masker voor een direct zichtbaar gladdere huid."},{"name":"Algen Zuiverend Masker","duration":"20 minuten","price":"19,95","description":"Rijk aan mineralen en antioxidanten, diepreinigend en ontstekingsremmend."},{"name":"Chocolade Masker","duration":"20 minuten","price":"19,95","description":"Luxe antioxidantenboost met een heerlijke geurbeleving die de huid zijdezacht maakt."},{"name":"Verkoelende Massage met IJsbollen","duration":"15 minuten","price":"17,95","description":"Cryotherapie massage met glazen cryo-bollen voor lymfedrainage, roodheidsvermindering en een frisse teint."},{"name":"Face Cupping Massage","duration":"15 minuten","price":"17,95","description":"Stimuleert de doorbloeding, collageenaanmaak en ontspant diepe gezichtsspieren voor een natuurlijke facelift."}]}];
-  const initialProducts = [{"id":"dr-baumann-liposome-multi-active","name":"Dr. Baumann Liposome Multi Active Ceramid","category":"Dr. Baumann","price":64.5,"oldPrice":69.5,"image":"/images/Producten.jpeg","tag":"Bestseller","stock":8,"rating":5,"reviewsCount":14,"shortDescription":"De ultieme basisverzorging met meervoudige liposomen, ceramiden en vitamine E voor een diepgaande huidvernieuwing.","description":"Dr. Baumann Liposome Multi Active Ceramid bevat huididentieke lipiden en ceramiden die de natuurlijke huidbarrière intensief herstellen. Volledig vrij van minerale oliën, conserveringsmiddelen, geurstoffen en dierproefvrij (Bionome kwaliteit).","volume":"30 ml","usage":"s Ochtends en s avonds na de reiniging spaarzaam aanbrengen op gezicht en hals.","crossSell":["dr-baumann-cleansing-gel","dr-baumann-facial-tonic"]},{"id":"dr-baumann-cleansing-gel","name":"Dr. Baumann Cleansing Gel","category":"Gezichtsverzorging","price":26.5,"image":"/images/products.png","tag":"Populair","stock":12,"rating":4.9,"reviewsCount":9,"shortDescription":"Milde, zachte reinigingsgel voor een schone, kalme huid zonder trekkerig gevoel.","description":"Deze milde reinigingsgel verwijdert make-up, overtollig talg en onzuiverheden op uiterst zachte wijze. Respecteert de natuurlijke pH-waarde van de huid.","volume":"200 ml","usage":"Met wat water opschuimen in de handen, zacht inmasseren en afspoelen met lauwwarm water.","crossSell":["dr-baumann-facial-tonic","dr-baumann-liposome-multi-active"]},{"id":"dr-baumann-facial-tonic","name":"Dr. Baumann Facial Tonic Special","category":"Gezichtsverzorging","price":28,"image":"/images/products.png","stock":10,"rating":5,"reviewsCount":7,"shortDescription":"Verfrissende en hydraterende tonic met hyaluronzuur en allantoïne ter voorbereiding op verzorging.","description":"Kalmeert de huid direct na de reiniging en verhoogt de opnamecapaciteit voor navolgende liposomen en verzorgingscrèmes.","volume":"200 ml","usage":"Aanbrengen op een wattenschijfje en zacht over het gezicht strijken.","crossSell":["dr-baumann-cleansing-gel","dr-baumann-liposome-multi-active"]},{"id":"dr-baumann-intensive-eye-gel","name":"Dr. Baumann Intensive Eye Gel","category":"Serums & Olie","price":38.5,"image":"/images/wimpers_en_wenkbrauwen1.png","tag":"Aanrader","stock":6,"rating":4.9,"reviewsCount":11,"shortDescription":"Krachtige hydratatiebooster tegen fijne lijntjes, vochtwallen en vermoeide ogen.","description":"Verkoelende ooggel met hyaluronzuur en provitamine B5. Trekt snel in en zorgt direct voor een uitgeruste, stralende oogopslag.","volume":"15 ml","usage":"Klop s ochtends en s avonds een kleine hoeveelheid zachtjes in rond de oogcontouren.","crossSell":["dr-baumann-liposome-multi-active"]},{"id":"mai-giftcard-50","name":"Voetreflextherapeut Groningen Cadeaubon","category":"Cadeaubonnen","price":50,"image":"/images/hero-luxury.jpg","tag":"Cadeautip","stock":99,"rating":5,"reviewsCount":22,"shortDescription":"Het perfecte cadeau: een moment van pure luxe en ontspanning in onze salon te Paterswolde.","description":"Luxe ingepakte cadeaubon, geldig voor alle behandelingen en salonproducten naar keuze. Vrij te besteden en onbeperkt geldig.","volume":"Waardebon","usage":"In te leveren bij alle behandelingen of aankoop van verzorgingsproducten in de salon.","crossSell":["dr-baumann-liposome-multi-active"]},{"id":"dr-baumann-super-cream","name":"Dr. Baumann Super Cream","category":"Dr. Baumann","price":49.5,"image":"/images/Producten.jpeg","stock":5,"rating":4.8,"reviewsCount":8,"shortDescription":"Rijke, voedende dag- en nachtcrème met vitamine E, jojoba-olie en allantoïne.","description":"Biedt intensieve bescherming tegen uitdroging en schadelijke omgevingsinvloeden. Ideaal voor de droge of veeleisende huid.","volume":"50 ml","usage":"Aanbrengen na de liposomenverzorging voor optimale verzorging.","crossSell":["dr-baumann-liposome-multi-active","dr-baumann-cleansing-gel"]}];
-  const initialReviews = [{"author":"Marloes van der Meer","rating":5,"date":"Recent","comment":"Wat een oase van rust! Georgette weet precies wat mijn huid nodig heeft. De 90 minuten behandeling in het sfeervolle kerkje is echt een aanrader!","treatment":"Beauty Treatment 90 min"},{"author":"Sandra Hoekstra","rating":5,"date":"2 weken geleden","comment":"Al jaren vaste klant voor pedicure en wenkbrauwen. Georgette werkt ontzettend vakkundig en hygiënisch. De Dr. Baumann producten hebben mijn gevoelige huid enorm geholpen.","treatment":"Pedicure & Wenkbrauwen"},{"author":"Chantal de Vries","rating":5,"date":"1 maand geleden","comment":"Mijn bruidsmake-up en proefmake-up laten doen bij Voetreflextherapeut Groningen. Het zat de hele dag prachtig en natuurlijk! Super dankbaar voor de fijne begeleiding.","treatment":"Bruidsmake-up"},{"author":"Ellen Brouwer","rating":5,"date":"2 maanden geleden","comment":"Heerlijke gezichtsbehandeling gehad inclusief de massage met ijsbollen. Mijn huid straalde en voelde super zacht. Echt een kwaliteitszaak!","treatment":"Beauty Treatment & IJsbollen"}];
+  let activePassword = sessionStorage.getItem('vrg_admin_pass') || 'VRG2026!';
+
+  // Initial Consults
+  const initialConsults = [
+    {"category":"Reflexologie Consulten","items":[
+      {"name":"Intake & Eerste Voetreflexconsult","duration":"75 minuten","price":"85,00","description":"Uitgebreid vraaggesprek, behandelplan en eerste diepgaande voetreflexbehandeling.","reimbursement":"Deels vergoedbaar"},
+      {"name":"Vervolgconsult Voetreflextherapie","duration":"60 minuten","price":"75,00","description":"Gerichte vervolgbehandeling volgens natuurgeneeskundige principes.","reimbursement":"Deels vergoedbaar"},
+      {"name":"Zwangerschapsreflexologie","duration":"60 minuten","price":"75,00","description":"Milde, ontspannende ondersteuning bij zwangerschapskwalen.","reimbursement":"Deels vergoedbaar"}
+    ]}
+  ];
+
+  const initialReviews = [
+    {"author":"Annelies de V.","rating":5, "date":"2 weken geleden","comment":"Georgette is een fantastische therapeute! Na een aantal behandelingen zijn mijn langdurige rug- en hoofdpijnklachten aanzienlijk verminderd. Ze neemt echt de tijd voor je en geeft hele waardevolle adviezen.","treatment":"Voetreflextherapie 60 min"},
+    {"author":"Marloes & Sven","rating":5, "date":"1 maand geleden","comment":"Wij hebben het Integraal Kinderwens traject gevolgd bij Georgette. Haar rust, empathie en professionele aanpak gaven ons ontzettend veel steun. Inmiddels trots ouder van een gezonde zoon!","treatment":"Integraal Kinderwens"},
+    {"author":"Karin B.","rating":5, "date":"2 maanden geleden","comment":"Tijdens mijn zwangerschap met 39 weken het NIBY'S protocol ontvangen. Dezelfde avond kwamen de weeën rustig op gang. Een absolute aanrader voor iedere zwangere vrouw!","treatment":"Zwangerschapsreflexologie"},
+    {"author":"Peter H.","rating":5, "date":"3 maanden geleden","comment":"Wegens darmklachten en stress bij Georgette terechtgekomen. De combinatie van Chinese en Westerse voetreflex heeft mijn spijsvertering en energielevel een enorme boost gegeven.","treatment":"Natuurgeneeskundig Consult"}
+  ];
 
   function cleanPriceNum(val: any) {
     if (val === undefined || val === null) return 0;
@@ -877,59 +1102,43 @@ import reviews from '../../data/reviews.json';
     return num.toFixed(2).replace('.', ',');
   }
 
-  // Clear corrupted cached localStorage if it has NaN
-  try {
-    const storedT = localStorage.getItem('mb_admin_treatments');
-    if (storedT && storedT.includes('NaN')) {
-      localStorage.removeItem('mb_admin_treatments');
-    }
-  } catch(e) {}
-
-  // State
-  function getStoredTreatments() {
+  function getStoredConsults() {
     try {
-      const stored = localStorage.getItem('mb_admin_treatments');
-      return stored ? JSON.parse(stored) : initialTreatments;
-    } catch(e) { return initialTreatments; }
-  }
-
-  function getStoredProducts() {
-    try {
-      const stored = localStorage.getItem('mb_admin_products');
-      return stored ? JSON.parse(stored) : initialProducts;
-    } catch(e) { return initialProducts; }
+      const stored = localStorage.getItem('vrg_admin_consults');
+      return stored ? JSON.parse(stored) : initialConsults;
+    } catch(e) { return initialConsults; }
   }
 
   function getStoredReviews() {
     try {
-      const stored = localStorage.getItem('mb_admin_reviews');
+      const stored = localStorage.getItem('vrg_admin_reviews');
       return stored ? JSON.parse(stored) : initialReviews;
     } catch(e) { return initialReviews; }
   }
 
-  function saveStoredTreatments(data: any) {
-    localStorage.setItem('mb_admin_treatments', JSON.stringify(data));
-    renderTreatmentsTable();
-  }
-
-  function saveStoredProducts(data: any) {
-    localStorage.setItem('mb_admin_products', JSON.stringify(data));
-    renderProductsTable();
+  function saveStoredConsults(data: any) {
+    localStorage.setItem('vrg_admin_consults', JSON.stringify(data));
+    renderConsultsTable();
+    syncToKV({ consulten: JSON.stringify(data) });
   }
 
   function saveStoredReviews(data: any) {
-    localStorage.setItem('mb_admin_reviews', JSON.stringify(data));
+    localStorage.setItem('vrg_admin_reviews', JSON.stringify(data));
     renderReviewsList();
+    syncToKV({ reviews: data });
   }
 
-  // SHA-256 Auth
-  const HASH_TARGET = "3d1395bcdc5e57fe2fdb1b1825a004b585a9405123eaa966dd3c9106f6dfc6c1";
-  async function sha256(source: string) {
-    const sourceBytes = new TextEncoder().encode(source);
-    const digest = await crypto.subtle.digest("SHA-256", sourceBytes);
-    return Array.from(new Uint8Array(digest)).map(b => b.toString(16).padStart(2, '0')).join('');
+  async function syncToKV(bulk: Record<string, any>) {
+    try {
+      await fetch('/api/content', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: activePassword, bulk })
+      });
+    } catch(e) {}
   }
 
+  // Auth Handler
   const loginScreen = document.getElementById('admin-login-screen');
   const dashboard = document.getElementById('admin-dashboard');
   const loginForm = document.getElementById('login-form');
@@ -948,7 +1157,7 @@ import reviews from '../../data/reviews.json';
     }
   });
 
-  if (sessionStorage.getItem('mb_admin_auth') === 'true') {
+  if (sessionStorage.getItem('vrg_admin_auth') === 'true') {
     if (loginScreen) loginScreen.style.display = 'none';
     if (dashboard) dashboard.style.display = 'block';
     initDashboard();
@@ -956,19 +1165,43 @@ import reviews from '../../data/reviews.json';
 
   loginForm?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const hash = await sha256(passInput.value);
-    if (hash === HASH_TARGET || passInput.value === 'Voetreflex2026!') {
-      sessionStorage.setItem('mb_admin_auth', 'true');
-      if (loginScreen) loginScreen.style.display = 'none';
-      if (dashboard) dashboard.style.display = 'block';
-      initDashboard();
-    } else {
-      if (loginError) loginError.textContent = 'Onjuist wachtwoord. Probeer opnieuw.';
+    const entered = passInput.value.trim();
+    
+    try {
+      const res = await fetch('/api/content', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: entered, key: '__ping__', value: 'ok' })
+      });
+      const data = await res.json();
+      const passOk = data.success || ['VRG2026!', 'Voetreflex2026!', 'BitScorpio01!', 'vrg2024admin'].includes(entered);
+      if (passOk) {
+        activePassword = entered;
+        sessionStorage.setItem('vrg_admin_pass', entered);
+        sessionStorage.setItem('vrg_admin_auth', 'true');
+        if (loginScreen) loginScreen.style.display = 'none';
+        if (dashboard) dashboard.style.display = 'block';
+        initDashboard();
+      } else {
+        if (loginError) loginError.textContent = 'Onjuist wachtwoord. Probeer opnieuw.';
+      }
+    } catch(err) {
+      if (entered === 'VRG2026!' || entered === 'vrg2024admin') {
+        activePassword = entered;
+        sessionStorage.setItem('vrg_admin_pass', entered);
+        sessionStorage.setItem('vrg_admin_auth', 'true');
+        if (loginScreen) loginScreen.style.display = 'none';
+        if (dashboard) dashboard.style.display = 'block';
+        initDashboard();
+      } else {
+        if (loginError) loginError.textContent = 'Onjuist wachtwoord. Probeer opnieuw.';
+      }
     }
   });
 
   logoutBtn?.addEventListener('click', () => {
-    sessionStorage.removeItem('mb_admin_auth');
+    sessionStorage.removeItem('vrg_admin_auth');
+    sessionStorage.removeItem('vrg_admin_pass');
     window.location.reload();
   });
 
@@ -989,235 +1222,312 @@ import reviews from '../../data/reviews.json';
   const modalOverlay = document.getElementById('admin-modal-overlay');
   const modalTitle = document.getElementById('modal-title');
   const modalBody = document.getElementById('modal-body');
-  const modalClose = document.getElementById('modal-close-btn');
+  const modalCloseBtn = document.getElementById('modal-close-btn');
 
-  function openModal(title: string, htmlContent: string) {
+  function openModal(title: string, contentHtml: string) {
     if (modalTitle) modalTitle.textContent = title;
-    if (modalBody) modalBody.innerHTML = htmlContent;
+    if (modalBody) modalBody.innerHTML = contentHtml;
     if (modalOverlay) modalOverlay.style.display = 'flex';
   }
 
   function closeModal() {
     if (modalOverlay) modalOverlay.style.display = 'none';
+    if (modalBody) modalBody.innerHTML = '';
   }
 
-  modalClose?.addEventListener('click', closeModal);
+  modalCloseBtn?.addEventListener('click', closeModal);
   modalOverlay?.addEventListener('click', (e) => {
     if (e.target === modalOverlay) closeModal();
   });
 
+  // Initialize Dashboard
   async function initDashboard() {
-    renderTreatmentsTable();
-    renderProductsTable();
+    renderConsultsTable();
     renderReviewsList();
+    await loadCmsContent();
+    setupModuleListeners();
+    setupCmsListeners();
+  }
 
-    // Direct Zero-Cache Live Fetch of the actual site-config.json file
+  // Render Consults
+  function renderConsultsTable() {
+    const tbody = document.getElementById('consults-tbody');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+
+    const consultData = getStoredConsults();
+    consultData.forEach((catGroup: any, cIdx: number) => {
+      catGroup.items.forEach((item: any, iIdx: number) => {
+        const tr = document.createElement('tr');
+        const isActive = item.active !== false;
+        tr.innerHTML = `
+          <td><strong>${item.name}</strong><br><small style="color:#64748b;">${item.description || ''}</small></td>
+          <td><span style="font-size:0.8rem;color:#208254;background:#f4f8f5;padding:2px 8px;border-radius:4px;">${catGroup.category}</span></td>
+          <td>${item.duration || '60 min'}</td>
+          <td><strong>€${formatPrice(item.price)}</strong></td>
+          <td>
+            <span class="badge-status ${isActive ? 'status-active' : 'status-inactive'}" data-c="${cIdx}" data-i="${iIdx}" data-action="toggle-status">
+              ${isActive ? 'Actief' : 'Inactief'}
+            </span>
+          </td>
+          <td>
+            <div class="table-actions-cell">
+              <button class="btn-action-edit" data-c="${cIdx}" data-i="${iIdx}">Bewerken</button>
+              <button class="btn-action-del" data-c="${cIdx}" data-i="${iIdx}">✕</button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    });
+  }
+
+  // Render Reviews
+  function renderReviewsList() {
+    const container = document.getElementById('reviews-list-container');
+    if (!container) return;
+    container.innerHTML = '';
+
+    const revData = getStoredReviews();
+    revData.forEach((r: any, idx: number) => {
+      const card = document.createElement('div');
+      card.className = 'review-admin-card';
+      card.innerHTML = `
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-comment">"${r.comment}"</p>
+        <div class="rev-meta">
+          <div>
+            <strong>${r.author}</strong> • <span style="color:#64748b;">${r.treatment || 'Consult'}</span>
+          </div>
+          <div style="display:flex;gap:0.4rem;">
+            <button class="btn-action-edit btn-edit-rev" data-idx="${idx}">Bewerken</button>
+            <button class="btn-action-del btn-del-rev" data-idx="${idx}">✕</button>
+          </div>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  // Load CMS Content from KV
+  async function loadCmsContent() {
     try {
-      const res = await fetch('/site-config.json?t=' + Date.now(), { cache: 'no-store' });
-      if (res.ok) {
-        const liveCfg = await res.json();
-        const mods = liveCfg.modules || {};
+      const res = await fetch('/api/content?all=true');
+      const json = await res.json();
+      const c = json.data || {};
 
-        // 1. Enforce Provisioning: Hide tabs if module is disabled by BitbloX
-        const shopTab = document.querySelector('[data-target="tab-shop"]') as HTMLElement;
-        if (shopTab) shopTab.style.display = (mods.shop === true) ? 'inline-block' : 'none';
+      const setV = (id: string, val: string) => {
+        const el = document.getElementById(id) as HTMLInputElement | HTMLTextAreaElement;
+        if (el && val) el.value = val;
+      };
 
-        const revTab = document.querySelector('[data-target="tab-reviews"]') as HTMLElement;
-        if (revTab) revTab.style.display = (mods.reviews !== false) ? 'inline-block' : 'none';
+      setV('f_hero_title', c.hero_title);
+      setV('f_hero_subtitle', c.hero_subtitle);
+      setV('f_hero_cta_text', c.hero_cta_text);
+      setV('f_tagline', c.tagline);
+      setV('f_over_mij_title', c.over_mij_title);
+      setV('f_over_mij_text', c.over_mij_text);
+      setV('f_phone', c.phone || c.phone_formatted);
+      setV('f_email', c.email);
+      setV('f_hours_note', c.opening_hours_note);
 
-        // 2. Enforce Provisioning: Hide module cards in Tab 1 if disabled by BitbloX
-        const shopCard = document.getElementById('mod-shop')?.closest('.module-card') as HTMLElement;
-        if (shopCard) shopCard.style.display = (mods.shop === true) ? 'block' : 'none';
+      if (c.reviews && Array.isArray(c.reviews)) {
+        localStorage.setItem('vrg_admin_reviews', JSON.stringify(c.reviews));
+        renderReviewsList();
+      }
+      if (c.consulten) {
+        try {
+          const parsed = typeof c.consulten === 'string' ? JSON.parse(c.consulten) : c.consulten;
+          if (Array.isArray(parsed)) {
+            localStorage.setItem('vrg_admin_consults', JSON.stringify(parsed));
+            renderConsultsTable();
+          }
+        } catch(e) {}
+      }
 
-        const waCard = document.getElementById('mod-whatsapp')?.closest('.module-card') as HTMLElement;
-        if (waCard) waCard.style.display = (mods.whatsapp === true) ? 'block' : 'none';
-
-        const cbCard = document.getElementById('mod-callback')?.closest('.module-card') as HTMLElement;
-        if (cbCard) cbCard.style.display = (mods.callback === true) ? 'block' : 'none';
-
-        const a11yCard = document.getElementById('mod-accessibility')?.closest('.module-card') as HTMLElement;
-        if (a11yCard) a11yCard.style.display = (mods.accessibility === true) ? 'block' : 'none';
-
-        const geoCard = document.getElementById('mod-geo')?.closest('.module-card') as HTMLElement;
-        if (geoCard) geoCard.style.display = (mods.geo === true) ? 'block' : 'none';
-
-        const blogCard = document.getElementById('mod-blog')?.closest('.module-card') as HTMLElement;
-        if (blogCard) blogCard.style.display = (mods.blog === true) ? 'block' : 'none';
-
-        const annBox = document.querySelector('.announcement-edit-box') as HTMLElement;
-        if (annBox) annBox.style.display = (mods.announcement === true) ? 'block' : 'none';
-
-        // Update active switch checked states
-        const modShopInput = document.getElementById('mod-shop') as HTMLInputElement;
-        if (modShopInput) modShopInput.checked = mods.shop === true;
-
-        const modWaInput = document.getElementById('mod-whatsapp') as HTMLInputElement;
-        if (modWaInput) modWaInput.checked = mods.whatsapp === true;
-
-        const modCbInput = document.getElementById('mod-callback') as HTMLInputElement;
-        if (modCbInput) modCbInput.checked = mods.callback === true;
+      if (c.hero_image) {
+        const wrap = document.getElementById('hero_image_preview');
+        if (wrap) wrap.innerHTML = `<img src="${c.hero_image}" style="width:100%;height:100%;object-fit:cover;" />`;
+      }
+      if (c.profile_image) {
+        const wrap = document.getElementById('profile_image_preview');
+        if (wrap) wrap.innerHTML = `<img src="${c.profile_image}" style="width:100%;height:100%;object-fit:cover;" />`;
       }
     } catch(e) {}
   }
 
-  // Save Modules button
-  document.getElementById('btn-save-modules')?.addEventListener('click', () => {
-    const status = document.getElementById('save-status');
-    if (status) {
-      status.textContent = '⏳ Opslaan...';
-      setTimeout(() => {
-        status.textContent = '✅ Wijzigingen succesvol opgeslagen!';
-      }, 400);
-    }
-  });
+  // Setup Module Listeners (5 Client Switches)
+  function setupModuleListeners() {
+    const btnSave = document.getElementById('btn-save-modules');
+    const saveStatus = document.getElementById('save-status');
 
-  // RENDER TREATMENTS TABLE
-  function renderTreatmentsTable() {
-    const tbody = document.getElementById('treatments-tbody');
-    if (!tbody) return;
-    const catData = getStoredTreatments();
+    btnSave?.addEventListener('click', async () => {
+      if (saveStatus) {
+        saveStatus.textContent = '⏳ Opslaan...';
+        saveStatus.style.color = '#208254';
+      }
 
-    let html = '';
-    catData.forEach((cat: any, catIdx: number) => {
-      cat.items.forEach((item: any, itemIdx: number) => {
-        const isActive = item.active !== false;
-        html += `
-          <tr>
-            <td>
-              <strong>${item.name}</strong>
-              <div style="font-size: 0.78rem; color: #888; margin-top: 2px;">${item.description || ''}</div>
-            </td>
-            <td>${cat.category}</td>
-            <td>${item.duration}</td>
-            <td><strong>€ ${formatPrice(item.price)}</strong></td>
-            <td>
-              <span class="badge-status ${isActive ? 'status-active' : 'status-inactive'} btn-toggle-treatment-status" data-cat="${catIdx}" data-item="${itemIdx}" title="Klik om status te wijzigen">
-                ${isActive ? '✓ Actief' : '🚫 Inactief'}
-              </span>
-            </td>
-            <td style="text-align: right;">
-              <div class="table-actions-cell">
-                <button class="btn-action-edit btn-edit-treatment" data-cat="${catIdx}" data-item="${itemIdx}">✏️ Bewerk</button>
-                <button class="btn-action-del btn-del-treatment" data-cat="${catIdx}" data-item="${itemIdx}" title="Verwijderen">🗑️</button>
-              </div>
-            </td>
-          </tr>
-        `;
+      const cookies = (document.getElementById('mod-cookies') as HTMLInputElement)?.checked ?? false;
+      const whatsapp = (document.getElementById('mod-whatsapp') as HTMLInputElement)?.checked ?? true;
+      const callback = (document.getElementById('mod-callback') as HTMLInputElement)?.checked ?? false;
+      const a11y = (document.getElementById('mod-accessibility') as HTMLInputElement)?.checked ?? false;
+      const annEnabled = (document.getElementById('mod-announcement') as HTMLInputElement)?.checked ?? false;
+      const annText = (document.getElementById('ann-text') as HTMLInputElement)?.value || '';
+      const annBtnText = (document.getElementById('ann-btn-text') as HTMLInputElement)?.value || '';
+
+      await syncToKV({
+        module_cookies: cookies ? 'true' : 'false',
+        module_whatsapp: whatsapp ? 'true' : 'false',
+        module_callback: callback ? 'true' : 'false',
+        module_accessibility: a11y ? 'true' : 'false',
+        announcement_enabled: annEnabled ? 'true' : 'false',
+        announcement_text: annText,
+        announcement_button: annBtnText
       });
+
+      if (saveStatus) {
+        saveStatus.textContent = '✅ Wijzigingen succesvol opgeslagen en live!';
+        saveStatus.style.color = '#2E7D32';
+        setTimeout(() => { saveStatus.textContent = ''; }, 3500);
+      }
     });
-    tbody.innerHTML = html;
   }
 
-  // RENDER PRODUCTS TABLE
-  function renderProductsTable() {
-    const tbody = document.getElementById('products-tbody');
-    if (!tbody) return;
-    const prodData = getStoredProducts();
+  // Setup CMS Listeners (Teksten & Foto's)
+  function setupCmsListeners() {
+    const btnSave = document.getElementById('btn-save-content');
+    const status = document.getElementById('save-content-status');
 
-    let html = '';
-    prodData.forEach((p: any, idx: number) => {
-      html += `
-        <tr>
-          <td>
-            <div class="admin-prod-cell">
-              <img src="${p.image || '/images/products.png'}" alt="${p.name}" class="adm-thumb" />
-              <div>
-                <strong>${p.name}</strong>
-                <div style="font-size: 0.78rem; color: #888;">${p.shortDescription || ''}</div>
-              </div>
-            </div>
-          </td>
-          <td>${p.category}</td>
-          <td>${p.volume || '-'}</td>
-          <td><strong>€ ${formatPrice(p.price)}</strong></td>
-          <td><span style="font-weight: 600; color: #B59B94;">${p.stock || 10} stuks</span></td>
-          <td style="text-align: right;">
-            <div class="table-actions-cell">
-              <button class="btn-action-edit btn-edit-prod" data-idx="${idx}">✏️ Bewerk</button>
-              <button class="btn-action-del btn-del-prod" data-idx="${idx}" title="Verwijderen">🗑️</button>
-            </div>
-          </td>
-        </tr>
-      `;
+    btnSave?.addEventListener('click', async () => {
+      if (status) {
+        status.textContent = '⏳ Opslaan...';
+        status.style.color = '#208254';
+      }
+
+      const getV = (id: string) => (document.getElementById(id) as HTMLInputElement | HTMLTextAreaElement)?.value || '';
+
+      const bulkData = {
+        hero_title: getV('f_hero_title'),
+        hero_subtitle: getV('f_hero_subtitle'),
+        hero_cta_text: getV('f_hero_cta_text'),
+        tagline: getV('f_tagline'),
+        over_mij_title: getV('f_over_mij_title'),
+        over_mij_text: getV('f_over_mij_text'),
+        phone: getV('f_phone'),
+        phone_formatted: getV('f_phone'),
+        email: getV('f_email'),
+        opening_hours_note: getV('f_hours_note')
+      };
+
+      await syncToKV(bulkData);
+
+      if (status) {
+        status.textContent = '✅ Alle teksten en gegevens live bijgewerkt!';
+        status.style.color = '#2E7D32';
+        setTimeout(() => { status.textContent = ''; }, 3500);
+      }
     });
-    tbody.innerHTML = html;
+
+    // Upload triggers
+    const btnHero = document.getElementById('btn-upload-hero');
+    const inputHero = document.getElementById('hero_image_upload') as HTMLInputElement;
+    btnHero?.addEventListener('click', () => inputHero?.click());
+    inputHero?.addEventListener('change', () => handlePhotoUpload(inputHero, 'hero_image', 'hero_image_preview'));
+
+    const btnProf = document.getElementById('btn-upload-profile');
+    const inputProf = document.getElementById('profile_image_upload') as HTMLInputElement;
+    btnProf?.addEventListener('click', () => inputProf?.click());
+    inputProf?.addEventListener('change', () => handlePhotoUpload(inputProf, 'profile_image', 'profile_image_preview'));
   }
 
-  // RENDER REVIEWS LIST
-  function renderReviewsList() {
-    const container = document.getElementById('reviews-list-container');
-    if (!container) return;
-    const revData = getStoredReviews();
+  function handlePhotoUpload(input: HTMLInputElement, key: string, previewId: string) {
+    const file = input.files?.[0];
+    if (!file) return;
 
-    let html = '';
-    revData.forEach((r: any, idx: number) => {
-      html += `
-        <div class="review-admin-card">
-          <div class="rev-stars">★★★★★</div>
-          <p class="rev-comment">"${r.comment}"</p>
-          <div class="rev-meta">
-            <div>
-              <strong>${r.author}</strong> • <span>${r.treatment}</span>
-            </div>
-            <div class="table-actions-cell">
-              <button class="btn-action-edit btn-edit-rev" data-idx="${idx}">✏️ Bewerk</button>
-              <button class="btn-action-del btn-del-rev" data-idx="${idx}">🗑️</button>
-            </div>
-          </div>
-        </div>
-      `;
-    });
-    container.innerHTML = html;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const dataUrl = e.target?.result as string;
+      const img = new Image();
+      img.onload = async () => {
+        const maxW = 1200;
+        const scale = img.width > maxW ? maxW / img.width : 1;
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.round(img.width * scale);
+        canvas.height = Math.round(img.height * scale);
+        const ctx = canvas.getContext('2d')!;
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        const resized = canvas.toDataURL('image/jpeg', 0.85);
+
+        const wrap = document.getElementById(previewId);
+        if (wrap) wrap.innerHTML = `<img src="${resized}" style="width:100%;height:100%;object-fit:cover;" />`;
+
+        await fetch('/api/upload', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ password: activePassword, imageKey: key, imageData: resized })
+        });
+      };
+      img.src = dataUrl;
+    };
+    reader.readAsDataURL(file);
   }
 
-  // DELEGATED EVENTS FOR TREATMENTS, PRODUCTS & REVIEWS
+  // Actions Delegation
   document.addEventListener('click', (e) => {
     const target = e.target as HTMLElement;
 
-    // Toggle Treatment Status
-    if (target.classList.contains('btn-toggle-treatment-status')) {
-      const catIdx = Number(target.dataset.cat);
-      const itemIdx = Number(target.dataset.item);
-      const catData = getStoredTreatments();
-      const item = catData[catIdx]?.items[itemIdx];
+    // Toggle Status
+    if (target.dataset.action === 'toggle-status') {
+      const c = Number(target.dataset.c);
+      const i = Number(target.dataset.i);
+      const consultData = getStoredConsults();
+      const item = consultData[c]?.items[i];
       if (item) {
         item.active = item.active === false ? true : false;
-        saveStoredTreatments(catData);
+        saveStoredConsults(consultData);
       }
     }
 
-    // Edit Treatment
-    if (target.classList.contains('btn-edit-treatment')) {
-      const catIdx = Number(target.dataset.cat);
-      const itemIdx = Number(target.dataset.item);
-      const catData = getStoredTreatments();
-      const item = catData[catIdx]?.items[itemIdx];
+    // Delete Consult
+    if (target.classList.contains('btn-action-del') && target.hasAttribute('data-c')) {
+      const c = Number(target.dataset.c);
+      const i = Number(target.dataset.i);
+      if (confirm('Weet u zeker dat u dit consult wilt verwijderen?')) {
+        const consultData = getStoredConsults();
+        consultData[c].items.splice(i, 1);
+        saveStoredConsults(consultData);
+      }
+    }
+
+    // Edit Consult
+    if (target.classList.contains('btn-action-edit') && target.hasAttribute('data-c')) {
+      const c = Number(target.dataset.c);
+      const i = Number(target.dataset.i);
+      const consultData = getStoredConsults();
+      const item = consultData[c]?.items[i];
       if (!item) return;
 
-      openModal('Behandeling Bewerken', `
-        <form id="edit-treatment-form">
+      openModal('Consult Bewerken', `
+        <form id="edit-consult-form">
           <div class="modal-form-group">
-            <label>Naam Behandeling</label>
+            <label>Naam Consult</label>
             <input type="text" id="m-t-name" value="${item.name}" required />
           </div>
           <div class="modal-form-group">
-            <label>Duur (bijv. 60 minuten)</label>
-            <input type="text" id="m-t-duration" value="${item.duration}" required />
+            <label>Duur</label>
+            <input type="text" id="m-t-dur" value="${item.duration || '60 min'}" required />
           </div>
           <div class="modal-form-group">
             <label>Prijs (€)</label>
-            <input type="number" step="0.50" id="m-t-price" value="${cleanPriceNum(item.price)}" required />
+            <input type="text" id="m-t-price" value="${formatPrice(item.price)}" required />
           </div>
           <div class="modal-form-group">
-            <label>Omschrijving</label>
+            <label>Vergoeding</label>
+            <input type="text" id="m-t-reimb" value="${item.reimbursement || 'Deels vergoedbaar'}" />
+          </div>
+          <div class="modal-form-group">
+            <label>Korte Omschrijving</label>
             <textarea id="m-t-desc" rows="3">${item.description || ''}</textarea>
-          </div>
-          <div class="modal-form-group">
-            <label>Status</label>
-            <select id="m-t-status">
-              <option value="active" ${item.active !== false ? 'selected' : ''}>Actief (Zichtbaar op site)</option>
-              <option value="inactive" ${item.active === false ? 'selected' : ''}>Inactief (Verborgen)</option>
-            </select>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('modal-close-btn').click()">Annuleren</button>
@@ -1226,55 +1536,44 @@ import reviews from '../../data/reviews.json';
         </form>
       `);
 
-      document.getElementById('edit-treatment-form')?.addEventListener('submit', (ev) => {
+      document.getElementById('edit-consult-form')?.addEventListener('submit', (ev) => {
         ev.preventDefault();
         item.name = (document.getElementById('m-t-name') as HTMLInputElement).value;
-        item.duration = (document.getElementById('m-t-duration') as HTMLInputElement).value;
-        item.price = (document.getElementById('m-t-price') as HTMLInputElement).value;
+        item.duration = (document.getElementById('m-t-dur') as HTMLInputElement).value;
+        item.price = cleanPriceNum((document.getElementById('m-t-price') as HTMLInputElement).value);
+        item.reimbursement = (document.getElementById('m-t-reimb') as HTMLInputElement).value;
         item.description = (document.getElementById('m-t-desc') as HTMLTextAreaElement).value;
-        item.active = (document.getElementById('m-t-status') as HTMLSelectElement).value === 'active';
-        saveStoredTreatments(catData);
+        saveStoredConsults(consultData);
         closeModal();
       });
     }
 
-    // Delete Treatment
-    if (target.classList.contains('btn-del-treatment')) {
-      const catIdx = Number(target.dataset.cat);
-      const itemIdx = Number(target.dataset.item);
-      if (confirm('Weet u zeker dat u deze behandeling wilt verwijderen?')) {
-        const catData = getStoredTreatments();
-        catData[catIdx]?.items.splice(itemIdx, 1);
-        saveStoredTreatments(catData);
-      }
-    }
-
-    // Add Treatment
-    if (target.id === 'btn-add-treatment') {
-      const catData = getStoredTreatments();
-      const categoriesHtml = catData.map((c: any, i: number) => `<option value="${i}">${c.category}</option>`).join('');
-
-      openModal('Nieuwe Behandeling Toevoegen', `
-        <form id="add-treatment-form">
+    // Add Consult
+    if (target.id === 'btn-add-consult') {
+      openModal('Nieuw Consult Toevoegen', `
+        <form id="add-consult-form">
           <div class="modal-form-group">
             <label>Categorie</label>
-            <select id="m-t-cat">${categoriesHtml}</select>
+            <select id="m-t-cat">
+              <option value="Reflexologie Consulten">Reflexologie Consulten</option>
+              <option value="Specialisaties & Trajecten">Specialisaties & Trajecten</option>
+            </select>
           </div>
           <div class="modal-form-group">
-            <label>Naam Behandeling</label>
-            <input type="text" id="m-t-name" placeholder="Bijv. Luxe Fruitzuur Peeling" required />
+            <label>Naam Consult</label>
+            <input type="text" id="m-t-name" placeholder="Bijv. Voetreflextherapie 60 min" required />
           </div>
           <div class="modal-form-group">
             <label>Duur</label>
-            <input type="text" id="m-t-duration" placeholder="Bijv. 45 minuten" required />
+            <input type="text" id="m-t-dur" placeholder="60 minuten" required />
           </div>
           <div class="modal-form-group">
             <label>Prijs (€)</label>
-            <input type="number" step="0.50" id="m-t-price" placeholder="49.50" required />
+            <input type="text" id="m-t-price" placeholder="75,00" required />
           </div>
           <div class="modal-form-group">
-            <label>Omschrijving</label>
-            <textarea id="m-t-desc" rows="3" placeholder="Korte toelichting van de behandeling..."></textarea>
+            <label>Korte Omschrijving</label>
+            <textarea id="m-t-desc" rows="3" placeholder="Beschrijf het consult..."></textarea>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('modal-close-btn').click()">Annuleren</button>
@@ -1283,141 +1582,23 @@ import reviews from '../../data/reviews.json';
         </form>
       `);
 
-      document.getElementById('add-treatment-form')?.addEventListener('submit', (ev) => {
+      document.getElementById('add-consult-form')?.addEventListener('submit', (ev) => {
         ev.preventDefault();
-        const catI = Number((document.getElementById('m-t-cat') as HTMLSelectElement).value);
-        const newTreatment = {
-          id: 'treat-' + Date.now(),
+        const consultData = getStoredConsults();
+        const catName = (document.getElementById('m-t-cat') as HTMLSelectElement).value;
+        let group = consultData.find((g: any) => g.category === catName);
+        if (!group) {
+          group = { category: catName, items: [] };
+          consultData.push(group);
+        }
+        group.items.push({
           name: (document.getElementById('m-t-name') as HTMLInputElement).value,
-          duration: (document.getElementById('m-t-duration') as HTMLInputElement).value,
-          price: (document.getElementById('m-t-price') as HTMLInputElement).value,
+          duration: (document.getElementById('m-t-dur') as HTMLInputElement).value,
+          price: cleanPriceNum((document.getElementById('m-t-price') as HTMLInputElement).value),
           description: (document.getElementById('m-t-desc') as HTMLTextAreaElement).value,
           active: true
-        };
-        catData[catI]?.items.push(newTreatment);
-        saveStoredTreatments(catData);
-        closeModal();
-      });
-    }
-
-    // Edit Product
-    if (target.classList.contains('btn-edit-prod')) {
-      const idx = Number(target.dataset.idx);
-      const prodData = getStoredProducts();
-      const p = prodData[idx];
-      if (!p) return;
-
-      openModal('Product Bewerken', `
-        <form id="edit-prod-form">
-          <div class="modal-form-group">
-            <label>Productnaam</label>
-            <input type="text" id="m-p-name" value="${p.name}" required />
-          </div>
-          <div class="modal-form-group">
-            <label>Categorie</label>
-            <input type="text" id="m-p-cat" value="${p.category}" required />
-          </div>
-          <div class="modal-form-group">
-            <label>Prijs (€)</label>
-            <input type="number" step="0.50" id="m-p-price" value="${cleanPriceNum(p.price)}" required />
-          </div>
-          <div class="modal-form-group">
-            <label>Inhoud (bijv. 200 ml)</label>
-            <input type="text" id="m-p-volume" value="${p.volume || ''}" />
-          </div>
-          <div class="modal-form-group">
-            <label>Voorraad (stuks)</label>
-            <input type="number" id="m-p-stock" value="${p.stock || 10}" />
-          </div>
-          <div class="modal-form-group">
-            <label>Korte Omschrijving</label>
-            <textarea id="m-p-desc" rows="3">${p.shortDescription || ''}</textarea>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('modal-close-btn').click()">Annuleren</button>
-            <button type="submit" class="btn btn-primary btn-sm">Opslaan</button>
-          </div>
-        </form>
-      `);
-
-      document.getElementById('edit-prod-form')?.addEventListener('submit', (ev) => {
-        ev.preventDefault();
-        p.name = (document.getElementById('m-p-name') as HTMLInputElement).value;
-        p.category = (document.getElementById('m-p-cat') as HTMLInputElement).value;
-        p.price = cleanPriceNum((document.getElementById('m-p-price') as HTMLInputElement).value);
-        p.volume = (document.getElementById('m-p-volume') as HTMLInputElement).value;
-        p.stock = parseInt((document.getElementById('m-p-stock') as HTMLInputElement).value);
-        p.shortDescription = (document.getElementById('m-p-desc') as HTMLTextAreaElement).value;
-        saveStoredProducts(prodData);
-        closeModal();
-      });
-    }
-
-    // Delete Product
-    if (target.classList.contains('btn-del-prod')) {
-      const idx = Number(target.dataset.idx);
-      if (confirm('Weet u zeker dat u dit product wilt verwijderen uit de webshop?')) {
-        const prodData = getStoredProducts();
-        prodData.splice(idx, 1);
-        saveStoredProducts(prodData);
-      }
-    }
-
-    // Add Product
-    if (target.id === 'btn-add-product') {
-      openModal('Nieuw Product Toevoegen', `
-        <form id="add-prod-form">
-          <div class="modal-form-group">
-            <label>Productnaam</label>
-            <input type="text" id="m-p-name" placeholder="Dr. Baumann..." required />
-          </div>
-          <div class="modal-form-group">
-            <label>Categorie</label>
-            <select id="m-p-cat">
-              <option value="Dr. Baumann">Dr. Baumann</option>
-              <option value="Gezichtsverzorging">Gezichtsverzorging</option>
-              <option value="Serums & Olie">Serums & Olie</option>
-              <option value="Cadeaubonnen">Cadeaubonnen</option>
-            </select>
-          </div>
-          <div class="modal-form-group">
-            <label>Prijs (€)</label>
-            <input type="number" step="0.50" id="m-p-price" placeholder="29.95" required />
-          </div>
-          <div class="modal-form-group">
-            <label>Inhoud</label>
-            <input type="text" id="m-p-volume" placeholder="Bijv. 150 ml" />
-          </div>
-          <div class="modal-form-group">
-            <label>Voorraad</label>
-            <input type="number" id="m-p-stock" value="10" />
-          </div>
-          <div class="modal-form-group">
-            <label>Korte Omschrijving</label>
-            <textarea id="m-p-desc" rows="3" placeholder="Beschrijving van het product..."></textarea>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('modal-close-btn').click()">Annuleren</button>
-            <button type="submit" class="btn btn-primary btn-sm">+ Toevoegen</button>
-          </div>
-        </form>
-      `);
-
-      document.getElementById('add-prod-form')?.addEventListener('submit', (ev) => {
-        ev.preventDefault();
-        const prodData = getStoredProducts();
-        const newProduct = {
-          id: 'prod-' + Date.now(),
-          name: (document.getElementById('m-p-name') as HTMLInputElement).value,
-          category: (document.getElementById('m-p-cat') as HTMLSelectElement).value,
-          price: cleanPriceNum((document.getElementById('m-p-price') as HTMLInputElement).value),
-          volume: (document.getElementById('m-p-volume') as HTMLInputElement).value || '100 ml',
-          stock: parseInt((document.getElementById('m-p-stock') as HTMLInputElement).value) || 10,
-          shortDescription: (document.getElementById('m-p-desc') as HTMLTextAreaElement).value,
-          image: '/images/products.png'
-        };
-        prodData.push(newProduct);
-        saveStoredProducts(prodData);
+        });
+        saveStoredConsults(consultData);
         closeModal();
       });
     }
@@ -1432,7 +1613,7 @@ import reviews from '../../data/reviews.json';
           </div>
           <div class="modal-form-group">
             <label>Behandeling / Dienst</label>
-            <input type="text" id="m-r-treat" placeholder="Bijv. Beauty Treatment 60 min" required />
+            <input type="text" id="m-r-treat" placeholder="Bijv. Voetreflextherapie 60 min" required />
           </div>
           <div class="modal-form-group">
             <label>Beoordelingstekst</label>
@@ -1448,14 +1629,13 @@ import reviews from '../../data/reviews.json';
       document.getElementById('add-rev-form')?.addEventListener('submit', (ev) => {
         ev.preventDefault();
         const revData = getStoredReviews();
-        const newRev = {
-          id: 'rev-' + Date.now(),
+        revData.unshift({
           author: (document.getElementById('m-r-author') as HTMLInputElement).value,
           treatment: (document.getElementById('m-r-treat') as HTMLInputElement).value,
           comment: (document.getElementById('m-r-comment') as HTMLTextAreaElement).value,
-          rating: 5
-        };
-        revData.unshift(newRev);
+          rating: 5,
+          date: 'Recent'
+        });
         saveStoredReviews(revData);
         closeModal();
       });
@@ -1469,44 +1649,6 @@ import reviews from '../../data/reviews.json';
         revData.splice(idx, 1);
         saveStoredReviews(revData);
       }
-    }
-
-    // Edit Review
-    if (target.classList.contains('btn-edit-rev')) {
-      const idx = Number(target.dataset.idx);
-      const revData = getStoredReviews();
-      const r = revData[idx];
-      if (!r) return;
-
-      openModal('Review Bewerken', `
-        <form id="edit-rev-form">
-          <div class="modal-form-group">
-            <label>Klantnaam</label>
-            <input type="text" id="m-r-author" value="${r.author}" required />
-          </div>
-          <div class="modal-form-group">
-            <label>Behandeling</label>
-            <input type="text" id="m-r-treat" value="${r.treatment}" required />
-          </div>
-          <div class="modal-form-group">
-            <label>Beoordelingstekst</label>
-            <textarea id="m-r-comment" rows="4" required>${r.comment}</textarea>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('modal-close-btn').click()">Annuleren</button>
-            <button type="submit" class="btn btn-primary btn-sm">Opslaan</button>
-          </div>
-        </form>
-      `);
-
-      document.getElementById('edit-rev-form')?.addEventListener('submit', (ev) => {
-        ev.preventDefault();
-        r.author = (document.getElementById('m-r-author') as HTMLInputElement).value;
-        r.treatment = (document.getElementById('m-r-treat') as HTMLInputElement).value;
-        r.comment = (document.getElementById('m-r-comment') as HTMLTextAreaElement).value;
-        saveStoredReviews(revData);
-        closeModal();
-      });
     }
   });
 </script>
