@@ -1,5 +1,33 @@
-User-agent: *
+﻿User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /mijn-*
+
+# GEO & AI Search Engines (Toegestaan voor AI-vindbaarheid)
+User-agent: GPTBot
 Allow: /
 
-Sitemap: https://www.voetreflextherapeutgroningen.nl/sitemap-index.xml
-Sitemap: https://www.voetreflextherapeutgroningen.nl/sitemap.xml
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Agressieve & Irrelevante Scrapers (Geblokkeerd)
+User-agent: Bytespider
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /
+
+User-agent: Amazonbot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+Sitemap: https://voetreflextherapeutgroningen.nl/sitemap-index.xml
+Sitemap: https://voetreflextherapeutgroningen.nl/sitemap.xml
